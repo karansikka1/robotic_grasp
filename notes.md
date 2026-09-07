@@ -77,3 +77,9 @@ Exact MuJoCo cube poses are likely covered by the permission to use privileged t
 3. Implement and overfit PPO on a small fixed set of seeds as a pipeline sanity check.
 4. Evaluate on held-out randomized seeds and apply the go/no-go rule above.
 5. Save checkpoints containing only the actor and its RGB/proprioceptive preprocessing state; verify inference never reads depth or completion.
+
+## Experiment log
+
+| exp_name | network | reward | results | note |
+| --- | --- | --- | --- | --- |
+| `v1-vanilla-ppo` | Frozen ImageNet MobileNetV3-Small shared by front/wrist RGB + a second frozen MobileNetV3-Small for depth; learned projections and proprio MLP are summed, then separate MLP actor/value heads. | `10 * task_complete - 0.001` per control step | Pending | Privileged-depth pipeline baseline. It is not a valid final actor because depth is unavailable at inference under the final observation contract. |
