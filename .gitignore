@@ -5,3 +5,5 @@ tests/**
 .DS_Store
 evaluation/
 v1/runs/
+
+v2/runs/

@@ -83,3 +83,29 @@ Exact MuJoCo cube poses are likely covered by the permission to use privileged t
 | exp_name | network | reward | results | note |
 | --- | --- | --- | --- | --- |
 | `v1-vanilla-ppo` | Frozen ImageNet MobileNetV3-Small shared by front/wrist RGB + a second frozen MobileNetV3-Small for depth; learned projections and proprio MLP are summed, then separate MLP actor/value heads. | `10 * task_complete - 0.001` per control step | Pending | Privileged-depth pipeline baseline. Mini-eval on fixed seeds 0–4 every 10 PPO updates; final eval on fixed seeds 0–24. Not a valid final actor because depth is unavailable at inference. |
+| `v2-green-lift` | Reuse v1's privileged-depth PPO policy initially, to isolate the task/reward change. | +1 first green grasp; +5 held green lift (5 cm, 5 consecutive steps). No step penalty or distance shaping. | Reward tests and short CUDA integration passed; learning results pending | Simpler learning diagnostic before returning to stacking. |
+
+## v2: grasp and lift the green bar
+
+- Motivation: v1 rollouts reported no successes and repeated -0.500 episode returns. Test whether PPO learns a shorter manipulation task before attempting the full stack.
+- Target the green object (`cubeB` / `cubeB_body_id`), not cubeA, which the existing staged environment reward targets.
+- Implemented starting reward: +1 once per episode for a confirmed green-object grasp, then +5 for lifting it 5 cm above its post-reset resting height while still grasped for 5 consecutive control steps (0.25 s). End the episode on the successful held lift. These are initial design choices, not tuned settings.
+- Detect grasp using contacts from both gripper finger groups with the green object; a closed gripper alone is insufficient. Give each milestone bonus only once, so repeated release/regrasp cannot accumulate grasp bonuses.
+- Two binary bonuses are still sparse before the first grasp. If v2 does not learn, try a gripper-to-green distance reward as v3. No distance reward or initialization curriculum is included in v2.
+- Read object poses and contacts only in an external training/reward adapter. Keep the simulator task definition intact and preserve v1 for comparison. Reuse v1's observation/model setup for this diagnostic, including its explicitly privileged depth input.
+- v2 evaluation must use the same grasp-and-held-lift success criterion, rather than the existing full-stack `task_complete` flag.
+- Log grasp rate, lift success rate, maximum lift height, steps to grasp/lift, and individual reward components. Compare with an untrained policy on fixed seeds; inspect rollout videos. Begin on a small fixed seed set, then evaluate on held-out seeds.
+- Implementation: external task adapter in `v2/task.py`, shared v1 model/PPO optimizer, v2 training and checkpoint evaluation commands. Model and automatic evaluations share the run UUID. Task settings are saved in checkpoints.
+- Run: `bash scripts/v2_smoke_train.sh`. For a longer comparison run: `bash scripts/v2_smoke_train.sh --total-timesteps 100000 --rollout-steps 1024 --evaluate-untrained`.
+- Validation: five reward/adapter/evaluation tests passed. A four-step CUDA training run completed two PPO updates, two video mini evaluations, and final video evaluation. This checks the pipeline, not learning performance.
+- v2 returns are 0 without grasp, 1 for grasp without lift, and 6 for successful grasp-and-held-lift with default settings.
+
+### v2 smoke result — 2026-09-07
+
+- Run: `v2-smoke-70fbf0c2-528c-4603-b78a-05a302e08ab9`, launched with `bash scripts/v2_smoke_train.sh`.
+- CUDA, pretrained encoders, 2,048 training steps, 256-step rollouts, four optimization epochs, minibatches of 256; eight updates completed.
+- Four completed training episodes: no grasps or lifts, return 0 each. Training took approximately 61 seconds.
+- Final deterministic evaluation on seeds 0–24: 0/25 grasps and 0/25 successful held lifts; every episode reached 500 steps. Mean maximum green height increase: approximately 1.33 mm, below the 50 mm target.
+- Checkpoint: `v2/runs/v2-smoke-70fbf0c2-528c-4603-b78a-05a302e08ab9/checkpoint_final.pt`.
+- Evaluation metrics and 25 videos: `evaluation/v2/v2-smoke-70fbf0c2-528c-4603-b78a-05a302e08ab9/`.
+- Execution completed without errors. This short smoke run produced no positive reward; it does not establish whether a longer v2 run can learn. Distance shaping remains a possible v3 experiment.

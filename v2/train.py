@@ -1,4 +1,4 @@
-"""Train and evaluate the privileged-depth v1 vanilla PPO baseline."""
+"""Train and evaluate the privileged-depth v2 green grasp-and-lift policy."""
 
 from __future__ import annotations
 
@@ -6,7 +6,6 @@ import argparse
 import json
 import logging
 import sys
-import re
 import uuid
 from dataclasses import asdict, replace
 from pathlib import Path
@@ -15,42 +14,23 @@ from typing import Any
 import numpy as np
 import torch
 
-from harness import MINI_EVALUATION_EPISODES, evaluate_policy
-from v1.model import PrivilegedPPOPolicy, privileged_policy_observation
-from v1.ppo import PPOConfig, train_ppo
+from harness import MINI_EVALUATION_EPISODES
+from v2.evaluation import evaluate_policy
+from v2.task import LiftTaskConfig
+from v1.model import PrivilegedPPOPolicy
+from v1.train import select_device, create_training_run_dir
+from v2.ppo import PPOConfig, train_ppo
 
 
-logger = logging.getLogger("v1.train")
-
-
-def select_device(requested: str) -> torch.device:
-    if requested != "auto":
-        return torch.device(requested)
-    if torch.cuda.is_available():
-        return torch.device("cuda")
-    if torch.backends.mps.is_available():
-        return torch.device("mps")
-    return torch.device("cpu")
-
-
-def create_training_run_dir(
-    root: Path, experiment_name: str, *, run_uuid: str | None = None
-) -> Path:
-    safe_name = re.sub(r"[^A-Za-z0-9._-]+", "-", experiment_name).strip("-._")
-    if not safe_name:
-        raise ValueError("experiment name must contain at least one letter or number")
-    run_uuid = str(uuid.UUID(run_uuid)) if run_uuid is not None else str(uuid.uuid4())
-    run_dir = root.expanduser().resolve() / f"{safe_name}-{run_uuid}"
-    run_dir.mkdir(parents=True)
-    return run_dir
+logger = logging.getLogger("v2.train")
 
 
 def parse_args() -> argparse.Namespace:
     defaults = PPOConfig()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--exp-name", default="v1-vanilla-ppo")
-    parser.add_argument("--runs-dir", type=Path, default=Path("v1/runs"))
-    parser.add_argument("--evaluation-dir", type=Path, default=Path("evaluation"))
+    parser.add_argument("--exp-name", default="v2-green-lift")
+    parser.add_argument("--runs-dir", type=Path, default=Path("v2/runs"))
+    parser.add_argument("--evaluation-dir", type=Path, default=Path("evaluation/v2"))
     parser.add_argument("--total-timesteps", type=int, default=defaults.total_timesteps)
     parser.add_argument("--rollout-steps", type=int, default=defaults.rollout_steps)
     parser.add_argument("--update-epochs", type=int, default=defaults.update_epochs)
@@ -77,6 +57,15 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=MINI_EVALUATION_EPISODES,
     )
+    parser.add_argument("--grasp-reward", type=float, default=defaults.task.grasp_reward)
+    parser.add_argument("--lift-reward", type=float, default=defaults.task.lift_reward)
+    parser.add_argument("--lift-height-m", type=float, default=defaults.task.lift_height_m)
+    parser.add_argument("--hold-steps", type=int, default=defaults.task.hold_steps)
+    parser.add_argument("--final-eval-episodes", type=int, default=25)
+    parser.add_argument(
+        "--evaluate-untrained", action="store_true",
+        help="evaluate the initialized policy on the final evaluation seeds before training",
+    )
     parser.add_argument("--device", default="auto")
     parser.add_argument("--image-size", type=int, default=128)
     parser.add_argument("--embedding-dim", type=int, default=256)
@@ -100,6 +89,10 @@ def main() -> None:
     device = select_device(args.device)
     config = replace(
         PPOConfig(),
+        task=LiftTaskConfig(
+            grasp_reward=args.grasp_reward, lift_reward=args.lift_reward,
+            lift_height_m=args.lift_height_m, hold_steps=args.hold_steps,
+        ),
         total_timesteps=args.total_timesteps,
         rollout_steps=args.rollout_steps,
         update_epochs=args.update_epochs,
@@ -111,6 +104,8 @@ def main() -> None:
         mini_eval_interval_updates=args.mini_eval_interval_updates,
     )
     config.validate()
+    if args.final_eval_episodes <= 0:
+        raise ValueError("--final-eval-episodes must be greater than zero")
     if args.mini_eval_episodes <= 0:
         raise ValueError("--mini-eval-episodes must be greater than zero")
     run_uuid = str(uuid.uuid4())
@@ -135,7 +130,9 @@ def main() -> None:
     robosuite_logger = logging.getLogger("robosuite_logs")
     robosuite_logger.setLevel(logging.WARNING)
     robosuite_logger.propagate = False
+    logging.getLogger("OpenGL").setLevel(logging.WARNING)
     run_config = {
+        "task_name": config.task_name,
         "experiment_name": args.exp_name,
         "run_uuid": run_uuid,
         "device": str(device),
@@ -145,6 +142,8 @@ def main() -> None:
             "enabled": not args.skip_evaluation,
             "mini_episodes": args.mini_eval_episodes,
             "mini_seed": 0,
+            "final_episodes": args.final_eval_episodes,
+            "untrained_baseline": args.evaluate_untrained and not args.skip_evaluation,
         },
         "ppo": asdict(config),
         "model": {
@@ -174,6 +173,14 @@ def main() -> None:
         max_depth_m=args.max_depth_m,
         pretrained=not args.no_pretrained,
     )
+    if args.evaluate_untrained and not args.skip_evaluation:
+        logger.info("Evaluating untrained policy baseline")
+        baseline = evaluate_policy(
+            policy.predict, args.evaluation_dir / "untrained",
+            task_config=config.task, run_name=args.exp_name, run_uuid=run_uuid,
+            episodes=args.final_eval_episodes, max_steps=config.max_episode_steps,
+        )
+        logger.info("Untrained baseline: %s | artifacts: %s", baseline["summary"], baseline["output_dir"])
     mini_evaluation_fn = None
     if not args.skip_evaluation and config.mini_eval_interval_updates > 0:
 
@@ -194,7 +201,7 @@ def main() -> None:
                 episodes=args.mini_eval_episodes,
                 max_steps=config.max_episode_steps,
                 seed=0,
-                observation_adapter=privileged_policy_observation,
+                task_config=config.task,
                 record_video=True,
             )
 
@@ -215,7 +222,8 @@ def main() -> None:
             run_name=args.exp_name,
             run_uuid=run_uuid,
             max_steps=config.max_episode_steps,
-            observation_adapter=privileged_policy_observation,
+            task_config=config.task,
+            episodes=args.final_eval_episodes,
         )
         logger.info(f"Evaluation artifacts: {metrics['output_dir']}")
         logger.info(json.dumps(metrics["summary"], indent=2, sort_keys=True))

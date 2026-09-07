@@ -164,6 +164,7 @@ def _remaining_simulator_steps(simulator: SimulatorLike) -> int | None:
 def _create_run_directory(
     evaluation_dir: str | Path,
     run_name: str | None,
+    run_uuid: str | None = None,
 ) -> tuple[Path, str]:
     """Create and return a uniquely named directory for one evaluation run."""
     evaluation_path = Path(evaluation_dir).expanduser().resolve()
@@ -174,12 +175,15 @@ def _create_run_directory(
     if not safe_name:
         raise ValueError("run_name must contain at least one letter or number")
 
+    shared_uuid = str(uuid.UUID(run_uuid)) if run_uuid is not None else None
     while True:
-        run_id = f"{safe_name}-{uuid.uuid4()}"
+        run_id = f"{safe_name}-{shared_uuid or uuid.uuid4()}"
         run_path = evaluation_path / run_id
         try:
             run_path.mkdir(exist_ok=False)
         except FileExistsError:
+            if shared_uuid is not None:
+                raise
             continue
         return run_path, run_id
 
@@ -209,6 +213,7 @@ def evaluate_policy(
     evaluation_dir: str | Path,
     *,
     run_name: str | None = None,
+    run_uuid: str | None = None,
     episodes: int = DEFAULT_EVALUATION_EPISODES,
     max_steps: int = DEFAULT_MAX_STEPS,
     seed: int = DEFAULT_EVALUATION_SEED,
@@ -217,11 +222,14 @@ def evaluate_policy(
     policy_reset_fn: PolicyResetFn | None = None,
     record_video: bool = True,
     fps: int = CONTROL_FREQUENCY_HZ,
+    episode_metrics_fn: Callable[[Mapping[str, Any]], Mapping[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Run evaluation episodes in a unique directory under ``evaluation_dir``.
 
     ``run_name`` supplies the readable portion of the directory name. A UUID is
-    always appended, so repeated evaluations cannot overwrite prior artifacts.
+    appended. Supply run_uuid to reuse a training run's UUID; otherwise a
+    fresh UUID is generated. An existing directory with an explicitly supplied
+    UUID raises FileExistsError rather than overwriting prior artifacts.
 
     ``observation_adapter`` controls exactly what the policy sees. The default
     filters out privileged fields such as depth and ``task_complete``. Supply a
@@ -230,6 +238,9 @@ def evaluate_policy(
 
     ``policy_reset_fn`` is called at the start of every episode and is useful
     for recurrent policies or wrappers that maintain action history.
+
+    An optional episode_metrics_fn extracts task-specific metrics from the final
+    observation of each episode and saves them under that episode's task_metrics.
 
     By default, evaluation uses the fixed initialization seeds 0 through 24.
     The simulator's post-reset zero-action bootstrap is recorded in the video,
@@ -242,7 +253,7 @@ def evaluate_policy(
     if fps <= 0:
         raise ValueError("fps must be greater than zero")
 
-    output_path, run_id = _create_run_directory(evaluation_dir, run_name)
+    output_path, run_id = _create_run_directory(evaluation_dir, run_name, run_uuid)
     make_simulator = simulator_factory or (lambda: Simulator(has_renderer=False))
     episode_seeds = [seed + episode_index for episode_index in range(episodes)]
 
@@ -320,6 +331,8 @@ def evaluate_policy(
                     ),
                     "clipped_action_count": clipped_action_count,
                     "video": video_name if record_video else None,
+                    **({"task_metrics": dict(episode_metrics_fn(observation))}
+                       if episode_metrics_fn is not None else {}),
                 }
             )
     finally:
@@ -334,6 +347,7 @@ def evaluate_policy(
     metrics: dict[str, Any] = {
         "schema_version": 1,
         "run_id": run_id,
+        "run_uuid": str(uuid.UUID(run_id[-36:])),
         "run_name": run_name,
         "output_dir": str(output_path),
         "config": {

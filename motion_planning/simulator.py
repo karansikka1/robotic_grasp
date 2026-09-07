@@ -29,10 +29,19 @@ class Simulator:
         )
         return sim
 
+    def _activate_render_context(self) -> None:
+        # Another simulator (e.g. mini evaluation) may have switched or released
+        # this thread's OpenGL context. Robosuite does not rebind it on render.
+        context = self.env.sim._render_context_offscreen
+        if context is not None:
+            context.gl_ctx.make_current()
+
     def reset(self) -> None:
+        self._activate_render_context()
         self.env.reset()
 
     def step(self, action):
+        self._activate_render_context()
         obs, _, _, _ = self.env.step(action)
         observation = {}
         observation["robot0_joint_pos"] = obs["robot0_joint_pos"]
@@ -49,6 +58,7 @@ class Simulator:
         self.env.render()
 
     def close(self) -> None:
+        self._activate_render_context()
         self.env.close()
 
     @property

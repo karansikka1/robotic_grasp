@@ -35,6 +35,19 @@ make train-v1 ARGS="--exp-name v1-vanilla-ppo"
 ```
 
 Training outputs are written to a UUID-suffixed directory under `v1/runs/`.
+Timestamped INFO progress is printed to terminal stdout and saved in `train.log` inside
+each run directory. Logs include initialization, rollout progress every 30 seconds,
+episode results, PPO update metrics and timing, checkpoints, and evaluation results.
+Robosuite INFO messages are suppressed; its warnings and errors remain visible.
+Existing TensorBoard metrics are also retained.
+
+Training, periodic mini evaluations, and final evaluation share the same UUID.
+It is recorded as `run_uuid` in training config and evaluation metrics. Paths are:
+
+- Model: `v1/runs/<experiment>-<uuid>/`
+- Mini evaluation: `evaluation/mini/<experiment>-step-<step>-<uuid>/`
+- Final evaluation: `evaluation/<experiment>-<uuid>/`
+
 After training, the command evaluates the deterministic policy over the 25 fixed
 evaluation initializations and writes videos plus metrics under `evaluation/`.
 
@@ -82,3 +95,10 @@ The sparse reward is `10 * task_complete - 0.001` per policy action. Training
 logs episode return, length, success, rolling success rate, PPO losses, entropy,
 KL divergence, clipping fraction, gradient norm, and whether any positive reward
 was observed in the rollout.
+
+An optional KL regularization penalty can be enabled with
+`--kl-coefficient 0.1`. The loss adds this weight times the sampled estimate of
+KL(old policy || new policy). The default weight is `0.0` (disabled). Each PPO update runs all configured
+optimization epochs. The weighted `kl_penalty` is logged
+to the terminal and TensorBoard, and the coefficient is saved in the run config
+and checkpoints.

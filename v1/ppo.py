@@ -7,6 +7,8 @@ from collections.abc import Callable, Mapping
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
+import logging
+import time
 
 import numpy as np
 import torch
@@ -16,6 +18,9 @@ from torch.utils.tensorboard import SummaryWriter
 
 from motion_planning.simulator import Simulator
 from v1.model import PrivilegedPPOPolicy
+
+
+logger = logging.getLogger(__name__)
 
 
 MiniEvaluationFn = Callable[
@@ -36,7 +41,7 @@ class PPOConfig:
     value_coefficient: float = 0.5
     entropy_coefficient: float = 0.01
     max_grad_norm: float = 0.5
-    target_kl: float = 0.03
+    kl_coefficient: float = 0.0
     max_episode_steps: int = 500
     success_reward: float = 10.0
     step_penalty: float = 0.001
@@ -58,6 +63,8 @@ class PPOConfig:
                 raise ValueError(f"{name} must be greater than zero")
         if self.minibatch_size > self.rollout_steps:
             raise ValueError("minibatch_size cannot exceed rollout_steps")
+        if not np.isfinite(self.kl_coefficient) or self.kl_coefficient < 0:
+            raise ValueError("kl_coefficient must be finite and non-negative")
         if self.mini_eval_interval_updates < 0:
             raise ValueError("mini_eval_interval_updates cannot be negative")
 
@@ -158,6 +165,7 @@ def save_checkpoint(
         temporary_path,
     )
     temporary_path.replace(path)
+    logger.info("Saved checkpoint: %s (step=%d, update=%d)", path, global_step, update)
 
 
 def _reset_episode(
@@ -195,8 +203,15 @@ def train_ppo(
     *,
     device: torch.device,
     mini_evaluation_fn: MiniEvaluationFn | None = None,
+    simulator_factory: Callable[[], Any] | None = None,
+    reward_fn: Callable[[Mapping[str, Any]], float] | None = None,
+    episode_metrics_fn: Callable[[Mapping[str, Any]], Mapping[str, Any]] | None = None,
 ) -> Path:
-    """Train ``policy`` and return the final checkpoint path."""
+    """Train policy and return the final checkpoint path.
+
+    Optional simulator/reward/episode-metrics callbacks allow alternate tasks.
+    Without callbacks, this uses the original v1 stack-success reward.
+    """
     config.validate()
     run_dir.mkdir(parents=True, exist_ok=True)
     writer = SummaryWriter(log_dir=str(run_dir / "tensorboard"))
@@ -213,7 +228,9 @@ def train_ppo(
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(config.training_seed)
 
-    simulator = Simulator(has_renderer=False)
+    logger.info("Initializing simulator and offscreen cameras")
+    simulator = simulator_factory() if simulator_factory else Simulator(has_renderer=False)
+    logger.info("Resetting first training episode")
     episode_seed = config.training_seed
     observation = _reset_episode(simulator, episode_seed)
     episode_step_limit = _episode_policy_step_limit(
@@ -226,6 +243,9 @@ def train_ppo(
     recent_lengths: deque[int] = deque(maxlen=100)
     global_step = 0
     update = 0
+    total_updates = (config.total_timesteps + config.rollout_steps - 1) // config.rollout_steps
+    training_started = time.monotonic()
+    logger.info("Simulator ready; starting %d PPO updates", total_updates)
 
     try:
         while global_step < config.total_timesteps:
@@ -235,14 +255,20 @@ def train_ppo(
             )
             buffer = RolloutBuffer()
             positive_reward_seen = False
+            rollout_started = time.monotonic()
+            last_progress = rollout_started
+            logger.info("Update %d/%d: collecting %d steps", update, total_updates, steps_this_rollout)
 
-            for _ in range(steps_this_rollout):
+            for rollout_step in range(steps_this_rollout):
                 features = policy.extract_frozen_features(observation)
                 with torch.no_grad():
                     action, log_prob, value = policy.act(features)
                 next_observation = simulator.step(action.cpu().numpy())
                 success = bool(next_observation["task_complete"])
-                reward = config.success_reward * float(success) - config.step_penalty
+                reward = (
+                    reward_fn(next_observation) if reward_fn is not None
+                    else config.success_reward * float(success) - config.step_penalty
+                )
                 positive_reward_seen = positive_reward_seen or reward > 0
                 episode_steps += 1
                 episode_return += reward
@@ -258,11 +284,24 @@ def train_ppo(
                     done,
                 )
                 global_step += 1
+                now = time.monotonic()
+                if now - last_progress >= 30:
+                    logger.info(
+                        "Rollout %d/%d | total steps %d/%d (%.1f%%)",
+                        rollout_step + 1, steps_this_rollout, global_step,
+                        config.total_timesteps, 100 * global_step / config.total_timesteps,
+                    )
+                    last_progress = now
 
                 if done:
                     completed_episodes += 1
                     recent_successes.append(float(success))
                     recent_lengths.append(episode_steps)
+                    logger.info(
+                        "Episode %d | return=%.3f length=%d success=%s success_rate_100=%.1f%%",
+                        completed_episodes, episode_return, episode_steps, success,
+                        100 * float(np.mean(recent_successes)),
+                    )
                     writer.add_scalar(
                         "episode/return", episode_return, completed_episodes
                     )
@@ -272,6 +311,12 @@ def train_ppo(
                     writer.add_scalar(
                         "episode/success", float(success), completed_episodes
                     )
+                    if episode_metrics_fn is not None:
+                        task_metrics = episode_metrics_fn(next_observation)
+                        logger.info("Episode %d task metrics: %s", completed_episodes, task_metrics)
+                        for name, value in task_metrics.items():
+                            if value is not None:
+                                writer.add_scalar(f"episode/task/{name}", float(value), completed_episodes)
                     episode_seed += 1
                     observation = _reset_episode(simulator, episode_seed)
                     episode_step_limit = _episode_policy_step_limit(
@@ -282,6 +327,9 @@ def train_ppo(
                 else:
                     observation = next_observation
 
+            rollout_seconds = time.monotonic() - rollout_started
+            optimization_started = time.monotonic()
+            logger.info("Update %d: optimizing PPO (rollout took %.1fs)", update, rollout_seconds)
             with torch.no_grad():
                 final_features = policy.extract_frozen_features(observation)
                 _, last_value = policy.distribution_and_value(final_features)
@@ -301,7 +349,6 @@ def train_ppo(
 
             metric_totals: dict[str, float] = defaultdict(float)
             minibatches = 0
-            early_stop = False
             batch_size = len(rollout["rewards"])
             for _ in range(config.update_epochs):
                 permutation = torch.randperm(batch_size)
@@ -321,6 +368,9 @@ def train_ppo(
                     )
                     log_ratio = new_log_probs - old_log_probs
                     ratio = log_ratio.exp()
+                    # Sample estimate of KL(old || new); retain gradients for
+                    # the optional penalty, using actions from the old policy.
+                    approximate_kl = ((ratio - 1.0) - log_ratio).mean()
                     unclipped_loss = -batch_advantages * ratio
                     clipped_loss = -batch_advantages * ratio.clamp(
                         1.0 - config.clip_coefficient,
@@ -343,6 +393,11 @@ def train_ppo(
                         - config.entropy_coefficient * entropy_loss
                     )
 
+                    kl_penalty = loss.new_zeros(())
+                    if config.kl_coefficient > 0:
+                        kl_penalty = config.kl_coefficient * approximate_kl
+                        loss = loss + kl_penalty
+
                     optimizer.zero_grad(set_to_none=True)
                     loss.backward()
                     gradient_norm = torch.nn.utils.clip_grad_norm_(
@@ -351,7 +406,6 @@ def train_ppo(
                     optimizer.step()
 
                     with torch.no_grad():
-                        approximate_kl = ((ratio - 1.0) - log_ratio).mean()
                         clip_fraction = (
                             (ratio - 1.0).abs() > config.clip_coefficient
                         ).float().mean()
@@ -360,6 +414,7 @@ def train_ppo(
                         "value_loss": value_loss,
                         "entropy": entropy_loss,
                         "approximate_kl": approximate_kl,
+                        "kl_penalty": kl_penalty,
                         "clip_fraction": clip_fraction,
                         "gradient_norm": gradient_norm,
                     }
@@ -367,15 +422,21 @@ def train_ppo(
                         metric_totals[name] += float(metric.detach().cpu())
                     minibatches += 1
 
-                    if (
-                        float(approximate_kl.detach().cpu())
-                        > config.target_kl
-                    ):
-                        early_stop = True
-                        break
-                if early_stop:
-                    break
-
+            logger.info(
+                "Update %d/%d | steps=%d/%d | policy_loss=%.4f value_loss=%.4f "
+                "entropy=%.4f kl=%.5f kl_penalty=%.5f clip_fraction=%.3f | minibatches=%d "
+                "| optimization=%.1fs elapsed=%.1fs steps/s=%.2f",
+                update, total_updates, global_step, config.total_timesteps,
+                metric_totals["policy_loss"] / minibatches,
+                metric_totals["value_loss"] / minibatches,
+                metric_totals["entropy"] / minibatches,
+                metric_totals["approximate_kl"] / minibatches,
+                metric_totals["kl_penalty"] / minibatches,
+                metric_totals["clip_fraction"] / minibatches,
+                minibatches, time.monotonic() - optimization_started,
+                time.monotonic() - training_started,
+                global_step / max(time.monotonic() - training_started, 1e-9),
+            )
             for name, total in metric_totals.items():
                 writer.add_scalar(f"ppo/{name}", total / minibatches, global_step)
             writer.add_scalar(
@@ -420,22 +481,10 @@ def train_ppo(
                 finally:
                     policy.train()
                 summary = evaluation["summary"]
-                writer.add_scalar(
-                    "evaluation/success_rate",
-                    float(summary["success_rate"]),
-                    global_step,
-                )
-                writer.add_scalar(
-                    "evaluation/mean_episode_steps",
-                    float(summary["mean_episode_steps"]),
-                    global_step,
-                )
-                if summary["mean_steps_to_completion"] is not None:
-                    writer.add_scalar(
-                        "evaluation/mean_steps_to_completion",
-                        float(summary["mean_steps_to_completion"]),
-                        global_step,
-                    )
+                logger.info("Mini evaluation complete: %s | artifacts: %s", summary, evaluation["output_dir"])
+                for name, value in summary.items():
+                    if isinstance(value, (int, float)):
+                        writer.add_scalar(f"evaluation/{name}", value, global_step)
                 writer.add_text(
                     "evaluation/latest_output_dir",
                     str(evaluation["output_dir"]),
