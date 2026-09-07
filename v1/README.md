@@ -21,11 +21,17 @@ clipped to 2 m before encoding.
 
 ## Train
 
-From the repository root:
+Install the locked environment once and train from the repository root:
 
 ```bash
-conda run -n ultra \
-  python -m v1.train --exp-name v1-vanilla-ppo
+poetry install
+poetry run python -m v1.train --exp-name v1-vanilla-ppo
+```
+
+The equivalent Make shortcut is:
+
+```bash
+make train-v1 ARGS="--exp-name v1-vanilla-ppo"
 ```
 
 Training outputs are written to a UUID-suffixed directory under `v1/runs/`.
@@ -35,8 +41,7 @@ evaluation initializations and writes videos plus metrics under `evaluation/`.
 For a short architecture and pipeline check without downloading ImageNet weights:
 
 ```bash
-conda run -n ultra \
-  python -m v1.train \
+poetry run python -m v1.train \
   --exp-name v1-smoke \
   --total-timesteps 128 \
   --rollout-steps 128 \
@@ -48,14 +53,13 @@ conda run -n ultra \
 Monitor a run with:
 
 ```bash
-tensorboard --logdir v1/runs
+poetry run tensorboard --logdir v1/runs
 ```
 
 Evaluate a saved checkpoint again with:
 
 ```bash
-conda run -n ultra \
-  python -m v1.evaluate v1/runs/<run>/checkpoint_final.pt \
+poetry run python -m v1.evaluate v1/runs/<run>/checkpoint_final.pt \
   --name v1-vanilla-ppo
 ```
 
