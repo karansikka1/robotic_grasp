@@ -38,6 +38,20 @@ Training outputs are written to a UUID-suffixed directory under `v1/runs/`.
 After training, the command evaluates the deterministic policy over the 25 fixed
 evaluation initializations and writes videos plus metrics under `evaluation/`.
 
+During training, a deterministic five-episode mini evaluation runs every 10 PPO
+updates (about 10,240 policy steps with the default rollout size). It uses fixed
+seeds 0 through 4, records no video, writes metrics under `evaluation/mini/`, and
+logs evaluation success and completion speed to TensorBoard. Configure it with:
+
+```bash
+poetry run python -m v1.train \
+  --mini-eval-interval-updates 5 \
+  --mini-eval-episodes 5
+```
+
+Set `--mini-eval-interval-updates 0` to disable only periodic evaluation, or
+`--skip-evaluation` to disable both periodic and final evaluation.
+
 For a short architecture and pipeline check without downloading ImageNet weights:
 
 ```bash

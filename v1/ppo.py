@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import defaultdict, deque
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -16,6 +16,11 @@ from torch.utils.tensorboard import SummaryWriter
 
 from motion_planning.simulator import Simulator
 from v1.model import PrivilegedPPOPolicy
+
+
+MiniEvaluationFn = Callable[
+    [PrivilegedPPOPolicy, int, int], Mapping[str, Any]
+]
 
 
 @dataclass(frozen=True)
@@ -37,6 +42,7 @@ class PPOConfig:
     step_penalty: float = 0.001
     training_seed: int = 10_000
     checkpoint_interval: int = 10
+    mini_eval_interval_updates: int = 10
 
     def validate(self) -> None:
         positive_ints = {
@@ -52,6 +58,8 @@ class PPOConfig:
                 raise ValueError(f"{name} must be greater than zero")
         if self.minibatch_size > self.rollout_steps:
             raise ValueError("minibatch_size cannot exceed rollout_steps")
+        if self.mini_eval_interval_updates < 0:
+            raise ValueError("mini_eval_interval_updates cannot be negative")
 
 
 class RolloutBuffer:
@@ -186,6 +194,7 @@ def train_ppo(
     run_dir: Path,
     *,
     device: torch.device,
+    mini_evaluation_fn: MiniEvaluationFn | None = None,
 ) -> Path:
     """Train ``policy`` and return the final checkpoint path."""
     config.validate()
@@ -398,6 +407,41 @@ def train_ppo(
                     global_step=global_step,
                     update=update,
                 )
+
+            should_evaluate = (
+                mini_evaluation_fn is not None
+                and config.mini_eval_interval_updates > 0
+                and update % config.mini_eval_interval_updates == 0
+            )
+            if should_evaluate:
+                policy.eval()
+                try:
+                    evaluation = mini_evaluation_fn(policy, update, global_step)
+                finally:
+                    policy.train()
+                summary = evaluation["summary"]
+                writer.add_scalar(
+                    "evaluation/success_rate",
+                    float(summary["success_rate"]),
+                    global_step,
+                )
+                writer.add_scalar(
+                    "evaluation/mean_episode_steps",
+                    float(summary["mean_episode_steps"]),
+                    global_step,
+                )
+                if summary["mean_steps_to_completion"] is not None:
+                    writer.add_scalar(
+                        "evaluation/mean_steps_to_completion",
+                        float(summary["mean_steps_to_completion"]),
+                        global_step,
+                    )
+                writer.add_text(
+                    "evaluation/latest_output_dir",
+                    str(evaluation["output_dir"]),
+                    global_step,
+                )
+                writer.flush()
     finally:
         simulator.close()
         writer.close()

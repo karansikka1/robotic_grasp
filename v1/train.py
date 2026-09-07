@@ -8,11 +8,12 @@ import re
 import uuid
 from dataclasses import asdict, replace
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import torch
 
-from harness import evaluate_policy
+from harness import MINI_EVALUATION_EPISODES, evaluate_policy
 from v1.model import PrivilegedPPOPolicy, privileged_policy_observation
 from v1.ppo import PPOConfig, train_ppo
 
@@ -51,6 +52,17 @@ def parse_args() -> argparse.Namespace:
         "--max-episode-steps", type=int, default=defaults.max_episode_steps
     )
     parser.add_argument("--training-seed", type=int, default=defaults.training_seed)
+    parser.add_argument(
+        "--mini-eval-interval-updates",
+        type=int,
+        default=defaults.mini_eval_interval_updates,
+        help="run a mini evaluation every N PPO updates; 0 disables it",
+    )
+    parser.add_argument(
+        "--mini-eval-episodes",
+        type=int,
+        default=MINI_EVALUATION_EPISODES,
+    )
     parser.add_argument("--device", default="auto")
     parser.add_argument("--image-size", type=int, default=128)
     parser.add_argument("--embedding-dim", type=int, default=256)
@@ -61,7 +73,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="disable ImageNet weights for offline architecture smoke tests",
     )
-    parser.add_argument("--skip-evaluation", action="store_true")
+    parser.add_argument(
+        "--skip-evaluation",
+        action="store_true",
+        help="disable both periodic mini evaluation and final evaluation",
+    )
     return parser.parse_args()
 
 
@@ -77,14 +93,22 @@ def main() -> None:
         learning_rate=args.learning_rate,
         max_episode_steps=args.max_episode_steps,
         training_seed=args.training_seed,
+        mini_eval_interval_updates=args.mini_eval_interval_updates,
     )
     config.validate()
+    if args.mini_eval_episodes <= 0:
+        raise ValueError("--mini-eval-episodes must be greater than zero")
     run_dir = create_training_run_dir(args.runs_dir, args.exp_name)
     run_config = {
         "experiment_name": args.exp_name,
         "device": str(device),
         "pretrained": not args.no_pretrained,
         "uses_privileged_depth": True,
+        "evaluation": {
+            "enabled": not args.skip_evaluation,
+            "mini_episodes": args.mini_eval_episodes,
+            "mini_seed": 0,
+        },
         "ppo": asdict(config),
         "model": {
             "image_size": args.image_size,
@@ -111,7 +135,36 @@ def main() -> None:
         max_depth_m=args.max_depth_m,
         pretrained=not args.no_pretrained,
     )
-    checkpoint_path = train_ppo(policy, config, run_dir, device=device)
+    mini_evaluation_fn = None
+    if not args.skip_evaluation and config.mini_eval_interval_updates > 0:
+
+        def mini_evaluation_fn(
+            current_policy: PrivilegedPPOPolicy,
+            update: int,
+            global_step: int,
+        ) -> dict[str, Any]:
+            print(
+                f"Running {args.mini_eval_episodes}-episode mini evaluation "
+                f"after update {update} at step {global_step}"
+            )
+            return evaluate_policy(
+                current_policy.predict,
+                args.evaluation_dir / "mini",
+                run_name=f"{args.exp_name}-step-{global_step:09d}",
+                episodes=args.mini_eval_episodes,
+                max_steps=config.max_episode_steps,
+                seed=0,
+                observation_adapter=privileged_policy_observation,
+                record_video=False,
+            )
+
+    checkpoint_path = train_ppo(
+        policy,
+        config,
+        run_dir,
+        device=device,
+        mini_evaluation_fn=mini_evaluation_fn,
+    )
     print(f"Final checkpoint: {checkpoint_path}")
 
     if not args.skip_evaluation:
