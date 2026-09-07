@@ -155,7 +155,7 @@ def main() -> None:
                 max_steps=config.max_episode_steps,
                 seed=0,
                 observation_adapter=privileged_policy_observation,
-                record_video=False,
+                record_video=True,
             )
 
     checkpoint_path = train_ppo(

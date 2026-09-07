@@ -40,8 +40,9 @@ evaluation initializations and writes videos plus metrics under `evaluation/`.
 
 During training, a deterministic five-episode mini evaluation runs every 10 PPO
 updates (about 10,240 policy steps with the default rollout size). It uses fixed
-seeds 0 through 4, records no video, writes metrics under `evaluation/mini/`, and
-logs evaluation success and completion speed to TensorBoard. Configure it with:
+seeds 0 through 4, records all five rollout videos, writes artifacts under
+`evaluation/mini/`, and logs evaluation success and completion speed to
+TensorBoard. Configure it with:
 
 ```bash
 poetry run python -m v1.train \
