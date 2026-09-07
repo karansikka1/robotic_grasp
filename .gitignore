@@ -1,0 +1,6 @@
+
+**/__pycache__/**
+tests/**
+*.mp4
+.DS_Store
+evaluation/
