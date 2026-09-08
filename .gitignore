@@ -7,7 +7,7 @@ evaluation/
 v1/runs/
 
 v2/runs/
-v3/trajectories/
+v4/trajectories/
 
 # Curated rollout videos referenced by the v2 report.
 !/v2/assets/*.mp4

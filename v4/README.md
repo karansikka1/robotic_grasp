@@ -1,6 +1,6 @@
-# v3: scripted privileged teacher
+# v4: scripted privileged teacher
 
-The first v3 objective is deliberately narrow: produce and preserve one complete
+The first v4 objective is deliberately narrow: produce and preserve one complete
 red-green-blue stacking trajectory without learning. The supplied environment and
 simulator are not modified.
 
@@ -20,7 +20,7 @@ settle -> verify stable task_complete
 Run it from the repository root:
 
 ```bash
-poetry run python -m v3.record_trajectory \
+poetry run python -m v4.record_trajectory \
   --name first-full-stack \
   --seed 0 \
   --max-attempts 20
@@ -29,7 +29,7 @@ poetry run python -m v3.record_trajectory \
 Or use:
 
 ```bash
-make teacher-v3 ARGS="--name first-full-stack --seed 0 --max-attempts 20"
+make teacher-v4 ARGS="--name first-full-stack --seed 0 --max-attempts 20"
 ```
 
 The collector tries consecutive deterministic seeds until it finds one success.
@@ -37,7 +37,7 @@ Failed attempts are summarized in `metrics.json` but their large temporary files
 are discarded. A successful run directory contains:
 
 ```text
-v3/trajectories/first-full-stack-<uuid>/
+v4/trajectories/first-full-stack-<uuid>/
 ├── metrics.json
 ├── trajectory.h5
 └── trajectory.mp4

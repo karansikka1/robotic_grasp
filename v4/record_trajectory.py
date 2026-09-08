@@ -16,7 +16,7 @@ import numpy as np
 
 from harness import _VideoWriter
 from motion_planning.simulator import Simulator
-from v3.teacher import (
+from v4.teacher import (
     OBJECT_NAMES,
     PrivilegedStackTeacher,
     OracleState,
@@ -341,7 +341,7 @@ def generate_one_success(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=Path("v3/trajectories"))
+    parser.add_argument("--output-dir", type=Path, default=Path("v4/trajectories"))
     parser.add_argument("--name", default="scripted-teacher")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--max-attempts", type=int, default=20)

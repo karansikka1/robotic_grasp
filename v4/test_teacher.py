@@ -10,9 +10,9 @@ from types import SimpleNamespace
 import h5py
 import numpy as np
 
-import v3.record_trajectory as record_module
-from v3.record_trajectory import generate_one_success
-from v3.teacher import TeacherConfig
+import v4.record_trajectory as record_module
+from v4.record_trajectory import generate_one_success
+from v4.teacher import TeacherConfig
 
 
 class _Object:
