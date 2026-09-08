@@ -8,7 +8,7 @@ from pathlib import Path
 
 import torch
 
-from v1.model import PrivilegedPPOPolicy
+from v2.model import load_policy
 from v1.train import select_device
 from v2.evaluation import evaluate_policy
 from v2.task import LiftTaskConfig
@@ -32,8 +32,8 @@ def main() -> None:
     config = checkpoint["config"]
     if config.get("task_name") != "v2-green-lift":
         raise ValueError("Expected a v2-green-lift checkpoint")
-    task = LiftTaskConfig(**config["task"])
-    policy = PrivilegedPPOPolicy.from_checkpoint(args.checkpoint, device=select_device(args.device))
+    task = LiftTaskConfig.from_saved_config(config["task"])
+    policy = load_policy(args.checkpoint, device=select_device(args.device))
     metrics = evaluate_policy(
         policy.predict, args.output_dir,
         task_config=task,

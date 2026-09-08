@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass, field
 from v1.ppo import PPOConfig as BasePPOConfig, train_ppo as train_base_ppo
+from v2.model import FeatureHistory, TemporalPPOPolicy
 from v2.task import GreenLiftSimulator, LiftTaskConfig
 
 
@@ -25,4 +26,5 @@ def train_ppo(policy, config, run_dir, *, device, mini_evaluation_fn=None):
         simulator_factory=lambda: GreenLiftSimulator(config.task),
         reward_fn=lambda observation: float(observation["task_reward"]),
         episode_metrics_fn=lambda observation: observation["task_metrics"],
+        rollout_context=FeatureHistory(policy) if isinstance(policy, TemporalPPOPolicy) else None,
     )

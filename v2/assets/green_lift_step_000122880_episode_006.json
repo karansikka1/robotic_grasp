@@ -1,0 +1,78 @@
+{
+  "training_run": "v2-history-ba0c88b3-bcda-4c82-b4a7-2892e9a0fe4f",
+  "checkpoint_step": 122880,
+  "source_video": "evaluation/v2/mini/v2-history-step-000122880-ba0c88b3-bcda-4c82-b4a7-2892e9a0fe4f/episode_006.mp4",
+  "preserved_video": "green_lift_step_000122880_episode_006.mp4",
+  "sha256": "c400d69cc97e7e77662df9e7f98b3fdb9a893b22680593db4902f62a04877438",
+  "evaluation_config": {
+    "base_seed": 0,
+    "bootstrap_step_counted": false,
+    "control_frequency_hz": 20,
+    "episode_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "episodes": 10,
+    "max_steps": 500,
+    "task": {
+      "grasp_reward": 1.0,
+      "hold_steps": 5,
+      "lift_height_m": 0.05,
+      "lift_reward": 5.0,
+      "reach_reward_scale": 1.0
+    },
+    "video_fps": 20
+  },
+  "evaluation_summary": {
+    "failures": 9,
+    "grasp_rate": 0.1,
+    "lift_success_rate": 0.1,
+    "mean_episode_steps": 478.3,
+    "mean_final_gripper_distance_m": 0.37811628799653907,
+    "mean_grasp_return": 0.1,
+    "mean_initial_gripper_distance_m": 0.27228700880836226,
+    "mean_lift_return": 0.5,
+    "mean_max_lift_height_m": 0.01570433440759885,
+    "mean_min_gripper_distance_m": 0.1464664253220725,
+    "mean_reach_return": -0.10582927918817679,
+    "mean_seconds_to_completion": 14.15,
+    "mean_steps_to_completion": 283.0,
+    "mean_steps_to_grasp": 273.0,
+    "success_rate": 0.1,
+    "successes": 1
+  },
+  "episode": {
+    "clipped_action_count": 0,
+    "episode": 6,
+    "episode_steps": 283,
+    "policy_step_limit": 500,
+    "seconds_to_completion": 14.15,
+    "seed": 6,
+    "simulator_steps": 284,
+    "steps_to_completion": 283,
+    "success": true,
+    "task_metrics": {
+      "final_gripper_distance_m": 0.01257795831863169,
+      "grasp_return": 1.0,
+      "grasped": true,
+      "initial_gripper_distance_m": 0.29788329182795564,
+      "lift_return": 5.0,
+      "lift_success": true,
+      "max_lift_height_m": 0.11531577227079781,
+      "min_gripper_distance_m": 0.012030272948399624,
+      "reach_return": 0.2853053335093241,
+      "steps_to_grasp": 273,
+      "steps_to_lift": 283
+    },
+    "termination_reason": "success",
+    "video": "episode_006.mp4"
+  }
+}

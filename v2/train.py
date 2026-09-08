@@ -14,10 +14,10 @@ from typing import Any
 import numpy as np
 import torch
 
-from harness import MINI_EVALUATION_EPISODES
 from v2.evaluation import evaluate_policy
 from v2.task import LiftTaskConfig
 from v1.model import PrivilegedPPOPolicy
+from v2.model import TemporalPPOPolicy
 from v1.train import select_device, create_training_run_dir
 from v2.ppo import PPOConfig, train_ppo
 
@@ -55,7 +55,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--mini-eval-episodes",
         type=int,
-        default=MINI_EVALUATION_EPISODES,
+        default=10,
+    )
+    parser.add_argument(
+        "--reach-reward-scale", type=float, default=defaults.task.reach_reward_scale,
+        help="reward per meter of distance reduction; retreat is negative, 0 disables",
     )
     parser.add_argument("--grasp-reward", type=float, default=defaults.task.grasp_reward)
     parser.add_argument("--lift-reward", type=float, default=defaults.task.lift_reward)
@@ -66,6 +70,8 @@ def parse_args() -> argparse.Namespace:
         "--evaluate-untrained", action="store_true",
         help="evaluate the initialized policy on the final evaluation seeds before training",
     )
+    parser.add_argument("--policy", choices=("history", "single"), default="history")
+    parser.add_argument("--history-length", type=int, default=3, help="observations including the current frame")
     parser.add_argument("--device", default="auto")
     parser.add_argument("--image-size", type=int, default=128)
     parser.add_argument("--embedding-dim", type=int, default=256)
@@ -90,6 +96,7 @@ def main() -> None:
     config = replace(
         PPOConfig(),
         task=LiftTaskConfig(
+            reach_reward_scale=args.reach_reward_scale,
             grasp_reward=args.grasp_reward, lift_reward=args.lift_reward,
             lift_height_m=args.lift_height_m, hold_steps=args.hold_steps,
         ),
@@ -104,6 +111,8 @@ def main() -> None:
         mini_eval_interval_updates=args.mini_eval_interval_updates,
     )
     config.validate()
+    if args.history_length < 1:
+        raise ValueError("--history-length must be positive")
     if args.final_eval_episodes <= 0:
         raise ValueError("--final-eval-episodes must be greater than zero")
     if args.mini_eval_episodes <= 0:
@@ -132,6 +141,7 @@ def main() -> None:
     robosuite_logger.propagate = False
     logging.getLogger("OpenGL").setLevel(logging.WARNING)
     run_config = {
+        "policy_type": args.policy,
         "task_name": config.task_name,
         "experiment_name": args.exp_name,
         "run_uuid": run_uuid,
@@ -151,6 +161,7 @@ def main() -> None:
             "embedding_dim": args.embedding_dim,
             "hidden_dim": args.hidden_dim,
             "max_depth_m": args.max_depth_m,
+            **({"history_length": args.history_length} if args.policy == "history" else {}),
         },
     }
     (run_dir / "config.json").write_text(
@@ -166,13 +177,9 @@ def main() -> None:
         torch.cuda.manual_seed_all(config.training_seed)
     logger.info("Initializing policy (pretrained=%s)", not args.no_pretrained)
     logger.info("PPO config: %s", asdict(config))
-    policy = PrivilegedPPOPolicy(
-        embedding_dim=args.embedding_dim,
-        hidden_dim=args.hidden_dim,
-        image_size=args.image_size,
-        max_depth_m=args.max_depth_m,
-        pretrained=not args.no_pretrained,
-    )
+    policy_class = TemporalPPOPolicy if args.policy == "history" else PrivilegedPPOPolicy
+    policy = policy_class(**run_config["model"], pretrained=not args.no_pretrained)
+    logger.info("Policy: %s | model config: %s", args.policy, policy.get_model_config())
     if args.evaluate_untrained and not args.skip_evaluation:
         logger.info("Evaluating untrained policy baseline")
         baseline = evaluate_policy(

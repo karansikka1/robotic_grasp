@@ -152,12 +152,7 @@ def save_checkpoint(
             "global_step": global_step,
             "update": update,
             "config": asdict(config),
-            "model_config": {
-                "embedding_dim": policy.embedding_dim,
-                "hidden_dim": policy.hidden_dim,
-                "image_size": policy.image_size,
-                "max_depth_m": policy.max_depth_m,
-            },
+            "model_config": policy.get_model_config(),
             "policy_state_dict": policy.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
             "uses_privileged_depth": True,
@@ -206,6 +201,7 @@ def train_ppo(
     simulator_factory: Callable[[], Any] | None = None,
     reward_fn: Callable[[Mapping[str, Any]], float] | None = None,
     episode_metrics_fn: Callable[[Mapping[str, Any]], Mapping[str, Any]] | None = None,
+    rollout_context: Any | None = None,
 ) -> Path:
     """Train policy and return the final checkpoint path.
 
@@ -227,6 +223,11 @@ def train_ppo(
     torch.manual_seed(config.training_seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(config.training_seed)
+
+    # The optional context owns history, independently of evaluation prediction.
+    feature_fn = rollout_context.features if rollout_context is not None else policy.extract_frozen_features
+    if rollout_context is not None:
+        rollout_context.reset()
 
     logger.info("Initializing simulator and offscreen cameras")
     simulator = simulator_factory() if simulator_factory else Simulator(has_renderer=False)
@@ -260,10 +261,12 @@ def train_ppo(
             logger.info("Update %d/%d: collecting %d steps", update, total_updates, steps_this_rollout)
 
             for rollout_step in range(steps_this_rollout):
-                features = policy.extract_frozen_features(observation)
+                features = feature_fn(observation)
                 with torch.no_grad():
                     action, log_prob, value = policy.act(features)
                 next_observation = simulator.step(action.cpu().numpy())
+                if rollout_context is not None:
+                    rollout_context.record_action(action)
                 success = bool(next_observation["task_complete"])
                 reward = (
                     reward_fn(next_observation) if reward_fn is not None
@@ -317,6 +320,8 @@ def train_ppo(
                         for name, value in task_metrics.items():
                             if value is not None:
                                 writer.add_scalar(f"episode/task/{name}", float(value), completed_episodes)
+                    if rollout_context is not None:
+                        rollout_context.reset()
                     episode_seed += 1
                     observation = _reset_episode(simulator, episode_seed)
                     episode_step_limit = _episode_policy_step_limit(
@@ -331,7 +336,7 @@ def train_ppo(
             optimization_started = time.monotonic()
             logger.info("Update %d: optimizing PPO (rollout took %.1fs)", update, rollout_seconds)
             with torch.no_grad():
-                final_features = policy.extract_frozen_features(observation)
+                final_features = feature_fn(observation)
                 _, last_value = policy.distribution_and_value(final_features)
 
             rollout = buffer.tensors()

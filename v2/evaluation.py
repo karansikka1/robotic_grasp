@@ -10,6 +10,9 @@ from v2.task import GreenLiftSimulator, LiftTaskConfig
 
 
 def evaluate_policy(policy_fn, evaluation_dir, *, task_config=LiftTaskConfig(), **kwargs):
+    owner = getattr(policy_fn, "__self__", None)
+    if hasattr(owner, "reset_history"):
+        kwargs.setdefault("policy_reset_fn", owner.reset_history)
     metrics = evaluate_base_policy(
         policy_fn, evaluation_dir,
         simulator_factory=lambda: GreenLiftSimulator(task_config),
@@ -26,6 +29,10 @@ def evaluate_policy(policy_fn, evaluation_dir, *, task_config=LiftTaskConfig(), 
         "lift_success_rate": metrics["summary"]["success_rate"],
         "mean_max_lift_height_m": float(np.mean([episode["max_lift_height_m"] for episode in episodes])),
         "mean_steps_to_grasp": float(np.mean(grasp_steps)) if grasp_steps else None,
+        "mean_initial_gripper_distance_m": float(np.mean([e["initial_gripper_distance_m"] for e in episodes])),
+        "mean_final_gripper_distance_m": float(np.mean([e["final_gripper_distance_m"] for e in episodes])),
+        "mean_min_gripper_distance_m": float(np.mean([e["min_gripper_distance_m"] for e in episodes])),
+        "mean_reach_return": float(np.mean([e["reach_return"] for e in episodes])),
         "mean_grasp_return": float(np.mean([episode["grasp_return"] for episode in episodes])),
         "mean_lift_return": float(np.mean([episode["lift_return"] for episode in episodes])),
     })

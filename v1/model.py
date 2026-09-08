@@ -286,6 +286,14 @@ class PrivilegedPPOPolicy(nn.Module):
             self.train()
         return action.squeeze(0).cpu().numpy()
 
+    def get_model_config(self) -> dict[str, Any]:
+        return {
+            "embedding_dim": self.embedding_dim,
+            "hidden_dim": self.hidden_dim,
+            "image_size": self.image_size,
+            "max_depth_m": self.max_depth_m,
+        }
+
     @classmethod
     def from_checkpoint(
         cls,
