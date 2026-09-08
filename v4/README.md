@@ -86,3 +86,50 @@ and MAE for each of the seven action dimensions. Runs contain `split.json`,
 run should retain the default pretrained encoders. Offline test loss does not
 establish closed-loop success; evaluate the selected checkpoint in the simulator
 after training.
+
+## Notes for a future temporal policy
+
+The current behavior-cloning baseline is memoryless and treats each transition
+as one supervised example:
+
+```text
+observation[t] -> action[t]
+```
+
+An LSTM or transformer should instead train on ordered windows taken from within
+one trajectory. Each image is first compressed by the CNN; the temporal model
+operates on those visual embeddings rather than repeatedly flattening raw image
+pixels. A typical recurrent formulation is:
+
+```text
+CNN(images[t]) + proprio[t] + action[t - 1] -> LSTM -> action[t]
+```
+
+The current action must never be included in the inputs used to predict itself.
+During training, the ground-truth previous action can be supplied as teacher
+forcing. During rollout, the previous action is the action that the policy just
+sent to the simulator. LSTM hidden state must be reset at every episode boundary.
+
+A transformer can use the same information as causally masked tokens. Position
+`t` may attend to earlier observations and actions, but not to `action[t]` or any
+future information. It can predict all target actions in a window in parallel,
+with loss at every timestep, or predict only the final action.
+
+For a length-300 trajectory and a context window of 16, stride-one windowing
+produces 285 sequence examples. These windows remain highly correlated, so
+train/test assignment must still happen by whole trajectory before windows are
+created. No window may cross an episode boundary.
+
+Recommended order for revisiting this:
+
+1. Establish the memoryless privileged-depth behavior-cloning baseline.
+2. Add a small LSTM with 8--16 timesteps of context and the previous action.
+3. Compare offline held-out action error and, more importantly, closed-loop
+   rollout success.
+4. Try a causal transformer only after collecting substantially more diverse
+   trajectories; with five training episodes it is likely to memorize them.
+
+Action chunking is another later option: use the current observation or a short
+history to predict the next several actions at once. It can reduce compounding
+autoregressive error, but adds a separate choice about how overlapping predicted
+chunks are executed or combined.
