@@ -8,6 +8,8 @@ v1/runs/
 
 v2/runs/
 v4/trajectories/
+v4/runs/
+v4/splits/
 
 # Curated rollout videos referenced by the v2 report.
 !/v2/assets/*.mp4

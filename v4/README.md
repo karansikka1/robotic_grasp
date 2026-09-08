@@ -56,3 +56,33 @@ most useful settings are also CLI flags, for example
 `--grasp-z-offset-m 0.01` and `--max-translation-action 0.4`. Stage transitions
 are printed as the trajectory runs and the final stage for each attempt is saved
 in `metrics.json`.
+
+## Privileged behavior cloning
+
+Create a deterministic split by whole trajectory (never by adjacent frames):
+
+```bash
+make split-v4 ARGS="--test-fraction 0.2 --seed 0"
+```
+
+With the current six demonstrations this produces five training trajectories
+(1,566 transitions) and one held-out trajectory (315 transitions). Seed 347024
+is held out by split seed 0.
+
+Train the v1 privileged-depth network from the repository root:
+
+```bash
+make train-v4-bc ARGS="--exp-name v4-privileged-bc --epochs 30"
+```
+
+The two RGB images and metric depth image are passed through the frozen
+ImageNet-pretrained MobileNetV3-Small encoders once. Their cached features and
+robot proprioception train the v1 projection, fusion, and actor layers using
+Smooth L1 behavior-cloning loss. Every epoch reports held-out loss, MAE, RMSE,
+and MAE for each of the seven action dimensions. Runs contain `split.json`,
+`config.json`, `metrics.jsonl`, `best.pt`, `final.pt`, and `train.log`.
+
+`--no-pretrained` exists only for offline architecture tests. A useful training
+run should retain the default pretrained encoders. Offline test loss does not
+establish closed-loop success; evaluate the selected checkpoint in the simulator
+after training.
