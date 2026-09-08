@@ -155,7 +155,8 @@ def save_checkpoint(
             "model_config": policy.get_model_config(),
             "policy_state_dict": policy.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
-            "uses_privileged_depth": True,
+            "uses_privileged_depth": getattr(policy, "uses_privileged_depth", True),
+            "uses_privileged_state": getattr(policy, "uses_privileged_state", False),
         },
         temporary_path,
     )
@@ -189,6 +190,85 @@ def _batch_to_device(
     features: Mapping[str, Tensor], indices: Tensor, device: torch.device
 ) -> dict[str, Tensor]:
     return {name: value[indices].to(device) for name, value in features.items()}
+
+
+def optimize_ppo(policy, optimizer, config, rollout, advantages, returns, device):
+    """Run the shared PPO minibatch update on already-collected transitions."""
+    metric_totals: dict[str, float] = defaultdict(float)
+    minibatches = 0
+    batch_size = len(rollout["rewards"])
+    for _ in range(config.update_epochs):
+        permutation = torch.randperm(batch_size)
+        for start in range(0, batch_size, config.minibatch_size):
+            indices = permutation[start : start + config.minibatch_size]
+            batch_features = _batch_to_device(
+                rollout["features"], indices, device
+            )
+            actions = rollout["actions"][indices].to(device)
+            old_log_probs = rollout["log_probs"][indices].to(device)
+            batch_advantages = advantages[indices].to(device)
+            batch_returns = returns[indices].to(device)
+            old_values = rollout["values"][indices].to(device)
+
+            new_log_probs, entropy, new_values = policy.evaluate_actions(
+                batch_features, actions
+            )
+            log_ratio = new_log_probs - old_log_probs
+            ratio = log_ratio.exp()
+            # Sample estimate of KL(old || new); retain gradients for
+            # the optional penalty, using actions from the old policy.
+            approximate_kl = ((ratio - 1.0) - log_ratio).mean()
+            unclipped_loss = -batch_advantages * ratio
+            clipped_loss = -batch_advantages * ratio.clamp(
+                1.0 - config.clip_coefficient,
+                1.0 + config.clip_coefficient,
+            )
+            policy_loss = torch.maximum(unclipped_loss, clipped_loss).mean()
+
+            value_delta = new_values - old_values
+            clipped_values = old_values + value_delta.clamp(
+                -config.clip_coefficient, config.clip_coefficient
+            )
+            value_loss = 0.5 * torch.maximum(
+                (new_values - batch_returns).square(),
+                (clipped_values - batch_returns).square(),
+            ).mean()
+            entropy_loss = entropy.mean()
+            loss = (
+                policy_loss
+                + config.value_coefficient * value_loss
+                - config.entropy_coefficient * entropy_loss
+            )
+
+            kl_penalty = loss.new_zeros(())
+            if config.kl_coefficient > 0:
+                kl_penalty = config.kl_coefficient * approximate_kl
+                loss = loss + kl_penalty
+
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            gradient_norm = torch.nn.utils.clip_grad_norm_(
+                policy.parameters(), config.max_grad_norm
+            )
+            optimizer.step()
+
+            with torch.no_grad():
+                clip_fraction = (
+                    (ratio - 1.0).abs() > config.clip_coefficient
+                ).float().mean()
+            metrics = {
+                "policy_loss": policy_loss,
+                "value_loss": value_loss,
+                "entropy": entropy_loss,
+                "approximate_kl": approximate_kl,
+                "kl_penalty": kl_penalty,
+                "clip_fraction": clip_fraction,
+                "gradient_norm": gradient_norm,
+            }
+            for name, metric in metrics.items():
+                metric_totals[name] += float(metric.detach().cpu())
+            minibatches += 1
+    return metric_totals, minibatches
 
 
 def train_ppo(
@@ -229,7 +309,7 @@ def train_ppo(
     if rollout_context is not None:
         rollout_context.reset()
 
-    logger.info("Initializing simulator and offscreen cameras")
+    logger.info("Initializing simulator")
     simulator = simulator_factory() if simulator_factory else Simulator(has_renderer=False)
     logger.info("Resetting first training episode")
     episode_seed = config.training_seed
@@ -352,80 +432,9 @@ def train_ppo(
                 advantages.std(unbiased=False) + 1e-8
             )
 
-            metric_totals: dict[str, float] = defaultdict(float)
-            minibatches = 0
-            batch_size = len(rollout["rewards"])
-            for _ in range(config.update_epochs):
-                permutation = torch.randperm(batch_size)
-                for start in range(0, batch_size, config.minibatch_size):
-                    indices = permutation[start : start + config.minibatch_size]
-                    batch_features = _batch_to_device(
-                        rollout["features"], indices, device
-                    )
-                    actions = rollout["actions"][indices].to(device)
-                    old_log_probs = rollout["log_probs"][indices].to(device)
-                    batch_advantages = advantages[indices].to(device)
-                    batch_returns = returns[indices].to(device)
-                    old_values = rollout["values"][indices].to(device)
-
-                    new_log_probs, entropy, new_values = policy.evaluate_actions(
-                        batch_features, actions
-                    )
-                    log_ratio = new_log_probs - old_log_probs
-                    ratio = log_ratio.exp()
-                    # Sample estimate of KL(old || new); retain gradients for
-                    # the optional penalty, using actions from the old policy.
-                    approximate_kl = ((ratio - 1.0) - log_ratio).mean()
-                    unclipped_loss = -batch_advantages * ratio
-                    clipped_loss = -batch_advantages * ratio.clamp(
-                        1.0 - config.clip_coefficient,
-                        1.0 + config.clip_coefficient,
-                    )
-                    policy_loss = torch.maximum(unclipped_loss, clipped_loss).mean()
-
-                    value_delta = new_values - old_values
-                    clipped_values = old_values + value_delta.clamp(
-                        -config.clip_coefficient, config.clip_coefficient
-                    )
-                    value_loss = 0.5 * torch.maximum(
-                        (new_values - batch_returns).square(),
-                        (clipped_values - batch_returns).square(),
-                    ).mean()
-                    entropy_loss = entropy.mean()
-                    loss = (
-                        policy_loss
-                        + config.value_coefficient * value_loss
-                        - config.entropy_coefficient * entropy_loss
-                    )
-
-                    kl_penalty = loss.new_zeros(())
-                    if config.kl_coefficient > 0:
-                        kl_penalty = config.kl_coefficient * approximate_kl
-                        loss = loss + kl_penalty
-
-                    optimizer.zero_grad(set_to_none=True)
-                    loss.backward()
-                    gradient_norm = torch.nn.utils.clip_grad_norm_(
-                        policy.parameters(), config.max_grad_norm
-                    )
-                    optimizer.step()
-
-                    with torch.no_grad():
-                        clip_fraction = (
-                            (ratio - 1.0).abs() > config.clip_coefficient
-                        ).float().mean()
-                    metrics = {
-                        "policy_loss": policy_loss,
-                        "value_loss": value_loss,
-                        "entropy": entropy_loss,
-                        "approximate_kl": approximate_kl,
-                        "kl_penalty": kl_penalty,
-                        "clip_fraction": clip_fraction,
-                        "gradient_norm": gradient_norm,
-                    }
-                    for name, metric in metrics.items():
-                        metric_totals[name] += float(metric.detach().cpu())
-                    minibatches += 1
+            metric_totals, minibatches = optimize_ppo(
+                policy, optimizer, config, rollout, advantages, returns, device,
+            )
 
             logger.info(
                 "Update %d/%d | steps=%d/%d | policy_loss=%.4f value_loss=%.4f "

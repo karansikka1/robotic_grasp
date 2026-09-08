@@ -85,6 +85,7 @@ Exact MuJoCo cube poses are likely covered by the permission to use privileged t
 | `v1-vanilla-ppo` | Frozen ImageNet MobileNetV3-Small shared by front/wrist RGB + a second frozen MobileNetV3-Small for depth; learned projections and proprio MLP are summed, then separate MLP actor/value heads. | `10 * task_complete - 0.001` per control step | Pending | Privileged-depth pipeline baseline. Mini-eval on fixed seeds 0–4 every 10 PPO updates; final eval on fixed seeds 0–24. Not a valid final actor because depth is unavailable at inference. |
 | `v2-green-lift` | Reuse v1's privileged-depth PPO policy initially, to isolate the task/reward change. | +1 first green grasp; +5 held green lift (5 cm, 5 consecutive steps). No step penalty or distance shaping. | Reward tests and short CUDA integration passed; learning results pending | Simpler learning diagnostic before returning to stacking. |
 | `v2-history` | Three consecutive observations + previous action; frozen RGB/depth encoders and learned temporal fusion. | Signed reaching progress (scale 1), +1 first grasp, +5 held lift. | Slow, inconsistent learning: 8 grasp episodes and 1 held lift in 368 training episodes at 184,320 steps; mini evaluation at 122,880 achieved 1/10 lifts, subsequent six checkpoints 0/10. | [Report and preserved episode 006](v2/REPORT.md); next experiment undecided. |
+| `v3-state` | MLP actor/critic on 47 privileged state values. | Reaching progress +1 contact +5 held lift. | At 204,800 steps: 1/5 evaluation contact episodes, 0/5 held lifts; contact did not establish secure gripping. | Next: five-step contact bonus, initialized from this checkpoint. [Details](v3/README.md). |
 
 ## Original v2: grasp and lift the green bar (baseline commit 7762977)
 
@@ -149,3 +150,15 @@ Exact MuJoCo cube poses are likely covered by the permission to use privileged t
 - All six subsequent completed mini evaluations, at steps 133,120 through 184,320, had 0/10 grasps and lifts. The preserved success is an example of discovered behavior, not evidence of a dependable policy.
 - Saved the original [episode 006 video](v2/assets/green_lift_step_000122880_episode_006.mp4) in `v2/assets`, with [source metrics and provenance](v2/assets/green_lift_step_000122880_episode_006.json), for inclusion in the repository. The [v2 experiment report](v2/REPORT.md) references it and records the result in context.
 - History is not isolated as the cause of improvement: this run also uses eight PPO epochs and ten mini-evaluation seeds versus four and five in the earlier single-observation run. Decide the next plan of action separately.
+
+### v3 state policy: setup and results — 2026-09-08
+
+- Separate 128-by-128 MLP actor/critic on 47 privileged state values (robot/object poses, velocities, and relative position). No vision or history; same reaching reward, +1 bilateral-contact bonus, and +5 held green lift. This is a diagnostic/potential teacher; visual student training is deferred.
+- Parallel CPU simulators with batched policy inference; `--num-envs` defaults to 1. Rollout steps count transitions across all workers, with advantages computed per worker. Training episodes allow 1,000 actions; evaluation allows 500. Commands and artifact paths: [v3 README](v3/README.md).
+- Run `20d9d6e6-320d-4241-a047-f0b7b965ca26`: four simulators, 2,048-step rollouts, eight PPO epochs, minibatches of 256, 400K-step budget. At 143,360 steps, evaluations registered contact in 2/5 episodes; at 204,800, 1/5, with no evaluation held lifts. **The original “grasp” counted even one instant of bilateral contact, so these rates do not establish secure gripping.**
+
+### v3 next run: maintained grasp from checkpoint — 2026-09-08
+
+- Launch: `bash scripts/v3_grasp_train.sh`. Award +1 only after five consecutive bilateral-contact steps (0.25 s); contact loss resets the streak. Keep reaching and the +5 lift criterion (5 cm for five contact steps). Log contact occurrence, duration, losses, and final contact state. Maintained contact remains a proxy; lifting is the stronger check. Old checkpoints retain their original grasp definition.
+- Initialize actor, critic, and exploration weights from `v3/runs/v3-state-20d9d6e6-320d-4241-a047-f0b7b965ca26/checkpoints/step_000204800.pt`; start fresh optimizer state, counters, and UUID, with source provenance saved. Keep the above training settings for 400K additional steps. Evaluate loaded weights under the new definition first; five mini-eval episodes every ten updates, 25 initial/final episodes.
+- Validation: 33 tests and a 16-step CUDA warm-start check passed, including parallel rollouts, checkpoint saving, and initial/mini/final evaluations. Full experiment prepared for launch; details in the [v3 README](v3/README.md).

@@ -16,6 +16,7 @@ class LiftTaskConfig:
     lift_reward: float = 5.0
     lift_height_m: float = 0.05
     hold_steps: int = 5
+    grasp_hold_steps: int = 1
     reach_reward_scale: float = 1.0
 
     def validate(self) -> None:
@@ -25,13 +26,15 @@ class LiftTaskConfig:
                 raise ValueError(f"{name} must be finite and positive")
         if not math.isfinite(self.reach_reward_scale) or self.reach_reward_scale < 0:
             raise ValueError("reach_reward_scale must be finite and non-negative")
+        if not isinstance(self.grasp_hold_steps, int) or self.grasp_hold_steps <= 0:
+            raise ValueError("grasp_hold_steps must be a positive integer")
         if not isinstance(self.hold_steps, int) or self.hold_steps <= 0:
             raise ValueError("hold_steps must be a positive integer")
 
     @classmethod
     def from_saved_config(cls, config: dict[str, Any]) -> "LiftTaskConfig":
         # Checkpoints predating reaching rewards used only the two milestones.
-        return cls(**{"reach_reward_scale": 0.0, **config})
+        return cls(**{"reach_reward_scale": 0.0, "grasp_hold_steps": 1, **config})
 
 
 class LiftEpisode:
@@ -52,6 +55,11 @@ class LiftEpisode:
         self.steps = 0
         self.steps_to_grasp: int | None = None
         self.steps_to_lift: int | None = None
+        self.contact_steps = 0
+        self.contact_streak_steps = 0
+        self.max_contact_streak_steps = 0
+        self.contact_loss_count = 0
+        self.bilateral_contact = False
         self.held_steps = 0
         self.max_lift_height_m = 0.0
         self.grasp_return = 0.0
@@ -72,7 +80,16 @@ class LiftEpisode:
         self.reach_return += reward
         self.previous_distance_m = distance_m
         self.min_distance_m = min(self.min_distance_m, distance_m)
-        if grasped and self.steps_to_grasp is None:
+        if grasped:
+            self.contact_steps += 1
+            self.contact_streak_steps += 1
+            self.max_contact_streak_steps = max(self.max_contact_streak_steps, self.contact_streak_steps)
+        else:
+            if self.bilateral_contact:
+                self.contact_loss_count += 1
+            self.contact_streak_steps = 0
+        self.bilateral_contact = bool(grasped)
+        if self.contact_streak_steps >= self.config.grasp_hold_steps and self.steps_to_grasp is None:
             self.steps_to_grasp = self.steps
             self.grasp_return = self.config.grasp_reward
             reward += self.config.grasp_reward
@@ -92,6 +109,12 @@ class LiftEpisode:
     def metrics(self) -> dict[str, Any]:
         return {
             "grasped": self.steps_to_grasp is not None,
+            "contact_seen": self.contact_steps > 0,
+            "bilateral_contact": self.bilateral_contact,
+            "contact_steps": self.contact_steps,
+            "contact_streak_steps": self.contact_streak_steps,
+            "max_contact_streak_steps": self.max_contact_streak_steps,
+            "contact_loss_count": self.contact_loss_count,
             "lift_success": self.success,
             "max_lift_height_m": self.max_lift_height_m,
             "steps_to_grasp": self.steps_to_grasp,
