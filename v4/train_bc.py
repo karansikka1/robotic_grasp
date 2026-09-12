@@ -1,4 +1,4 @@
-"""Train the v1 privileged-depth policy by behavior cloning v4 trajectories."""
+"""Train visual single-frame or history policies by cloning v4 demonstrations."""
 
 from __future__ import annotations
 
@@ -20,12 +20,19 @@ from torch import Tensor
 from torch.optim import AdamW
 from torch.utils.data import DataLoader
 
-from v1.model import PROPRIO_KEYS, PrivilegedPPOPolicy
+from v1.model import PrivilegedPPOPolicy
+from v2.model import TemporalPPOPolicy
+from v4.model import POLICY_CLASSES, TransformerTemporalPolicy, load_policy, policy_kind
+from v4.history import add_history
+from v4.visual_inputs import (
+    VisualInputCache, cache_visual_inputs, preprocess_observation_batch, select_feature_batch,
+)
 from v4.data import (
     H5TransitionDataset,
     discover_trajectories,
     split_trajectories,
     write_manifest,
+    validate_manifest,
 )
 
 
@@ -42,12 +49,17 @@ class BCConfig:
     weight_decay: float = 1e-5
     max_grad_norm: float = 1.0
     training_seed: int = 0
+    finetune_backbone: bool = False
+    backbone_learning_rate: float = 1e-5
+    gripper_loss: str = 'smooth_l1'
 
     def validate(self) -> None:
+        if self.gripper_loss not in ('smooth_l1', 'bce'):
+            raise ValueError('gripper_loss must be smooth_l1 or bce')
         for name in ("epochs", "batch_size", "feature_batch_size"):
             if getattr(self, name) <= 0:
                 raise ValueError(f"{name} must be positive")
-        for name in ("learning_rate", "max_grad_norm"):
+        for name in ("learning_rate", "backbone_learning_rate", "max_grad_norm"):
             value = getattr(self, name)
             if not math.isfinite(value) or value <= 0:
                 raise ValueError(f"{name} must be finite and positive")
@@ -74,68 +86,17 @@ def create_run_dir(root: Path, experiment_name: str) -> Path:
     return run_dir
 
 
-def _normalize_rgb(policy: PrivilegedPPOPolicy, images: Tensor) -> Tensor:
-    images = images.to(policy.device).permute(0, 3, 1, 2).float().div_(255.0)
-    images = images.flip(-2)
-    images = F.interpolate(
-        images,
-        size=(policy.image_size, policy.image_size),
-        mode="bilinear",
-        align_corners=False,
-        antialias=True,
-    )
-    return (images - policy.image_mean) / policy.image_std
-
-
 @torch.no_grad()
-def extract_frozen_feature_batch(
-    policy: PrivilegedPPOPolicy,
-    observations: Mapping[str, Tensor],
-) -> dict[str, Tensor]:
-    """Vectorized equivalent of v1's single-observation feature extractor."""
-    front = observations["frontview_image"]
-    wrist = observations["robot0_eye_in_hand_image"]
-    if front.ndim != 4 or front.shape[-1] != 3:
-        raise ValueError(f"Expected BHWC front RGB, got {tuple(front.shape)}")
-    if wrist.ndim != 4 or wrist.shape[-1] != 3:
-        raise ValueError(f"Expected BHWC wrist RGB, got {tuple(wrist.shape)}")
-
-    depth = observations["frontview_depth"].to(policy.device).float()
-    if depth.ndim == 4 and depth.shape[-1] == 1:
-        depth = depth[..., 0]
-    if depth.ndim != 3:
-        raise ValueError(f"Expected BHW or BHW1 depth, got {tuple(depth.shape)}")
-    depth = torch.nan_to_num(
-        depth,
-        nan=policy.max_depth_m,
-        posinf=policy.max_depth_m,
-        neginf=0.0,
-    )
-    depth = depth.clamp_(0.0, policy.max_depth_m).div_(policy.max_depth_m)
-    depth = depth.unsqueeze(1).repeat(1, 3, 1, 1).flip(-2)
-    depth = F.interpolate(
-        depth,
-        size=(policy.image_size, policy.image_size),
-        mode="bilinear",
-        align_corners=False,
-        antialias=True,
-    )
-    depth = (depth - policy.image_mean) / policy.image_std
-
-    proprio = torch.cat(
-        [observations[key].to(policy.device).flatten(1) for key in PROPRIO_KEYS],
-        dim=1,
-    ).float()
-    if proprio.shape[1] != 16:
-        raise ValueError(f"Expected 16 proprio values, got {proprio.shape[1]}")
-
+def extract_frozen_feature_batch(policy, observations):
+    """Vectorized equivalent of the policy's inference feature extractor."""
+    prepared = preprocess_observation_batch(policy, observations)
     policy.rgb_backbone.eval()
     policy.depth_backbone.eval()
     return {
-        "front": policy.rgb_backbone(_normalize_rgb(policy, front)),
-        "wrist": policy.rgb_backbone(_normalize_rgb(policy, wrist)),
-        "depth": policy.depth_backbone(depth),
-        "proprio": proprio,
+        "front": policy.rgb_backbone(prepared["front"]),
+        "wrist": policy.rgb_backbone(prepared["wrist"]),
+        "depth": policy.depth_backbone(prepared["depth"]),
+        "proprio": prepared["proprio"],
     }
 
 
@@ -156,10 +117,11 @@ def cache_frozen_features(
         action_chunks.append(batch["action"].float().cpu())
         if batch_index % 10 == 0 or batch_index == len(loader):
             logger.info("Cached features for %d/%d batches", batch_index, len(loader))
-    return (
-        {name: torch.cat(chunks) for name, chunks in feature_chunks.items()},
-        torch.cat(action_chunks),
-    )
+    features = {name: torch.cat(chunks) for name, chunks in feature_chunks.items()}
+    actions = torch.cat(action_chunks)
+    if isinstance(policy, TemporalPPOPolicy):
+        features = add_history(features, actions, dataset.entries, policy.history_length)
+    return features, actions
 
 
 def _predict_actions(
@@ -169,37 +131,64 @@ def _predict_actions(
     return torch.tanh(policy.actor(policy.fused_embedding(features)))
 
 
+def action_losses(logits, targets, gripper_loss='smooth_l1'):
+    motion = F.smooth_l1_loss(logits[..., :6].tanh(), targets[..., :6], reduction='none')
+    if gripper_loss == 'bce':
+        if not torch.all((targets[..., 6] == -1) | (targets[..., 6] == 1)):
+            raise ValueError('Binary gripper loss requires exactly -1/+1 teacher labels')
+        gripper = F.binary_cross_entropy_with_logits(logits[..., 6], (targets[..., 6] + 1) / 2,
+                                                      reduction='none')
+    elif gripper_loss == 'smooth_l1':
+        gripper = F.smooth_l1_loss(logits[..., 6].tanh(), targets[..., 6], reduction='none')
+    else:
+        raise ValueError('Unknown gripper loss')
+    return torch.cat((motion, gripper.unsqueeze(-1)), dim=-1)
+
+
 @torch.no_grad()
 def evaluate_cached(
     policy: PrivilegedPPOPolicy,
-    features: Mapping[str, Tensor],
+    features: Mapping[str, Tensor] | VisualInputCache,
     actions: Tensor,
     *,
     batch_size: int,
     device: torch.device,
+    gripper_loss: str = 'smooth_l1',
 ) -> dict[str, Any]:
     policy.eval()
     losses: list[Tensor] = []
     absolute_errors: list[Tensor] = []
     squared_errors: list[Tensor] = []
+    gripper_correct: list[Tensor] = []
+    gripper_switches: list[Tensor] = []
     for start in range(0, len(actions), batch_size):
         stop = min(start + batch_size, len(actions))
-        batch_features = {
-            name: value[start:stop].to(device) for name, value in features.items()
-        }
+        batch_features = select_feature_batch(policy, features, slice(start, stop), device)
         targets = actions[start:stop].to(device)
-        predictions = _predict_actions(policy, batch_features)
-        losses.append(F.smooth_l1_loss(predictions, targets, reduction="none").cpu())
+        logits = policy.actor(policy.fused_embedding(batch_features))
+        predictions = logits.tanh()
+        losses.append(action_losses(logits, targets, gripper_loss).cpu())
         absolute_errors.append((predictions - targets).abs().cpu())
         squared_errors.append((predictions - targets).square().cpu())
+        gripper_correct.append(((predictions[:, -1] > 0) == (targets[:, -1] > 0)).cpu())
+        if 'previous_action' in batch_features:
+            previous = batch_features['previous_action'][:, -1]
+            gripper_switches.append(((previous != 0) & ((previous > 0) != (targets[:, -1] > 0))).cpu())
     loss_values = torch.cat(losses)
     absolute = torch.cat(absolute_errors)
     squared = torch.cat(squared_errors)
+    correct = torch.cat(gripper_correct)
+    switches = torch.cat(gripper_switches) if gripper_switches else torch.zeros_like(correct)
     return {
         "loss": float(loss_values.mean()),
+        "gripper_loss": gripper_loss,
         "mae": float(absolute.mean()),
         "rmse": float(squared.mean().sqrt()),
         "action_mae": [float(value) for value in absolute.mean(dim=0)],
+        "translation_mae": float(absolute[:, :3].mean()),
+        "gripper_sign_accuracy": float(correct.float().mean()),
+        "gripper_switch_samples": int(switches.sum()),
+        "gripper_switch_accuracy": float(correct[switches].float().mean()) if switches.any() else None,
     }
 
 
@@ -217,6 +206,8 @@ def _save_checkpoint(
         {
             "version": 1,
             "algorithm": "behavior_cloning",
+            "task_name": "full-stack",
+            "policy_type": policy_kind(policy),
             "epoch": epoch,
             "metrics": dict(metrics),
             "config": asdict(config),
@@ -232,10 +223,10 @@ def _save_checkpoint(
 
 def train_behavior_cloning(
     policy: PrivilegedPPOPolicy,
-    train_features: Mapping[str, Tensor],
+    train_features: Mapping[str, Tensor] | VisualInputCache,
     train_actions: Tensor,
-    test_features: Mapping[str, Tensor],
-    test_actions: Tensor,
+    validation_features: Mapping[str, Tensor] | VisualInputCache,
+    validation_actions: Tensor,
     config: BCConfig,
     run_dir: Path,
     *,
@@ -249,17 +240,27 @@ def train_behavior_cloning(
         policy.fusion_norm,
         policy.actor,
     )
+    if isinstance(policy, TemporalPPOPolicy):
+        trainable_modules += (policy.temporal_fusion,)
+    if isinstance(policy, TransformerTemporalPolicy):
+        trainable_modules += (policy.temporal_encoder,)
     parameters = [
         parameter
         for module in trainable_modules
         for parameter in module.parameters()
         if parameter.requires_grad
     ]
-    optimizer = AdamW(
-        parameters,
-        lr=config.learning_rate,
-        weight_decay=config.weight_decay,
-    )
+    parameter_groups = [{"params": parameters, "lr": config.learning_rate}]
+    if config.finetune_backbone:
+        if not isinstance(train_features, VisualInputCache):
+            raise ValueError("Backbone fine-tuning requires image inputs, not frozen features")
+        backbone_parameters = []
+        for backbone in (policy.rgb_backbone, policy.depth_backbone):
+            backbone.requires_grad_(True)
+            backbone_parameters.extend(backbone.parameters())
+        parameter_groups.append({"params": backbone_parameters, "lr": config.backbone_learning_rate})
+        parameters = parameters + backbone_parameters
+    optimizer = AdamW(parameter_groups, weight_decay=config.weight_decay)
     generator = torch.Generator().manual_seed(config.training_seed)
     policy.to(device)
     best_loss = math.inf
@@ -273,12 +274,10 @@ def train_behavior_cloning(
         total_samples = 0
         for start in range(0, len(permutation), config.batch_size):
             indices = permutation[start : start + config.batch_size]
-            features = {
-                name: value[indices].to(device) for name, value in train_features.items()
-            }
+            features = select_feature_batch(policy, train_features, indices, device)
             targets = train_actions[indices].to(device)
-            predictions = _predict_actions(policy, features)
-            loss = F.smooth_l1_loss(predictions, targets)
+            logits = policy.actor(policy.fused_embedding(features))
+            loss = action_losses(logits, targets, config.gripper_loss).mean()
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(parameters, config.max_grad_norm)
@@ -288,10 +287,11 @@ def train_behavior_cloning(
 
         metrics = evaluate_cached(
             policy,
-            test_features,
-            test_actions,
+            validation_features,
+            validation_actions,
             batch_size=config.batch_size,
             device=device,
+            gripper_loss=config.gripper_loss,
         )
         metrics.update(
             {
@@ -302,7 +302,7 @@ def train_behavior_cloning(
         with history_path.open("a", encoding="utf-8") as history_file:
             history_file.write(json.dumps(metrics, sort_keys=True) + "\n")
         logger.info(
-            "epoch=%d train_loss=%.6f test_loss=%.6f test_mae=%.6f",
+            "epoch=%d train_loss=%.6f validation_loss=%.6f validation_mae=%.6f",
             epoch,
             metrics["train_loss"],
             metrics["loss"],
@@ -336,6 +336,26 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--trajectories-dir", type=Path, default=Path("v4/trajectories"))
     parser.add_argument("--runs-dir", type=Path, default=Path("v4/runs"))
     parser.add_argument("--exp-name", default="v4-privileged-bc")
+    parser.add_argument("--validation-fraction", type=float, default=0.2)
+    parser.add_argument("--split-manifest", type=Path, help="reuse a fixed train/validation/test split")
+    parser.add_argument("--policy", choices=("history", "single", "transformer"), default="history")
+    parser.add_argument("--history-length", type=int, default=3)
+    parser.add_argument("--no-previous-action", action="store_true",
+                        help="disable action-history input in transformer training and inference")
+    parser.add_argument("--transformer-heads", type=int, default=4)
+    parser.add_argument("--transformer-layers", type=int, default=2)
+    parser.add_argument("--transformer-feedforward-dim", type=int, default=512)
+    parser.add_argument("--transformer-dropout", type=float, default=0.0)
+    parser.add_argument("--rgb-backbone", choices=("mobilenet_v3_small", "resnet18", "vc1_vitl"),
+                        default="mobilenet_v3_small", help="RGB encoder for transformer policies")
+    parser.add_argument("--camera-fusion", choices=("sum", "concat"), default="sum")
+    parser.add_argument("--rgb-pool-size", type=int, choices=(1, 2, 4), default=1,
+                        help="spatial grid for ResNet; VC-1 uses native CLS at 1, patch grids at 2/4")
+    parser.add_argument("--train-rollout-episodes", type=int, default=0,
+                        help="diagnostic rollouts from a fixed sample of training seeds")
+    parser.add_argument("--rollout-eval-episodes", type=int, default=5, help="fresh-seed simulator evaluations after training; 0 skips")
+    parser.add_argument("--rollout-eval-max-steps", type=int, default=900)
+    parser.add_argument("--rollout-eval-seed", type=int, default=1000000)
     parser.add_argument("--test-fraction", type=float, default=0.2)
     parser.add_argument("--split-seed", type=int, default=0)
     parser.add_argument("--training-seed", type=int, default=defaults.training_seed)
@@ -353,6 +373,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--hidden-dim", type=int, default=256)
     parser.add_argument("--max-depth-m", type=float, default=2.0)
     parser.add_argument("--no-pretrained", action="store_true")
+    parser.add_argument("--finetune-backbone", action="store_true",
+                        help="train RGB/depth backbone weights; keep BatchNorm statistics fixed")
+    parser.add_argument("--backbone-learning-rate", type=float, default=defaults.backbone_learning_rate)
+    parser.add_argument("--gripper-loss", choices=('smooth_l1', 'bce'), default=defaults.gripper_loss)
     return parser.parse_args()
 
 
@@ -366,6 +390,9 @@ def main() -> None:
         weight_decay=args.weight_decay,
         max_grad_norm=args.max_grad_norm,
         training_seed=args.training_seed,
+        finetune_backbone=args.finetune_backbone,
+        backbone_learning_rate=args.backbone_learning_rate,
+        gripper_loss=args.gripper_loss,
     )
     config.validate()
     device = select_device(args.device)
@@ -379,19 +406,34 @@ def main() -> None:
         ],
         force=True,
     )
+    logging.getLogger("robosuite_logs").setLevel(logging.WARNING)
+    logging.getLogger("OpenGL").setLevel(logging.WARNING)
     np.random.seed(args.training_seed)
     torch.manual_seed(args.training_seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.training_seed)
 
-    manifest = split_trajectories(
-        discover_trajectories(args.trajectories_dir),
-        test_fraction=args.test_fraction,
-        seed=args.split_seed,
-    )
+    if (args.history_length < 1 or args.rollout_eval_episodes < 0
+            or args.train_rollout_episodes < 0 or args.rollout_eval_max_steps < 1):
+        raise ValueError("Invalid history length or rollout evaluation settings")
+    if args.policy != "transformer" and (args.rgb_backbone != "mobilenet_v3_small"
+                                        or args.camera_fusion != "sum" or args.rgb_pool_size != 1):
+        raise ValueError("Alternative RGB backbones/fusion require --policy transformer")
+    if args.no_previous_action and args.policy != "transformer":
+        raise ValueError("--no-previous-action requires --policy transformer")
+    manifest = (json.loads(args.split_manifest.read_text()) if args.split_manifest else split_trajectories(
+        discover_trajectories(args.trajectories_dir), test_fraction=args.test_fraction,
+        validation_fraction=args.validation_fraction, seed=args.split_seed,
+    ))
+    validate_manifest(manifest)
     manifest_path = write_manifest(manifest, run_dir / "split.json")
     run_config = {
         "algorithm": "behavior_cloning",
+        "policy_type": args.policy,
+        "rollout_evaluation": {"episodes": args.rollout_eval_episodes,
+                               "train_episodes": args.train_rollout_episodes,
+                               "max_steps": args.rollout_eval_max_steps,
+                               "seed": args.rollout_eval_seed},
         "device": str(device),
         "pretrained": not args.no_pretrained,
         "uses_privileged_depth": True,
@@ -402,52 +444,80 @@ def main() -> None:
             "embedding_dim": args.embedding_dim,
             "hidden_dim": args.hidden_dim,
             "max_depth_m": args.max_depth_m,
+            **({"history_length": args.history_length} if args.policy != "single" else {}),
         },
     }
+    if args.policy == "transformer":
+        run_config["model"].update(
+            use_previous_action=not args.no_previous_action,
+            rgb_backbone=args.rgb_backbone,
+            camera_fusion=args.camera_fusion,
+            rgb_pool_size=args.rgb_pool_size,
+            transformer_heads=args.transformer_heads,
+            transformer_layers=args.transformer_layers,
+            transformer_feedforward_dim=args.transformer_feedforward_dim,
+            transformer_dropout=args.transformer_dropout,
+        )
     (run_dir / "config.json").write_text(
         json.dumps(run_config, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
     logger.info("Run directory: %s", run_dir)
     logger.info("Split: %s", manifest["summary"])
-    logger.info("Initializing v1 privileged policy (pretrained=%s)", not args.no_pretrained)
-    policy = PrivilegedPPOPolicy(
-        embedding_dim=args.embedding_dim,
-        hidden_dim=args.hidden_dim,
-        image_size=args.image_size,
-        max_depth_m=args.max_depth_m,
-        pretrained=not args.no_pretrained,
-    ).to(device)
-    train_dataset = H5TransitionDataset(manifest["train"])
-    test_dataset = H5TransitionDataset(manifest["test"])
+    logger.info("Initializing %s visual policy (pretrained=%s)", args.policy, not args.no_pretrained)
+    policy_class = POLICY_CLASSES[args.policy]
+    policy = policy_class(**run_config["model"], pretrained=not args.no_pretrained).to(device)
+    cache_inputs = cache_visual_inputs if config.finetune_backbone else cache_frozen_features
+    logger.info("Backbone fine-tuning=%s; head lr=%g; backbone lr=%g; BatchNorm statistics fixed",
+                config.finetune_backbone, config.learning_rate, config.backbone_learning_rate)
+    datasets = {name: H5TransitionDataset(manifest[name]) for name in ("train", "validation")}
     try:
-        logger.info("Caching frozen train features")
-        train_features, train_actions = cache_frozen_features(
-            policy,
-            train_dataset,
-            batch_size=config.feature_batch_size,
+        logger.info("Preparing training inputs")
+        train_features, train_actions = cache_inputs(
+            policy, datasets["train"], batch_size=config.feature_batch_size,
         )
-        logger.info("Caching frozen test features")
-        test_features, test_actions = cache_frozen_features(
-            policy,
-            test_dataset,
-            batch_size=config.feature_batch_size,
+        logger.info("Preparing validation inputs")
+        validation_features, validation_actions = cache_inputs(
+            policy, datasets["validation"], batch_size=config.feature_batch_size,
         )
     finally:
-        train_dataset.close()
-        test_dataset.close()
-
+        for dataset in datasets.values():
+            dataset.close()
     checkpoint = train_behavior_cloning(
-        policy,
-        train_features,
-        train_actions,
-        test_features,
-        test_actions,
-        config,
-        run_dir,
-        device=device,
+        policy, train_features, train_actions, validation_features, validation_actions,
+        config, run_dir, device=device,
     )
-    logger.info("Best checkpoint: %s", checkpoint)
+    logger.info("Best checkpoint selected on validation loss: %s", checkpoint)
+    policy = load_policy(checkpoint, device=device)
+    test_dataset = H5TransitionDataset(manifest["test"])
+    try:
+        logger.info("Caching untouched test trajectories for one final evaluation")
+        test_features, test_actions = cache_inputs(
+            policy, test_dataset, batch_size=config.feature_batch_size,
+        )
+    finally:
+        test_dataset.close()
+    test_metrics = evaluate_cached(policy, test_features, test_actions,
+                                   batch_size=config.batch_size, device=device, gripper_loss=config.gripper_loss)
+    write_manifest({"checkpoint": str(checkpoint), "metrics": test_metrics}, run_dir / "test_metrics.json")
+    logger.info("Final test metrics: %s", test_metrics)
+    if args.train_rollout_episodes:
+        from v4.evaluate import evaluate_training_seeds
+        metrics = evaluate_training_seeds(
+            checkpoint, episodes=args.train_rollout_episodes,
+            max_steps=args.rollout_eval_max_steps, device=device,
+        )
+        write_manifest(metrics, run_dir / "train_rollout_metrics.json")
+        logger.info("Training-seed rollout results: %s", metrics["summary"])
+    if args.rollout_eval_episodes:
+        from v4.evaluate import evaluate_checkpoint
+        metrics = evaluate_checkpoint(
+            checkpoint, episodes=args.rollout_eval_episodes, max_steps=args.rollout_eval_max_steps,
+            seed=args.rollout_eval_seed, device=device,
+        )
+        write_manifest({"output_dir": metrics["output_dir"], "summary": metrics["summary"]},
+                       run_dir / "rollout_metrics.json")
+        logger.info("Fresh-seed rollout results: %s | videos: %s", metrics["summary"], metrics["output_dir"])
 
 
 if __name__ == "__main__":

@@ -17,6 +17,7 @@ from v4.train_bc import (
     BCConfig,
     extract_frozen_feature_batch,
     train_behavior_cloning,
+    action_losses,
 )
 
 
@@ -47,6 +48,22 @@ def _write_trajectory(path: Path, *, seed: int, steps: int) -> None:
 
 
 class BehaviorCloningDataTest(unittest.TestCase):
+    def test_binary_gripper_loss_recovers_from_saturated_wrong_predictions(self):
+        logits = torch.tensor([[0., 0., 0., 0., 0., 0., -15.],
+                               [0., 0., 0., 0., 0., 0., 15.]], requires_grad=True)
+        targets = torch.zeros_like(logits)
+        targets[:, -1] = torch.tensor([1., -1.])
+        loss = action_losses(logits, targets, 'bce').mean()
+        loss.backward()
+        self.assertLess(float(logits.grad[0, -1]), -.05)
+        self.assertGreater(float(logits.grad[1, -1]), .05)
+        self.assertTrue(torch.equal(logits.grad[:, :6], torch.zeros(2, 6)))
+        torch.testing.assert_close(action_losses(logits, targets, 'smooth_l1'),
+                                   torch.nn.functional.smooth_l1_loss(logits.tanh(), targets, reduction='none'))
+        targets[:, -1] = .5
+        with self.assertRaisesRegex(ValueError, 'exactly -1/\\+1'):
+            action_losses(logits, targets, 'bce')
+
     def test_episode_split_and_batched_features(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

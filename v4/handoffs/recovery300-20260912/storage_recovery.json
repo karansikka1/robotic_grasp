@@ -1,0 +1,1721 @@
+{
+  "recovered": [
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 96774684,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-002/recovered-1867210924/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-e06a237c-d77e-4c38-80a9-0b6066f3f702.h5",
+      "seed": 1867210924,
+      "sha256": "05b745f5c0147e4263a875ecae75498dc1202b799d63136741caca6ca66ac95f",
+      "slot": "drop_block-002",
+      "steps": 404
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 100377790,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-003/recovered-1665864617/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-64268545-7042-4759-b900-83079a41c583.h5",
+      "seed": 1665864617,
+      "sha256": "c5adebe3861972c60f88e045f1b7770a1f147ab1a35d9e906f67ab949734396c",
+      "slot": "drop_block-003",
+      "steps": 421
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 94608689,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-005/recovered-27322370/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-c17906dd-e9eb-44c3-8761-fc167d39f061.h5",
+      "seed": 27322370,
+      "sha256": "6e9816474bbd86c84f3181114270e894e3f0c31bccc92922bf96ae3e4163df6d",
+      "slot": "drop_block-005",
+      "steps": 390
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 105386184,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-006/recovered-1316708312/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ba4156c9-9da1-45c9-9dd2-3e5a8949c10b.h5",
+      "seed": 1316708312,
+      "sha256": "db0d28d64339df816f87c5904fc2b14055e1c957f4dfbd8b1da68bc2d7d39428",
+      "slot": "drop_block-006",
+      "steps": 442
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 103569297,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-007/recovered-1210314863/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-9298524b-602c-4fc9-859a-9e416b80e379.h5",
+      "seed": 1210314863,
+      "sha256": "4f1a86d0c029b239eaa26f62013995d0cd32f9b587d376ecc2964c1794933c79",
+      "slot": "drop_block-007",
+      "steps": 419
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 94133179,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-009/recovered-343907928/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a7d97375-fd8d-47ac-8eb6-0241489cf3c5.h5",
+      "seed": 343907928,
+      "sha256": "e9c0cd8a95b1c7a6949641126b84a92c3a58a979c6028c692a7ec87a3252ac82",
+      "slot": "drop_block-009",
+      "steps": 393
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 85168109,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-010/recovered-793835056/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-eec7d2f0-524f-4340-83cc-e0c5648ad3d0.h5",
+      "seed": 793835056,
+      "sha256": "afa26de5e4d1d77ef16fbd08de2e3e3aa46ecb775e7e3f820cb0e06304ccd682",
+      "slot": "drop_block-010",
+      "steps": 358
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 95127599,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-011/recovered-535212849/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-793bf9b1-689e-49bc-8fb1-52604b28933d.h5",
+      "seed": 535212849,
+      "sha256": "067ca3243bb37d131b011b1b565778f1029c6a1fceae256846eabff03991f8af",
+      "slot": "drop_block-011",
+      "steps": 399
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 108225470,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-012/recovered-1151528187/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-2b07710e-0ab6-467a-8357-cd9f30a4e13a.h5",
+      "seed": 1151528187,
+      "sha256": "b1445b10e0809d905463af2dc08d629884ed8542a11ca9a0e27f6af23ccb6a36",
+      "slot": "drop_block-012",
+      "steps": 451
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 96501788,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-013/recovered-2126153588/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-cae3a63f-37cd-4e44-9a86-fe1747c2de12.h5",
+      "seed": 2126153588,
+      "sha256": "98f28f725827710cfdd42f0f345c8a558e2baadd65724252ea6c7d898aef0c6b",
+      "slot": "drop_block-013",
+      "steps": 404
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 102243169,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-016/recovered-262784940/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-0fb0a9e0-40f5-4341-9fd8-29e5ffc65bdc.h5",
+      "seed": 262784940,
+      "sha256": "5a3676c27413bb3a3c022627d9de7e3cf6b3837887fddfbb6afa1215cd7b848d",
+      "slot": "drop_block-016",
+      "steps": 430
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 83898438,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-017/recovered-889285874/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-1326feec-67ac-40e9-bb11-0931a3ad1bab.h5",
+      "seed": 889285874,
+      "sha256": "d611278fe9fe870e76daab1a844397296da660189a27093a03ca2ca8b954110d",
+      "slot": "drop_block-017",
+      "steps": 350
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 89497104,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-019/recovered-1734237053/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-67d4563a-d965-4f23-afb6-41db07eb8378.h5",
+      "seed": 1734237053,
+      "sha256": "f90a44eb5eec641b8e192c30a1e1412621a9165edf3ed6634f4116c7bc15fff2",
+      "slot": "drop_block-019",
+      "steps": 378
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 95371850,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-020/recovered-1436610712/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-f3edf64e-040d-42fb-a8b4-ad257b66ec22.h5",
+      "seed": 1436610712,
+      "sha256": "9d5ed45c3f397cf2616aadb89a86f265cec7e0dd4e2f5eb48a9ed23165f25902",
+      "slot": "drop_block-020",
+      "steps": 391
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 100975738,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-021/recovered-1208408503/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-794afb97-cb94-4cf1-8bf1-ea4b1bacc952.h5",
+      "seed": 1208408503,
+      "sha256": "ae655f3aefaaddc1153338693c7ec11df45dfc316c30098ea6b0adcbcd1e44c0",
+      "slot": "drop_block-021",
+      "steps": 421
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 99602256,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-022/recovered-1953236062/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-c53dfda1-4fce-4767-9e2c-ed32b71cec85.h5",
+      "seed": 1953236062,
+      "sha256": "ced173934ba10d596ff4cb832b392157a12ca32ecc2922dfa58932b56a7f0c14",
+      "slot": "drop_block-022",
+      "steps": 397
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 100606783,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-023/recovered-139248640/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-85ae502f-8873-4cfd-93b0-8fa0cc81f54c.h5",
+      "seed": 139248640,
+      "sha256": "f8c2092b7bdaa81c773b46c940c3f01a48fb34332c2d163fbfbaf89a019cada8",
+      "slot": "drop_block-023",
+      "steps": 417
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 100690304,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-024/recovered-1930972794/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-c27a0a14-c023-4a8d-a6c5-bad36c638f54.h5",
+      "seed": 1930972794,
+      "sha256": "fad31ece74cd5aefb03964491567f0aa6335fa0c8d106f8b2f1df68dfbd28622",
+      "slot": "drop_block-024",
+      "steps": 422
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 97363990,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-025/recovered-1560470930/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-cb09c081-3995-4408-b6b5-15c0a27df986.h5",
+      "seed": 1560470930,
+      "sha256": "f5b82aeb5f7f47af6b15cf3305c9231e5bd0977179241fc86f981a7d3f1c547b",
+      "slot": "drop_block-025",
+      "steps": 409
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 100040322,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-026/recovered-860561057/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-6335be6a-b891-4e9d-913b-c6f0d6e73e1b.h5",
+      "seed": 860561057,
+      "sha256": "5e7b3508d23f8b387507d8f96092f483a0379894fb680d81af10bdb6cd9f95ae",
+      "slot": "drop_block-026",
+      "steps": 417
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 99500793,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-027/recovered-1949824185/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-900a2daa-2573-4722-ab99-7047ebf6725b.h5",
+      "seed": 1949824185,
+      "sha256": "4d7ad069c95b280cd4baa06acfc9f055bf3ff1c42006bb1bd8dfadce38bdb62d",
+      "slot": "drop_block-027",
+      "steps": 407
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 110246132,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-028/recovered-1919468440/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-66622e03-afb8-4de3-8f67-10458637a572.h5",
+      "seed": 1919468440,
+      "sha256": "b3979d2f2ca1c852e608cf9d12afd06ee04fa0988a4057082a240ab38276d8a0",
+      "slot": "drop_block-028",
+      "steps": 467
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 122272810,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-029/recovered-1474942364/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a7e7e29e-09b1-4211-b727-caa014dba751.h5",
+      "seed": 1474942364,
+      "sha256": "fa07d351629f67112dedf8a707c88118b8edc7d7ea4cbc6f6a21b6d50ef44465",
+      "slot": "drop_block-029",
+      "steps": 495
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 101107570,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-031/recovered-991004301/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-1291efae-2040-4b90-9958-a7fb630381c9.h5",
+      "seed": 991004301,
+      "sha256": "eb5623a2626161c220c59ec8da6ce9e34e8323f119f0e0dd385561d41dfa4dd1",
+      "slot": "drop_block-031",
+      "steps": 415
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 107980014,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-032/recovered-1328823829/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ff83ae7c-9118-433f-92c1-72f1c07e4724.h5",
+      "seed": 1328823829,
+      "sha256": "702bf866135846105eab23dd820d220bb8caf1e613b635be8fa901d2f448cbcf",
+      "slot": "drop_block-032",
+      "steps": 438
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 94632980,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-033/recovered-652863466/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ca542eca-2742-4683-b9f0-32a0fe113754.h5",
+      "seed": 652863466,
+      "sha256": "31e6ffb232af08bfd7b337229470502ccda862f553f1c2c3796a215f1f2249a4",
+      "slot": "drop_block-033",
+      "steps": 398
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 90395990,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-034/recovered-446033035/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-8d6c14f2-8e2a-48d6-a8db-e5a6a8764bd6.h5",
+      "seed": 446033035,
+      "sha256": "0c3775640724741c22699c83fe26e9316544c79413220cc621a0291b47554f5f",
+      "slot": "drop_block-034",
+      "steps": 377
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 89356897,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-035/recovered-2102724400/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-291f0257-26d9-4216-997f-0083a67b3b71.h5",
+      "seed": 2102724400,
+      "sha256": "56e19ddc034dbf01b73a1437c7cef301ef4eeff1a1a9e01fec3d656dea031d99",
+      "slot": "drop_block-035",
+      "steps": 377
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 108231385,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-036/recovered-1086108368/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-1b13d00a-31cb-4968-827c-1d8dfef487d5.h5",
+      "seed": 1086108368,
+      "sha256": "421551b14abc93c90d3e1c686f08553de2a0b2a5d9e7c76b7420799bd2189952",
+      "slot": "drop_block-036",
+      "steps": 450
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 105181076,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-037/recovered-1057792845/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-7f314621-3207-4c1d-947f-20e75e552b61.h5",
+      "seed": 1057792845,
+      "sha256": "c1fe993f38b6597d9d3007b702fcb2cfdb2a26c1570b55dff78e8dc2b1a88707",
+      "slot": "drop_block-037",
+      "steps": 442
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 92495383,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-038/recovered-127937792/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-e7114ddf-155d-4ad1-9c5f-444cee2b05d5.h5",
+      "seed": 127937792,
+      "sha256": "3358607f8157fd6374ef1d2d905bb4b5b0dc1e379126d3c8f84135fca808731e",
+      "slot": "drop_block-038",
+      "steps": 384
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 87156669,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-039/recovered-128376453/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-bb9293c9-a1e8-4522-aaf0-3e10fad48602.h5",
+      "seed": 128376453,
+      "sha256": "8244517536d957f4a4b912f72ed38fb609efe8189d0bd14b2b9064936a1e02b2",
+      "slot": "drop_block-039",
+      "steps": 361
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 100055361,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-042/recovered-1172916994/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-fb4095bf-32f4-47c8-8400-806c3301aed0.h5",
+      "seed": 1172916994,
+      "sha256": "ef424d0f71f29b122639ce673e6e04d38c040952069f295019d6e6002e37cb51",
+      "slot": "drop_block-042",
+      "steps": 415
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 95181119,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-043/recovered-1714094671/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-35dffe19-1856-41b6-88c8-6135119f222b.h5",
+      "seed": 1714094671,
+      "sha256": "990ff0b18214d911a4ac2a049736766ce0726a3f01b5051f99178f4437ffeed0",
+      "slot": "drop_block-043",
+      "steps": 394
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 97836176,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-044/recovered-246848522/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-690ecb52-d054-4dbe-a61e-63a01fcae96d.h5",
+      "seed": 246848522,
+      "sha256": "6e52ebda6151ae965c96e1653bcd08d0a4eeb04fd5ce796af359863fd011f5d2",
+      "slot": "drop_block-044",
+      "steps": 396
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 98404443,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-045/recovered-1865507567/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-6f8b27c8-5e80-4ff1-8211-81611eda20b5.h5",
+      "seed": 1865507567,
+      "sha256": "b929c47cde339cc7c3920c576077cd5a8baf31bd0010d029f3244ee3d2bd6d41",
+      "slot": "drop_block-045",
+      "steps": 416
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 108599386,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-046/recovered-568749373/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-f395e70f-8c2c-4738-8763-9d852834e850.h5",
+      "seed": 568749373,
+      "sha256": "10ea949db159ec4b2497211e4c33fd44c5972cd28f136a81a604b9d6fc2b8963",
+      "slot": "drop_block-046",
+      "steps": 449
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 99023240,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-047/recovered-1198784899/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-e5faaa53-722a-4d90-9945-66945b49813a.h5",
+      "seed": 1198784899,
+      "sha256": "eec69cab4ea3918fa080579e8275c2b5de68deb4ac45ea9521235879b1572b6e",
+      "slot": "drop_block-047",
+      "steps": 406
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 110042863,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-048/recovered-2098061493/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-91bc4ab3-124c-4202-880d-83c31678f60d.h5",
+      "seed": 2098061493,
+      "sha256": "b09270bfc2cc98e89e4ed4b31078ecc158316ab96573ea68943e5343075a5fa0",
+      "slot": "drop_block-048",
+      "steps": 454
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 70848947,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-038/recovered-609784374/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-1a0fbfff-a178-431c-a10b-b5d0f373d3df.h5",
+      "seed": 609784374,
+      "sha256": "2d462b28d827a354a43ef32f07aef35fda06d2aad4019692e6ef650839cbbd1f",
+      "slot": "gaussian_burst-038",
+      "steps": 300
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 75043125,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-039/recovered-1431529142/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-021f3a85-f4e2-459e-842d-bacd16c93dd3.h5",
+      "seed": 1431529142,
+      "sha256": "95012eb6962e9e2434e48bada3bc6cb9354a512f2243d8d9326f8e2c4d4a8d31",
+      "slot": "gaussian_burst-039",
+      "steps": 314
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 93059493,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-040/recovered-214768729/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-fa018691-bd71-429c-9979-2d0f7b68c6c0.h5",
+      "seed": 214768729,
+      "sha256": "c355d1ce30ddc10ecc1289e961c68b700f87cd5267c4854d219331dd0a51c72b",
+      "slot": "gaussian_burst-040",
+      "steps": 385
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 95691702,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-041/recovered-219740506/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a7b717c7-64b5-4a48-a9b8-17ec9434fe17.h5",
+      "seed": 219740506,
+      "sha256": "71911f57fd925d3466267c855e842fe410685d3d129d5ab965805622e659cc07",
+      "slot": "gaussian_burst-041",
+      "steps": 397
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 78040896,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-042/recovered-951780943/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-409abbca-1851-4483-b29a-e20bbfd31d1e.h5",
+      "seed": 951780943,
+      "sha256": "18ec314d564a234b44a90d17f2d0dddb1c9421af5aecaeab07192017246a86e8",
+      "slot": "gaussian_burst-042",
+      "steps": 326
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 72200653,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-043/recovered-1094698964/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a5cff772-51b7-4c62-9e1b-1b83086e447c.h5",
+      "seed": 1094698964,
+      "sha256": "68aa943c5c303409b6db89046b2150cd70bff970749a3a1cf9ef7c16cf8a5807",
+      "slot": "gaussian_burst-043",
+      "steps": 303
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 95945386,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-044/recovered-316164238/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-5bcf8995-10f5-4338-8075-0074e8804d10.h5",
+      "seed": 316164238,
+      "sha256": "5afaafddc5f3a0977fa576c680cd64028978d8a4ff8129a3135e7460acf5c6f7",
+      "slot": "gaussian_burst-044",
+      "steps": 408
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 71187819,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-045/recovered-1003385180/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-1016f152-9d2f-4c2c-9ded-20c2c8f7211d.h5",
+      "seed": 1003385180,
+      "sha256": "aace3b782fa38f819a7ac64f6b99ab2ba685eabb54fe5e173688434fc4e5fea1",
+      "slot": "gaussian_burst-045",
+      "steps": 300
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 73372242,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-046/recovered-1142630323/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-496b2e98-fecb-4d7f-8980-b5fe3b22185e.h5",
+      "seed": 1142630323,
+      "sha256": "5467f7d680e068853cd7510148b3aa1d6e80637bb874d844ee292ecb40189910",
+      "slot": "gaussian_burst-046",
+      "steps": 308
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 70528196,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-047/recovered-2052674312/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-5d0839bc-12d2-4e2c-83af-bbd5fb87da6a.h5",
+      "seed": 2052674312,
+      "sha256": "a3505896c9a9113925fcd3177fbd0fe89f2aa32d738be783132d8d321abf77e2",
+      "slot": "gaussian_burst-047",
+      "steps": 299
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 76670333,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-048/recovered-900432636/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-8a38e361-29ce-4fe7-87ba-74c749ff5515.h5",
+      "seed": 900432636,
+      "sha256": "83fcf11991f71b5094989edd1e4433a9ce54e124b91db00fc4134f608357de54",
+      "slot": "gaussian_burst-048",
+      "steps": 314
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 82494426,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-049/recovered-947021945/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-d95688a3-3cfb-4539-9b1c-6bf849e55a0b.h5",
+      "seed": 947021945,
+      "sha256": "179cd661f3863250983ba3e7fe8012fa309952d251066d288ebe6293831871b6",
+      "slot": "gaussian_burst-049",
+      "steps": 343
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 83250428,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-004/recovered-340025923/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-b9966286-485d-4231-ac6c-99f0dd0bcb4b.h5",
+      "seed": 340025923,
+      "sha256": "6ca373e8491f263f5cd47a07164bd037c1d89fdd4619423bf7f0b0e761deecf2",
+      "slot": "gripper_interrupt-004",
+      "steps": 345
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 81209655,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-005/recovered-1536590874/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-0c00a342-b75b-442f-aca0-2b475ac01f4b.h5",
+      "seed": 1536590874,
+      "sha256": "67726324100b29517f0c2533df4412f8e8de73bc3a3702ce5903b210f261207a",
+      "slot": "gripper_interrupt-005",
+      "steps": 336
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 94237103,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-006/recovered-1879977635/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-d0b19965-a736-4ca6-969b-54e23be21687.h5",
+      "seed": 1879977635,
+      "sha256": "7f9df89311c045902bd87f12fbcb8bf7e429fb758fc393ea4d5f6c90ed458fe7",
+      "slot": "gripper_interrupt-006",
+      "steps": 392
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 88634424,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-007/recovered-555845163/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-28657638-747d-44f8-a0d6-12d5e8abb903.h5",
+      "seed": 555845163,
+      "sha256": "150d077ce379cd3b9c512912f7920140f02db472499077416f26555238653eb6",
+      "slot": "gripper_interrupt-007",
+      "steps": 372
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 73453937,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-009/recovered-77087929/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-063b3a90-d6ac-427b-9ae7-7289a6c31970.h5",
+      "seed": 77087929,
+      "sha256": "f30e07971b34db0b17df4f69d8f115368aa213379215ded500ac8dbaeac025bc",
+      "slot": "gripper_interrupt-009",
+      "steps": 306
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 83805299,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-010/recovered-333238803/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-61ee0ecc-d10a-4b3a-8ba0-99c8df17c16c.h5",
+      "seed": 333238803,
+      "sha256": "f56a7fe94528d8cc9c62c783d8945ec842bbebc920a7395bd712ebfd1f541ff4",
+      "slot": "gripper_interrupt-010",
+      "steps": 353
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 78413804,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-011/recovered-1570055189/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-9a277a6d-a9d8-454f-a76f-99dc80b050a4.h5",
+      "seed": 1570055189,
+      "sha256": "78a9e9d6b919d811ddb36e114b78ffb2cd080c35907393cd68720a7ed069e56a",
+      "slot": "gripper_interrupt-011",
+      "steps": 324
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 82702093,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-012/recovered-94930435/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-8a78aa3e-cc20-4cb2-a98a-031a96053847.h5",
+      "seed": 94930435,
+      "sha256": "d1522c3ed34f863928bf839e2f451c8267db3595beb7058f5e92e2abec9c4de1",
+      "slot": "gripper_interrupt-012",
+      "steps": 343
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 90192692,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-013/recovered-890017048/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-9e69c808-8e49-4b62-9bb0-8338b7b3c157.h5",
+      "seed": 890017048,
+      "sha256": "e1285976f5c12eb51ae2c24053cc3b214ad2ae4454a8ff0ee00a86e7ddd3c146",
+      "slot": "gripper_interrupt-013",
+      "steps": 367
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 83740060,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-014/recovered-779337305/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-4a6186c3-56f5-4fff-b062-32934446d887.h5",
+      "seed": 779337305,
+      "sha256": "7e8c655858abbca128a38958b1d637c5a6aa6060391b54ebce26b99b932e8fbf",
+      "slot": "gripper_interrupt-014",
+      "steps": 350
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 84012256,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-015/recovered-12715339/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-4a3558aa-7050-431e-b0c0-f85e0388fbf8.h5",
+      "seed": 12715339,
+      "sha256": "58220e5efa1a87ef83747431bd1b4fd9e06d0e76d8b6fd4717760fe29056eca4",
+      "slot": "gripper_interrupt-015",
+      "steps": 340
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 86460923,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-016/recovered-718914916/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-cf0fef28-5bb4-41bf-9d11-51ab5bd1e574.h5",
+      "seed": 718914916,
+      "sha256": "893d9ac3915c57129c3906e880801c0eabdb4acd87132c02dee6d50994c5f339",
+      "slot": "gripper_interrupt-016",
+      "steps": 356
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 71439145,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-017/recovered-1662615650/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-2a2f8476-4345-489b-b01e-6c8aceafabf6.h5",
+      "seed": 1662615650,
+      "sha256": "62701eea6f83c624e83e1efe0127f5de46c5f870e158abc7d98f3d425ba39005",
+      "slot": "gripper_interrupt-017",
+      "steps": 299
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 71566701,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-020/recovered-1923185162/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-cdd03807-a2de-40a4-97e3-c657b598c2ba.h5",
+      "seed": 1923185162,
+      "sha256": "92dfd92347d89ab0625ce81a6ed375c3058c0e852305fda8cc40136c1fa69b3a",
+      "slot": "gripper_interrupt-020",
+      "steps": 301
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 67822831,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-021/recovered-1302474077/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-17caf975-4073-4141-b622-a11a5c06efa0.h5",
+      "seed": 1302474077,
+      "sha256": "555b018feebb5d5ad6609545e3baced28c163536b97ca916da27bf21281083b3",
+      "slot": "gripper_interrupt-021",
+      "steps": 285
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 71605939,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-000/recovered-873629338/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-065d317a-13e0-43bf-8150-ae00dd67c324.h5",
+      "seed": 873629338,
+      "sha256": "ee84ae2af98febb8d904701b2a7084c75e15cf1fa52051bed9f6e0464c8095da",
+      "slot": "sideways_error-000",
+      "steps": 302
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 72535658,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-001/recovered-86399281/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-d35e7e72-2b4a-467a-904a-e806d86227cc.h5",
+      "seed": 86399281,
+      "sha256": "270da808294643c37ffb3699fd948c4ae31109598083758b92daeca441cc5c78",
+      "slot": "sideways_error-001",
+      "steps": 303
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 90354385,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-002/recovered-1975219194/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-8d3a48e2-f285-4043-aeda-0ff3581d9c31.h5",
+      "seed": 1975219194,
+      "sha256": "6f4d369c658951f22e84acb1629e1434fa62f7f989f4f13525cb5046302610fc",
+      "slot": "sideways_error-002",
+      "steps": 372
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 79279412,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-004/recovered-464874770/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-eab4a699-50ef-4278-a521-f98d16d25d9f.h5",
+      "seed": 464874770,
+      "sha256": "c0e3a9a649899760abf2d39358b3ab7eb75efe58d6e5ef7e738e5322958c092a",
+      "slot": "sideways_error-004",
+      "steps": 328
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 75758944,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-005/recovered-1263975008/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-2aa2a7e2-5f47-4e28-8d4c-8e4698b80892.h5",
+      "seed": 1263975008,
+      "sha256": "bc73ba55ed374e5c44117017d362355b7b54758d3a3d9c9b9fdd77fd957749ad",
+      "slot": "sideways_error-005",
+      "steps": 311
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 79232503,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-006/recovered-474005362/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-b47a227a-90bf-4cc5-a861-c8180e542f00.h5",
+      "seed": 474005362,
+      "sha256": "aa1a8f3291a407bc2e702be1f4568d10271e4add4a81d7253f09153104d4fed6",
+      "slot": "sideways_error-006",
+      "steps": 331
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 75731977,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-007/recovered-1893817283/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ba8d33cd-7f9a-4379-a334-03bf71252303.h5",
+      "seed": 1893817283,
+      "sha256": "758f0bd8000d6a221f481446ccce69842f2fd6743a5452fca8a41489392acca1",
+      "slot": "sideways_error-007",
+      "steps": 316
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 88063170,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-008/recovered-131682873/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-fbb0807f-b865-4c8b-819e-7f8250666174.h5",
+      "seed": 131682873,
+      "sha256": "7caaed6e8826e988f84c6a06ef8b116591e951632b0ea191665fa714699ca74d",
+      "slot": "sideways_error-008",
+      "steps": 365
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 67780340,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-009/recovered-1732408458/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-e4f43985-1a6b-4f12-b9c8-03a267ace100.h5",
+      "seed": 1732408458,
+      "sha256": "6534fcf538b2645a298ea6768935b640c250fec01facba64761725a0f9e04d49",
+      "slot": "sideways_error-009",
+      "steps": 285
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 73167986,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-010/recovered-1856374523/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-4d3d1d1e-0f6b-4b7e-ac69-723aaa7f49de.h5",
+      "seed": 1856374523,
+      "sha256": "afc29c8a37f4ec2800091806b338c67755e9c235ee45b14fd579b9b9f1308c1a",
+      "slot": "sideways_error-010",
+      "steps": 308
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 69237369,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-011/recovered-225192514/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-fba03cc8-2aeb-4e96-b8e5-185c05fdac3c.h5",
+      "seed": 225192514,
+      "sha256": "76c87bfccb74b01aec6ba17f47956afb9a45a330d684e13b44782ea17e7d8b1e",
+      "slot": "sideways_error-011",
+      "steps": 277
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 85937832,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-012/recovered-1244889284/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-da80d64f-8a50-4ec7-a35e-f6525f26bf70.h5",
+      "seed": 1244889284,
+      "sha256": "abc1898f7429bbe9435bb13c06ff974bf5b1f00eac7942f8f5c0ae0e50439d9f",
+      "slot": "sideways_error-012",
+      "steps": 359
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 62902798,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-013/recovered-1233341804/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-b8b6f98a-e114-49b2-b2d5-631ab2f48ecb.h5",
+      "seed": 1233341804,
+      "sha256": "4e13685ce8f9ffba7a4f7dfa4019562f542773f4d5f98f59ed400a37a13ea834",
+      "slot": "sideways_error-013",
+      "steps": 265
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 84103194,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-014/recovered-117105788/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-2c4fa1ca-89c4-4f16-bc35-f08ff6a95eb8.h5",
+      "seed": 117105788,
+      "sha256": "fcd7fdb05d8557f83402f1b97f4adfcaa135f21e922749ca68d0adaf6669a4a3",
+      "slot": "sideways_error-014",
+      "steps": 358
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 80931336,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-015/recovered-805291809/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-e508efb7-892a-4d41-8aa2-bb2f06543c74.h5",
+      "seed": 805291809,
+      "sha256": "09480c4ea0eea81ccff8b81b29a29336b85b55a1001fae34eb8ab8e64fcd1a0e",
+      "slot": "sideways_error-015",
+      "steps": 327
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 86113694,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-016/recovered-1569380812/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-190e5989-f89e-4f00-ac37-6cdf01d2ef5b.h5",
+      "seed": 1569380812,
+      "sha256": "b5bc3547d0cdcb64c6b0007fd8e60c0fbd8109d92dc64dafd78ef6e145fae854",
+      "slot": "sideways_error-016",
+      "steps": 356
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 73909285,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-017/recovered-599408655/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-694171fb-fc6e-4131-b4ee-f5d356997501.h5",
+      "seed": 599408655,
+      "sha256": "d045596563418f175a210cbf36f23c9d17fa1a50b1e2ab5d48cac4b9b4869258",
+      "slot": "sideways_error-017",
+      "steps": 309
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 72435060,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-018/recovered-991595952/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-eaeb660b-af12-4366-b678-4a7bc5bfcff1.h5",
+      "seed": 991595952,
+      "sha256": "33fce62b4b10ecb130bf2047bfb257239c238ebf5886248dd021f905ccf187ec",
+      "slot": "sideways_error-018",
+      "steps": 302
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 75506232,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-019/recovered-1070791196/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-76d4540a-7be5-4380-9f5c-33563412e9a5.h5",
+      "seed": 1070791196,
+      "sha256": "e37ffb8a01494e9a170de4c01a10bf533a085b8f083cbc97f296ae2f9c0b0a57",
+      "slot": "sideways_error-019",
+      "steps": 318
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 74230830,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-020/recovered-1707841242/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-70ff3e73-548a-49cc-b509-8c4fd927e653.h5",
+      "seed": 1707841242,
+      "sha256": "29f82fc5c5366e5a4ac6049188503aef777a9325392962efa1c0e31fae7fb18a",
+      "slot": "sideways_error-020",
+      "steps": 308
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 88079883,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-021/recovered-773979790/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-c516b58b-0873-42f1-ba5d-017fb3aa1f9d.h5",
+      "seed": 773979790,
+      "sha256": "2faf1a4347876eb9b084ebd37cf7fc02036aef3f5ea5468c26a2a55efff10b26",
+      "slot": "sideways_error-021",
+      "steps": 362
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 68560767,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-022/recovered-527142122/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ecaa58f3-df52-4e7c-9f75-2257253a808b.h5",
+      "seed": 527142122,
+      "sha256": "8384cdc1a8716d3290d72f29c6c30f995e578cafca2e671c2749fce9eb5985aa",
+      "slot": "sideways_error-022",
+      "steps": 288
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 66379138,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-023/recovered-1387848229/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-5ac166cf-4c85-4a2c-91ea-eb61200ecce6.h5",
+      "seed": 1387848229,
+      "sha256": "969c7dd8b39de4a8fb958ed2f243ed75da3c4cb4f7070b1620c18b79b02724c1",
+      "slot": "sideways_error-023",
+      "steps": 280
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 76027914,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-024/recovered-585541668/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-06c4b8dd-feb2-43c6-b58e-2784f1ae1c0b.h5",
+      "seed": 585541668,
+      "sha256": "04fff39e73dc1093984a6b63b4427c74fc71bf2daa17bb2981f55a3010738726",
+      "slot": "sideways_error-024",
+      "steps": 314
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 81097016,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-025/recovered-1286350424/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a68bf107-b8e9-4ec8-916f-b4de8a9259a9.h5",
+      "seed": 1286350424,
+      "sha256": "15fcf005dc8e8654beeac110f4d51ec3679e92be1792faefbd7c6de2c5e23335",
+      "slot": "sideways_error-025",
+      "steps": 331
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 80753629,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-026/recovered-624759474/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-5b943a74-acf8-4773-8d0f-efe402546838.h5",
+      "seed": 624759474,
+      "sha256": "d79d68a2e8c510a93af21d04038f5fbf294b104432f499c52ce9b44246b8e72e",
+      "slot": "sideways_error-026",
+      "steps": 338
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 78575178,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-027/recovered-1044872882/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-c7439216-e9e2-44ef-a702-89ef776b276e.h5",
+      "seed": 1044872882,
+      "sha256": "c48a7e2a07e341f99fee31fe8696a0e73b50ad1021186b36988833dc474879cf",
+      "slot": "sideways_error-027",
+      "steps": 328
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 74569933,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-028/recovered-456333896/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-940123ff-fc8f-411d-ba53-94bfc5eda4f1.h5",
+      "seed": 456333896,
+      "sha256": "24166ca7b21b5eccffaf313ee23fb588e8c6e2cba9147f840059f67c96f05d72",
+      "slot": "sideways_error-028",
+      "steps": 310
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 76337933,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-029/recovered-1962175192/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-0e212c21-7314-43e9-abf3-7ee80976d220.h5",
+      "seed": 1962175192,
+      "sha256": "e7130b941c4092dbbd118b354d1eedddae2c8a2797e70d8e2def194eda4e0262",
+      "slot": "sideways_error-029",
+      "steps": 316
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 77269606,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-030/recovered-2004292968/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-4c507b18-40a4-4b7e-b9b6-2fc1ae1969a0.h5",
+      "seed": 2004292968,
+      "sha256": "d254908a8320828feefebd9d9cb497a668defe2377dce418226964642201da8c",
+      "slot": "sideways_error-030",
+      "steps": 319
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 78549645,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-031/recovered-1740543549/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-0136f169-56a7-4352-9268-accc551e326a.h5",
+      "seed": 1740543549,
+      "sha256": "5a3183ac207da00069ea6ea0b76cadf8f66852b501c647903514eb1f12e85bbe",
+      "slot": "sideways_error-031",
+      "steps": 325
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 77001386,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-032/recovered-1693817409/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a991ff54-b732-428e-a970-9e6f1d21edf2.h5",
+      "seed": 1693817409,
+      "sha256": "f260aa94acf3b26a1d97d6f608c82863852e77c372e4549be389b1fbd8b21d62",
+      "slot": "sideways_error-032",
+      "steps": 324
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 62852351,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-033/recovered-1798284844/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-5e08de06-e069-45bd-9fe4-e855074e424a.h5",
+      "seed": 1798284844,
+      "sha256": "c6ce38836cd015073251b81a293159161cb604281373116c2e4c2f0fab8b8eb7",
+      "slot": "sideways_error-033",
+      "steps": 265
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 76452401,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-034/recovered-485376099/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-84c27b26-caf9-44c5-94dc-f9f146ba6c15.h5",
+      "seed": 485376099,
+      "sha256": "0c49de06078891c0e6dfabc0ada65c758c7cd153ddada7c1bf9dba7529df67e2",
+      "slot": "sideways_error-034",
+      "steps": 320
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 75755206,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-035/recovered-436967414/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-a7a978e7-5d57-472a-a740-b9563df9ee27.h5",
+      "seed": 436967414,
+      "sha256": "a336af2ef75f8c77efecd083b531d8c64324bcdbc40113018cfae4e59928347a",
+      "slot": "sideways_error-035",
+      "steps": 318
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 64126925,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-036/recovered-231943430/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-7da1db06-3bfb-4b01-ab1d-509c8d74d3d9.h5",
+      "seed": 231943430,
+      "sha256": "0f4399b788313b17879ebceb70c1dc127c4c970fde52c7d31545518f57b414cc",
+      "slot": "sideways_error-036",
+      "steps": 269
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 66239739,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-037/recovered-1826597697/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-082e9ea7-7608-4338-aef2-90ebf1b25c29.h5",
+      "seed": 1826597697,
+      "sha256": "a9a4c6359828b93f7e16e0726da3b04b4b3918a787eea0ad1d1860ac589b09ff",
+      "slot": "sideways_error-037",
+      "steps": 278
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 85799573,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-040/recovered-339628576/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-af3c4c7f-3aec-42c5-b261-bbea57c8fa61.h5",
+      "seed": 339628576,
+      "sha256": "fe124f8b2387b75403dd9ed63356e87f41b78d629586f1e4d215d74146f1d055",
+      "slot": "sideways_error-040",
+      "steps": 357
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 69348728,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-041/recovered-78205366/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-d29e01aa-84e3-4f83-9ef3-3e9d1855bb44.h5",
+      "seed": 78205366,
+      "sha256": "aadc9d80a1b34aceb86a3bb4dfc5b2cb28f4e1c2a90859a78f4ec45303a7018a",
+      "slot": "sideways_error-041",
+      "steps": 281
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 85011390,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-042/recovered-2104172970/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-0d7a80d2-c75e-4c3f-a6cc-7437f8c13e9e.h5",
+      "seed": 2104172970,
+      "sha256": "aa45b0a57edd09fc463b2268efd9357f9f348d8e6bc5adb47a5028b82d750e2a",
+      "slot": "sideways_error-042",
+      "steps": 354
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 79907190,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-043/recovered-266905747/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-53207cc2-4b38-49ca-a4b0-ecf852ef7106.h5",
+      "seed": 266905747,
+      "sha256": "d788de8d2428e3aa65b0da00d6b63d0b734a2353b1330199fa15ac650240bd46",
+      "slot": "sideways_error-043",
+      "steps": 336
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 88239734,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-044/recovered-570746810/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ba2b0499-5c0c-4447-bf7a-dcdca808f9d3.h5",
+      "seed": 570746810,
+      "sha256": "b071176e99313373d23d0a65657fc2db9018615784ee81d7efc9a8777a135bc1",
+      "slot": "sideways_error-044",
+      "steps": 366
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 88838162,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-046/recovered-488455474/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-af990a5f-65d3-492d-8675-ad9caeaf574a.h5",
+      "seed": 488455474,
+      "sha256": "3ad7c4d6c4bd84a05bb44be3cc73672318c2f5710e40c2d9cefcab472f5c42de",
+      "slot": "sideways_error-046",
+      "steps": 362
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 71091619,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-047/recovered-502121817/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-94f3fa4f-2fd9-4c31-9e1b-959fe32e4227.h5",
+      "seed": 502121817,
+      "sha256": "fc82f07935f84aa0e7c8c1d2a365a0cc08912ff2c5ec2f27914a88b1d584b1d9",
+      "slot": "sideways_error-047",
+      "steps": 300
+    },
+    {
+      "all_hdf5_datasets_read": true,
+      "bytes": 90456908,
+      "destination": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-049/recovered-1173043833/trajectory.h5",
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-ca4056a6-0def-4bfd-b954-9761c359d9cf.h5",
+      "seed": 1173043833,
+      "sha256": "3dd159a2b55f430fdd01f550c1dcb11a11ba8ce3a3f635ab3ea1cebd7fc5fbe7",
+      "slot": "sideways_error-049",
+      "steps": 371
+    }
+  ],
+  "discarded_temporary_files": [
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-6b252801-1cff-46c9-ab8a-28d8cee03fae.h5",
+      "bytes": 47388372,
+      "reason": "Unable to synchronously open file (bad object header version number)"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-c58b11b8-9e2b-4331-92dd-c75ca484ea14.h5",
+      "bytes": 20608434,
+      "reason": "Unable to synchronously open file (bad object header version number)"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-5fc6cd80-4cfc-43e3-9d8f-ba86642372ae.h5",
+      "bytes": 11890166,
+      "reason": "Unable to synchronously open file (bad object header version number)"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-72019515-0cbf-4bfc-b305-057dedafee51.h5",
+      "bytes": 39276103,
+      "reason": "Unable to synchronously open file (bad object header version number)"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-02346e56-bcff-4ecb-ae15-60f1daf3c8c2.h5",
+      "bytes": 96299870,
+      "reason": "Unable to synchronously open file (bad object header version number)"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-16eb4da2-3435-4981-ab56-053dcef8b40c.h5",
+      "bytes": 79504685,
+      "reason": "Unable to synchronously open file (bad object header version number)"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-4cb63d2b-81c8-42be-a685-b766665cb0c7.mp4",
+      "bytes": 506833,
+      "reason": "Unmapped temporary video; selected review videos rebuilt from preserved HDF5 frames"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-b8a6610a-7354-4cc0-a888-1c81a7b2e310.mp4",
+      "bytes": 387850,
+      "reason": "Unmapped temporary video; selected review videos rebuilt from preserved HDF5 frames"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-0fb8cd7c-1966-45fa-9f75-0950c5be9900.mp4",
+      "bytes": 427889,
+      "reason": "Unmapped temporary video; selected review videos rebuilt from preserved HDF5 frames"
+    },
+    {
+      "path": "/tmp/robotic-grasp-recovery300/.attempt-b3a21aa5-abfd-48f1-be6e-6421fc9b2a2a.mp4",
+      "bytes": 449731,
+      "reason": "Unmapped temporary video; selected review videos rebuilt from preserved HDF5 frames"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-021/demo-75582ed3-791d-4658-be78-0246d203511b/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-020/demo-1135fa6f-b55f-4dd1-b811-5b334ae9db7b/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-017/demo-1152d7bc-a142-45ed-a608-3bc99ac1f1e4/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-016/demo-6e198714-d572-4bba-b975-b1db618639dc/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-015/demo-9a137031-5a8e-411d-be67-39a9527f0423/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-014/demo-d1e11366-d1aa-4a96-85e4-736146d42f44/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-013/demo-9ef86b77-6805-406d-874f-45f1f8db7b79/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-012/demo-6dcc8d5e-9a3c-4d90-a431-4b0005c4c717/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-011/demo-a1e5f023-1760-43f1-a9f0-930019efd8fc/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-010/demo-030b2746-8e98-4030-a6e2-171222caf880/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-009/demo-76b39b92-775a-4582-b357-e7c8708e86e4/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-007/demo-519aed6a-6405-4749-8c70-f1f8aa3bbc7a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-006/demo-9935af67-29ca-401e-82c7-302dba7530fb/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-005/demo-42c0eaed-a4bb-4fce-8105-d79226633885/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-004/demo-a1003d16-eeee-466b-a4b1-33aab976e607/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-049/demo-d7b8b920-7916-4e14-bcdd-94dd6a694527/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-047/demo-58700d68-efc1-4558-a532-550a1a9cac3d/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-046/demo-ee5e272e-5896-4491-99ec-318f43030454/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-044/demo-5b371ffb-3c87-439d-b255-41fd5cd7c8d1/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-043/demo-2965a1d0-eb0b-4dcf-a994-9d3dcadefdde/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-042/demo-e8a64ec8-d2f6-480e-a8c0-ef175926d3c1/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-041/demo-e2ba189c-cc28-490f-aae6-02e3116e98fc/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-040/demo-9a4d97f0-855b-4823-8340-3e921c58b6a7/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-037/demo-3477796b-fc03-42e6-ad99-13c66360df4b/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-036/demo-2362b67d-0acc-4a91-953b-cd4dac783a59/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-035/demo-9c9a8c88-6dc6-4ffc-8716-a25ddf94592b/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-034/demo-6ccb5217-9239-4a06-83aa-11393d693ca5/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-033/demo-7acb2542-899e-46ed-8dc1-931a175b6b04/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-032/demo-94ff3ad3-c508-4c07-92fe-6c8eebda0649/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-031/demo-a1beb7e5-49c3-4135-a0af-c41d52af2493/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-030/demo-e54e0400-4be9-4644-8326-1b57e59e132e/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-029/demo-b6f5197f-0219-4656-b3cf-c744394ef8a0/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-028/demo-b0c9ed3e-d737-48aa-8fbe-bd8c65704003/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-027/demo-e31e3f13-19ba-4feb-918a-51521d4d52e5/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-026/demo-a971472e-34cf-4b8d-bd0c-049e0e55af10/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-025/demo-19fac8af-58a6-4451-b28f-49db91717db0/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-024/demo-f94c87f0-0bfa-4221-be4e-45c283929d0c/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-023/demo-a71d4129-ff0e-4352-8f8f-b6de98d9c821/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-022/demo-bf70fd1e-0c37-44c2-8af8-338d453e6705/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-021/demo-c3a621bc-a0c5-4fad-96a4-e8de63864927/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-020/demo-d2c1cf44-3954-4ecc-bbdb-66dc8d255e82/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-019/demo-387b09cf-d899-4b47-b41e-fa37b2819819/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-018/demo-dc81acab-b669-44c0-8caa-e032dd155d48/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-017/demo-41482c41-05f6-4e16-897d-b6145ab2ea46/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-016/demo-92080fca-122f-414e-a34a-97760b1bdfdc/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-015/demo-f25fd789-18cc-4977-830c-f74ce6392e7b/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-014/demo-fef89d89-34cd-4d09-b028-ac87327bb590/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-013/demo-5a6b512d-52a5-4bcd-a620-f8b76ce8fb72/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-012/demo-66ccc947-fb94-4702-8558-daa74244ca1f/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-011/demo-9764c091-17dc-48fc-b6dd-65dc818f587f/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-010/demo-b4072ff0-5baf-4c0e-809c-677ede44cc3a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-009/demo-39c312bb-ad9c-47a3-ad00-5db6ffbf70be/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-008/demo-05b05bca-26b9-4700-91fe-7e50558308f9/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-007/demo-76339346-5d5e-44d8-8c32-fe1b76ce1027/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-006/demo-acb99436-8193-4f0f-bead-b05b58af9587/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-005/demo-a0523e2b-6391-43a5-90d6-785ab2178039/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-004/demo-bbeeeb12-6b5f-48c2-98c4-2de428a46527/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-002/demo-8b28cb1a-6c73-4ce4-9361-10f863e03a4a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-001/demo-5e16324e-b887-49fc-b900-daf5d41b60c7/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/sideways_error-000/demo-822135b9-2e35-4b57-9fc7-738d0e7a5088/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-048/demo-c858c79f-5675-41e5-bd21-b6a4f75d3884/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-047/demo-31a9ac15-4b54-4a41-a931-42e36a1c2569/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-046/demo-119c1661-5781-4d9e-88e0-4a3035a5612d/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-045/demo-13187938-aa0f-4b5d-b5c7-f395718eade5/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-044/demo-84e9363d-6e06-434e-98d6-c5d2de8e538a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-043/demo-01c447e9-d556-46d6-8f66-fb9b44a6994a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-042/demo-5cd426ad-fa3a-4c0c-965d-b5f5f37111c0/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-039/demo-802d55dd-3375-4873-b911-25b559dffa6e/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-038/demo-052378e5-cebe-479e-bb89-af9e279fa012/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-037/demo-95158597-4e0d-4476-b9b3-3e92873e8c73/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-036/demo-a6ff380f-e8b9-49a7-bacc-1432c6ebf6b5/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-035/demo-953a1d32-9bb5-4af6-87f5-90fc2fcafbb0/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-034/demo-4ea032ea-6a6f-46a5-a0a7-178fafc3d331/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-033/demo-e092f8e4-47c7-46be-b77d-5ba6f5b460d0/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-032/demo-60a9a7d3-001b-4c4f-8d68-8ecd89658d18/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-031/demo-9f52b908-d12b-4177-a4c9-3f8000b47c6c/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-029/demo-0a0b0f01-43c7-4d72-bd0c-e3dc0ac2f4d2/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-028/demo-fd68460a-7311-4ad5-b9fb-e81c641ad585/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-027/demo-8da834d4-5e24-420d-b208-2eb6264c7855/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-026/demo-07df1520-ef88-4c1a-a614-d8765a29b1f1/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-025/demo-454bfc70-20db-45b9-a244-b800f87afaf8/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-024/demo-6eeae6de-7f92-4ba8-b640-7b4a87eb7d75/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-023/demo-895d1266-0a7e-47f6-9ae6-7b6aa24fab53/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-022/demo-15a5c550-cc00-4342-870d-ec527d6a8749/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-021/demo-7105ae97-1439-40a0-951e-f689d926cd6a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-020/demo-40b77b50-0540-4e88-8b3c-71f85211ad67/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-019/demo-446422c2-208f-4394-ae06-9b97b7c7be7a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-017/demo-2e20592f-6549-4a52-a377-38d4767d2543/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-016/demo-471716c9-6c52-4d10-ac88-f2f3b867199f/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-013/demo-e9520f9d-a637-4c8e-a9b6-5d83c33fc886/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-012/demo-e58e126e-2f52-4ca5-8e8a-603e1c40cbe4/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-011/demo-1fc0cc22-83d4-4eff-837b-d58a699965ef/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-010/demo-f962067f-b50f-483c-b52e-2d14510061d3/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-009/demo-79e4a8ab-d300-4c40-9296-2388a7f8d364/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-007/demo-61272fa4-e108-4358-96de-179da8007169/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-006/demo-5c1049c1-0d48-4409-ad50-8590c973becf/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-005/demo-76e3232f-c5c7-4b5f-b404-68b519979e3a/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-003/demo-5fb0497e-878b-4804-97b6-efc641f77549/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/drop_block-002/demo-bd8ea598-ed62-4e7f-a10d-368c3dba08a3/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-049/demo-ec43728e-b88b-477f-a924-a8fa67706cab/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-048/demo-590d92be-c881-4895-bc19-8ee1fdaf648c/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-047/demo-f8a3bbc6-f210-4bfc-a751-6efcd82781db/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-046/demo-61ac3a3d-e3ae-4bf3-97ed-f05883ab781e/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-045/demo-a3ec71eb-a08b-4834-97ae-ab67fa465341/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-044/demo-b3a2e5fc-c1cc-4caa-927c-4e466e26c611/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-043/demo-90dd8d8a-9478-463d-96e7-724c45ad6377/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-042/demo-80ebb75e-8ddf-40f9-b4f6-545d5276d9c5/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-041/demo-d91aed9b-fc72-4dce-b6fb-0a51a0718001/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-040/demo-41188a9a-118f-4256-b99f-86093693f811/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-039/demo-b3369077-1204-4012-bcd1-739792462e88/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    },
+    {
+      "path": "v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-038/demo-9e37433d-3e4a-41ad-a249-62535d4eaf9d/trajectory.h5.pending",
+      "bytes": 0,
+      "reason": "Empty failed publication copy"
+    }
+  ]
+}

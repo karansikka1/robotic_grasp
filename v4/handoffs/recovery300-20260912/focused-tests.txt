@@ -1,0 +1,29 @@
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /root/.cache/pypoetry/virtualenvs/motion-planning-xU6bMlUU-py3.12/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+[robosuite WARNING] Could not load the mink-based whole-body IK. Make sure you install related import properly, otherwise you will not be able to use the default IK controller setting for GR1 robot. (__init__.py:40)
+WARNING! gymnasium is not installed. We will try to use openai gym instead.
+Warning: make sure gym is installed if you want to use the GymWrapper.
+attempt=0 seed=7 step=0 stage=green_move_above_over_red
+attempt=0 seed=7 step=7 stage=green_descend_over_red
+attempt=0 seed=7 step=14 stage=green_close_over_red
+attempt=0 seed=7 step=20 stage=green_lift_over_red
+attempt=0 seed=7 step=28 stage=green_transfer_over_red
+attempt=0 seed=7 step=35 stage=green_lower_over_red
+attempt=0 seed=7 step=39 stage=green_release_over_red
+attempt=0 seed=7 step=51 stage=green_retreat_over_red
+attempt=0 seed=7 step=58 stage=blue_move_above_over_green
+attempt=0 seed=7 step=65 stage=blue_descend_over_green
+attempt=0 seed=7 step=72 stage=blue_close_over_green
+attempt=0 seed=7 step=78 stage=blue_lift_over_green
+attempt=0 seed=7 step=88 stage=blue_transfer_over_green
+attempt=0 seed=7 step=95 stage=blue_lower_over_green
+attempt=0 seed=7 step=99 stage=blue_release_over_green
+attempt=0 seed=7 step=111 stage=blue_retreat_over_green
+attempt=0 seed=7 step=118 stage=settle
+attempt=0 seed=7 steps=127 success=True
+............
+----------------------------------------------------------------------
+Ran 12 tests in 2.239s
+
+OK

@@ -1,0 +1,147 @@
+{
+  "categories": {
+    "clean": 100,
+    "drop_block": 41,
+    "gaussian_burst": 46,
+    "gripper_interrupt": 19,
+    "sideways_error": 46
+  },
+  "complete": 252,
+  "date": "2026-09-12T22:36:12.168398+00:00",
+  "frozen_plan_matches": true,
+  "full_read_recovered_hdf5": 111,
+  "hdf5_bytes": 20728682236,
+  "legacy_100_present": true,
+  "limits": "Not a full stronger-dataset action/state audit or simulator replay. Collection remains partial.",
+  "partitions": {
+    "train": 225,
+    "validation": 27
+  },
+  "remaining": 48,
+  "review_pages_js_and_http_checked": true,
+  "source_hashes_match": true,
+  "stable_success_flags_checked": 252,
+  "transitions": 86243,
+  "videos": [
+    {
+      "expected_frames": 278,
+      "frames": 278,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-011/recovered-225192514/trajectory.mp4"
+    },
+    {
+      "expected_frames": 278,
+      "frames": 278,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-011/recovered-225192514/review.mp4"
+    },
+    {
+      "expected_frames": 303,
+      "frames": 303,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-000/recovered-873629338/trajectory.mp4"
+    },
+    {
+      "expected_frames": 303,
+      "frames": 303,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/sideways_error-000/recovered-873629338/review.mp4"
+    },
+    {
+      "expected_frames": 325,
+      "frames": 325,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-011/recovered-1570055189/trajectory.mp4"
+    },
+    {
+      "expected_frames": 325,
+      "frames": 325,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-011/recovered-1570055189/review.mp4"
+    },
+    {
+      "expected_frames": 400,
+      "frames": 400,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-011/recovered-535212849/trajectory.mp4"
+    },
+    {
+      "expected_frames": 400,
+      "frames": 400,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-011/recovered-535212849/review.mp4"
+    },
+    {
+      "expected_frames": 314,
+      "frames": 314,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-011/demo-107e8628-08ea-4a72-97f5-4da1d0d93032/trajectory.mp4"
+    },
+    {
+      "expected_frames": 314,
+      "frames": 314,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-011/demo-107e8628-08ea-4a72-97f5-4da1d0d93032/review.mp4"
+    },
+    {
+      "expected_frames": 370,
+      "frames": 370,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-000/demo-f44376a1-01de-461b-b044-a1b2d0c71e0f/trajectory.mp4"
+    },
+    {
+      "expected_frames": 370,
+      "frames": 370,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gaussian_burst-000/demo-f44376a1-01de-461b-b044-a1b2d0c71e0f/review.mp4"
+    },
+    {
+      "expected_frames": 382,
+      "frames": 382,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/clean-010/demo-15a498d5-d8d0-4d22-a278-18528021178b/trajectory.mp4"
+    },
+    {
+      "expected_frames": 382,
+      "frames": 382,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/clean-010/demo-15a498d5-d8d0-4d22-a278-18528021178b/review.mp4"
+    },
+    {
+      "expected_frames": 275,
+      "frames": 275,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/clean-000/demo-1c8e7778-a9ea-497e-9c6a-d42b37bb6900/trajectory.mp4"
+    },
+    {
+      "expected_frames": 275,
+      "frames": 275,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/clean-000/demo-1c8e7778-a9ea-497e-9c6a-d42b37bb6900/review.mp4"
+    },
+    {
+      "expected_frames": 335,
+      "frames": 335,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-000/demo-1f732d51-8d8b-4c37-a3a7-0164d178e94d/trajectory.mp4"
+    },
+    {
+      "expected_frames": 335,
+      "frames": 335,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/gripper_interrupt-000/demo-1f732d51-8d8b-4c37-a3a7-0164d178e94d/review.mp4"
+    },
+    {
+      "expected_frames": 431,
+      "frames": 431,
+      "kind": "raw_video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-000/demo-d97e45f2-c7e7-4e6d-a4b9-b6e293c66cf8/trajectory.mp4"
+    },
+    {
+      "expected_frames": 431,
+      "frames": 431,
+      "kind": "video",
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/recovery300/episodes/drop_block-000/demo-d97e45f2-c7e7-4e6d-a4b9-b6e293c66cf8/review.mp4"
+    }
+  ]
+}

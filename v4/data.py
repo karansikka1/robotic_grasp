@@ -67,39 +67,72 @@ def discover_trajectories(root: Path) -> list[TrajectoryInfo]:
 
 
 def split_trajectories(
-    trajectories: list[TrajectoryInfo],
-    *,
-    test_fraction: float,
-    seed: int,
+    trajectories: list[TrajectoryInfo], *, test_fraction: float, seed: int,
+    validation_fraction: float = 0.0,
 ) -> dict[str, Any]:
-    """Split whole episodes deterministically; never split adjacent timesteps."""
-    if len(trajectories) < 2:
-        raise ValueError("At least two trajectories are required for train/test")
-    if not 0.0 < test_fraction < 1.0:
-        raise ValueError("test_fraction must be between zero and one")
+    """Split whole seed groups; repeated demonstrations of a seed stay together.
 
+    validation_fraction=0 retains the original two-way API. New BC training
+    requires a separate validation group for checkpoint selection.
+    """
+    if not 0 < test_fraction < 1 or not 0 <= validation_fraction < 1:
+        raise ValueError("Invalid split fractions")
+    if test_fraction + validation_fraction >= 1:
+        raise ValueError("Leave a nonempty training fraction")
+    paths = [str(Path(item.path).resolve()) for item in trajectories]
+    if len(paths) != len(set(paths)):
+        raise ValueError("Duplicate trajectory paths")
     ordered = sorted(trajectories, key=lambda item: (item.seed, item.path))
-    permutation = np.random.default_rng(seed).permutation(len(ordered))
-    test_count = min(
-        len(ordered) - 1,
-        max(1, int(round(len(ordered) * test_fraction))),
-    )
-    test_indices = set(int(index) for index in permutation[:test_count])
-    train = [item for index, item in enumerate(ordered) if index not in test_indices]
-    test = [item for index, item in enumerate(ordered) if index in test_indices]
+    seeds = sorted({item.seed for item in ordered})
+    if len(seeds) < (3 if validation_fraction else 2):
+        raise ValueError("Not enough distinct trajectory seeds for the requested splits")
+    permutation = np.random.default_rng(seed).permutation(seeds).tolist()
+    test_count = min(len(seeds) - (2 if validation_fraction else 1),
+                     max(1, int(round(len(seeds) * test_fraction))))
+    validation_count = (min(len(seeds) - test_count - 1,
+                            max(1, int(round(len(seeds) * validation_fraction))))
+                        if validation_fraction else 0)
+    test_seeds = set(permutation[:test_count])
+    validation_seeds = set(permutation[test_count:test_count + validation_count])
+    groups = {
+        "train": [item for item in ordered if item.seed not in test_seeds | validation_seeds],
+        "test": [item for item in ordered if item.seed in test_seeds],
+    }
+    if validation_fraction:
+        groups["validation"] = [item for item in ordered if item.seed in validation_seeds]
     return {
-        "schema_version": 1,
+        "schema_version": 2 if validation_fraction else 1,
         "split_seed": seed,
         "test_fraction": test_fraction,
-        "train": [asdict(item) for item in train],
-        "test": [asdict(item) for item in test],
+        "validation_fraction": validation_fraction,
+        **{name: [asdict(item) for item in entries] for name, entries in groups.items()},
         "summary": {
-            "train_trajectories": len(train),
-            "test_trajectories": len(test),
-            "train_samples": sum(item.steps for item in train),
-            "test_samples": sum(item.steps for item in test),
+            **{f"{name}_trajectories": len(entries) for name, entries in groups.items()},
+            **{f"{name}_samples": sum(item.steps for item in entries) for name, entries in groups.items()},
         },
     }
+
+
+def validate_manifest(manifest):
+    """Reject path/seed leakage and stale metadata before reading BC splits."""
+    all_paths, all_seeds = set(), set()
+    for name in ("train", "validation", "test"):
+        entries = manifest.get(name)
+        if not entries:
+            raise ValueError(f"Manifest requires a nonempty {name} split")
+        paths, seeds = set(), set()
+        for entry in entries:
+            item = inspect_trajectory(Path(entry["path"]))
+            if item.seed != entry["seed"] or item.steps != entry["steps"]:
+                raise ValueError(f"Stale trajectory metadata: {item.path}")
+            if item.path in paths or item.path in all_paths:
+                raise ValueError("Trajectory path appears more than once")
+            paths.add(item.path)
+            seeds.add(item.seed)
+        if seeds & all_seeds:
+            raise ValueError("Trajectory seeds overlap across splits")
+        all_paths.update(paths)
+        all_seeds.update(seeds)
 
 
 def write_manifest(manifest: dict[str, Any], output_path: Path) -> Path:
@@ -175,6 +208,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--trajectories-dir", type=Path, default=Path("v4/trajectories"))
     parser.add_argument("--output", type=Path, default=Path("v4/splits/default.json"))
+    parser.add_argument("--validation-fraction", type=float, default=0.2)
     parser.add_argument("--test-fraction", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=0)
     return parser.parse_args()
@@ -186,6 +220,7 @@ def main() -> None:
     manifest = split_trajectories(
         trajectories,
         test_fraction=args.test_fraction,
+        validation_fraction=args.validation_fraction,
         seed=args.seed,
     )
     output = write_manifest(manifest, args.output)

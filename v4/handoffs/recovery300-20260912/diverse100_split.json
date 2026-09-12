@@ -1,0 +1,520 @@
+{
+  "schema_version": 2,
+  "split_seed": 20260909,
+  "summary": {
+    "test_samples": 3191,
+    "test_trajectories": 10,
+    "train_samples": 25648,
+    "train_trajectories": 80,
+    "validation_samples": 3139,
+    "validation_trajectories": 10
+  },
+  "test": [
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-6ae7b357-9229-46a7-b73b-aae4af67d6ee/trajectory.h5",
+      "seed": 471408772,
+      "steps": 303
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-ef0002c7-f959-4d53-a2c1-d9b2752be7bd/trajectory.h5",
+      "seed": 520825708,
+      "steps": 342
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-7bee3826-481d-4be0-a233-0bc7ace3595b/trajectory.h5",
+      "seed": 580687893,
+      "steps": 291
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-c83f8cb0-5dd3-4156-a258-eee27952c88a/trajectory.h5",
+      "seed": 696462752,
+      "steps": 370
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-f4848f38-7ca5-4401-8cd2-907b4b67c7b3/trajectory.h5",
+      "seed": 860208268,
+      "steps": 336
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-a9747c3b-685d-48ee-8741-81de90f2250b/trajectory.h5",
+      "seed": 878973450,
+      "steps": 296
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-66c2f7ae-0afe-49f9-8ab5-e7fd0ee5e95e/trajectory.h5",
+      "seed": 1792613613,
+      "steps": 305
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-5befcf5a-c92a-44cf-a65a-9c47ea2a899c/trajectory.h5",
+      "seed": 1876615643,
+      "steps": 310
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-f2585ec7-e14b-4cf8-b662-72d9e8220eae/trajectory.h5",
+      "seed": 2008853449,
+      "steps": 330
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-b7fc0f16-62a8-4100-9c19-83addef5ec66/trajectory.h5",
+      "seed": 2136001868,
+      "steps": 308
+    }
+  ],
+  "test_fraction": 0.1,
+  "train": [
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-7cccb850-877e-4ff2-9e07-703bcce63282/trajectory.h5",
+      "seed": 25035255,
+      "steps": 384
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-38f98823-72fc-4c24-a855-faa5020e56fd/trajectory.h5",
+      "seed": 40439128,
+      "steps": 325
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-dbf02a77-42bb-4636-a96a-d79c1adb9972/trajectory.h5",
+      "seed": 106572121,
+      "steps": 362
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-fb88ac78-2d0c-4324-91ba-9be128948533/trajectory.h5",
+      "seed": 109362534,
+      "steps": 339
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-42320c3c-d9b1-42c8-a241-d25dc30a857f/trajectory.h5",
+      "seed": 138136740,
+      "steps": 279
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-5faf59b4-d04a-4d4b-befb-e381e91bcf51/trajectory.h5",
+      "seed": 190447585,
+      "steps": 304
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-16613bf2-0c86-4974-ac63-b52ed42cdf8b/trajectory.h5",
+      "seed": 200038043,
+      "steps": 296
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-769c2476-74f1-4dac-a9b2-9ca95bb3afa9/trajectory.h5",
+      "seed": 222085180,
+      "steps": 303
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-144c11f7-4c8e-41b6-b723-30460b0d45f9/trajectory.h5",
+      "seed": 271466241,
+      "steps": 370
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-c58e505f-4c94-495e-8dc3-44d70d55de38/trajectory.h5",
+      "seed": 274417826,
+      "steps": 327
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-6e8383f4-92b4-4cba-aec6-9e377f2c8fbd/trajectory.h5",
+      "seed": 281402799,
+      "steps": 301
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-282fc298-e04f-46d1-b03c-8c32c558c09f/trajectory.h5",
+      "seed": 296081441,
+      "steps": 332
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-f97a5ba6-bd37-40be-8fb1-8a57bc16702d/trajectory.h5",
+      "seed": 347527566,
+      "steps": 300
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-9cfd8856-02cf-4e27-ad94-1c0fccb0fc22/trajectory.h5",
+      "seed": 378424320,
+      "steps": 316
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-a0d49041-775e-4e42-9d1a-21877bb8c3b6/trajectory.h5",
+      "seed": 427400094,
+      "steps": 299
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-fb307d70-b8b0-40ff-96bb-771eac6c76d2/trajectory.h5",
+      "seed": 443878715,
+      "steps": 348
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-11da6dd5-4527-44d8-8dd0-cf91cbcc4b4c/trajectory.h5",
+      "seed": 457808461,
+      "steps": 309
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-3e4ffd38-316a-4452-ae8c-b90043f2e620/trajectory.h5",
+      "seed": 469044684,
+      "steps": 298
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-0b885876-58d7-4aaf-859e-b267337ccb48/trajectory.h5",
+      "seed": 517660218,
+      "steps": 309
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-d0317f96-1382-44af-a5a7-5e7e78229a0e/trajectory.h5",
+      "seed": 532295618,
+      "steps": 310
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-77ff490c-cd92-4f24-8b36-597dd2cb6b99/trajectory.h5",
+      "seed": 656305561,
+      "steps": 282
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-6f2c2f51-2fd9-46ce-86b9-4a6fd526fec6/trajectory.h5",
+      "seed": 660459267,
+      "steps": 301
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-418ced44-0125-436b-8ddd-d1405a815334/trajectory.h5",
+      "seed": 748358087,
+      "steps": 379
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-cf4f279d-d961-4a7e-a940-6f69eaf009e8/trajectory.h5",
+      "seed": 749677909,
+      "steps": 341
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-c69401a6-7c3f-41e4-98ae-fa355f3a03a8/trajectory.h5",
+      "seed": 807801733,
+      "steps": 319
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-e713fb6d-330c-4b4e-a323-3013377d01b1/trajectory.h5",
+      "seed": 839634914,
+      "steps": 369
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-66f96c50-f2dc-4221-944f-06868432f985/trajectory.h5",
+      "seed": 876762170,
+      "steps": 313
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-76c24884-4f77-4338-af95-04d5341f0917/trajectory.h5",
+      "seed": 878979132,
+      "steps": 268
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-80d7d059-77e0-4322-acab-f6b1a3e0b143/trajectory.h5",
+      "seed": 888329645,
+      "steps": 339
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-75ef65c9-9602-4990-9c59-299d444ae6b2/trajectory.h5",
+      "seed": 923546632,
+      "steps": 348
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-859a6677-7e1d-4cba-bf3a-2b280ef99f94/trajectory.h5",
+      "seed": 933179848,
+      "steps": 284
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-7ab18370-7074-4e16-9159-882ef1d1e3ca/trajectory.h5",
+      "seed": 953154530,
+      "steps": 286
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-0d2b5d37-a525-4401-913f-b4313175910e/trajectory.h5",
+      "seed": 982850927,
+      "steps": 278
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-8c60c2c6-3142-4204-889a-988a6a2936b6/trajectory.h5",
+      "seed": 984112062,
+      "steps": 350
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-f757894b-6307-4e6e-a219-211c51041cea/trajectory.h5",
+      "seed": 998478567,
+      "steps": 316
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-1abd5cc9-a277-4ba2-a5f6-15e53a98bff7/trajectory.h5",
+      "seed": 1018168093,
+      "steps": 299
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-50befc78-e675-41d2-ac13-24407326d75e/trajectory.h5",
+      "seed": 1057917198,
+      "steps": 334
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/random-seed-check-a85fb695-3dfb-4ed2-9a78-213e31715194/trajectory.h5",
+      "seed": 1061497685,
+      "steps": 282
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-ae6a95ce-7e29-4478-bf8d-a01f977e3b04/trajectory.h5",
+      "seed": 1071652194,
+      "steps": 319
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-db8a914e-204c-4b13-916d-1503a4fa6281/trajectory.h5",
+      "seed": 1073364558,
+      "steps": 290
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-b088abe5-dba1-404d-b837-4195f1040c3a/trajectory.h5",
+      "seed": 1127545580,
+      "steps": 307
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-823a8b82-97a7-4ff2-9668-5bacffdb2c2d/trajectory.h5",
+      "seed": 1160492777,
+      "steps": 345
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-bbf96d10-f5fd-4719-aeb9-d930aba04ce9/trajectory.h5",
+      "seed": 1163714643,
+      "steps": 321
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-e6cd67d9-54fc-461b-97dd-78fc750367db/trajectory.h5",
+      "seed": 1163758358,
+      "steps": 301
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-67b22f41-fc96-4d9e-9d37-b21f08327091/trajectory.h5",
+      "seed": 1249742667,
+      "steps": 316
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-e8c257be-0177-447a-a6f6-e10179843a58/trajectory.h5",
+      "seed": 1251710312,
+      "steps": 342
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-30fbb7e5-7384-48dd-9e14-b02cd94dc1a5/trajectory.h5",
+      "seed": 1261218874,
+      "steps": 332
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-bdc89d0a-f3b9-4993-9bff-b58d9e139ad4/trajectory.h5",
+      "seed": 1334664755,
+      "steps": 324
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-49b1e698-665e-48c7-8c49-1f9c6a62dde5/trajectory.h5",
+      "seed": 1349501464,
+      "steps": 309
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-4d28aca4-567e-42ee-a6d9-71fccdd8c21a/trajectory.h5",
+      "seed": 1370149046,
+      "steps": 320
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-97d21429-c951-460e-bb2f-da9b7302cf7d/trajectory.h5",
+      "seed": 1390308241,
+      "steps": 336
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-4ec1e697-bb13-4148-8bc5-1d2d539c5fe6/trajectory.h5",
+      "seed": 1392524882,
+      "steps": 357
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-1beaf776-615e-4cf1-91f2-b64374ca2d62/trajectory.h5",
+      "seed": 1465253859,
+      "steps": 299
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-553676d4-dbdc-4383-a06b-56dd6b88a60c/trajectory.h5",
+      "seed": 1511274611,
+      "steps": 359
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-9a9a069a-d0a0-4dfe-9e18-5f00805f82c8/trajectory.h5",
+      "seed": 1536988133,
+      "steps": 356
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-85c57281-ed0e-4b48-bcec-33f13d72d947/trajectory.h5",
+      "seed": 1539213023,
+      "steps": 310
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-8c22dc10-a0ac-4719-a17c-b590f541964e/trajectory.h5",
+      "seed": 1629887453,
+      "steps": 335
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-48da79a9-ee24-4b57-8fcf-a35eefa06450/trajectory.h5",
+      "seed": 1634590032,
+      "steps": 326
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-a1cd3675-0979-4e3e-8408-3596b85e3918/trajectory.h5",
+      "seed": 1634754735,
+      "steps": 302
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-9fba8adb-eb3f-4dcf-b2f3-62c383f803f9/trajectory.h5",
+      "seed": 1680946965,
+      "steps": 351
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-7a959370-2d13-4d7b-b810-7d5003aa7ca7/trajectory.h5",
+      "seed": 1703805526,
+      "steps": 330
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-1f9e90b3-092a-4b90-8ef8-c98d65b42eeb/trajectory.h5",
+      "seed": 1707137376,
+      "steps": 368
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-fe7888b2-eab3-48e9-9364-fa2d7391f826/trajectory.h5",
+      "seed": 1720175990,
+      "steps": 322
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-6c3eedef-18a0-443c-9893-783a09ffe0c2/trajectory.h5",
+      "seed": 1726362976,
+      "steps": 287
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-d7f7218f-b89d-4d7e-bc26-d5f9c9e539fe/trajectory.h5",
+      "seed": 1779441482,
+      "steps": 278
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-73a7da98-aa07-46ef-bdae-647273c5f433/trajectory.h5",
+      "seed": 1796833338,
+      "steps": 297
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-3b0438e0-c832-4785-896d-453f32093ab3/trajectory.h5",
+      "seed": 1809399144,
+      "steps": 317
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-6d94676f-0c34-4775-bd8a-9dea28b4ffa2/trajectory.h5",
+      "seed": 1861175242,
+      "steps": 310
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-f0eebdb7-4cc4-4141-86b0-cf6d7aaad012/trajectory.h5",
+      "seed": 1875100191,
+      "steps": 263
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-dc10f290-847b-4c83-b59e-4bd3b7868fa9/trajectory.h5",
+      "seed": 1878676959,
+      "steps": 294
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-0efd8d17-dbcd-4a9e-85fa-e16bed338099/trajectory.h5",
+      "seed": 1884590373,
+      "steps": 289
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-f4eda6cb-a838-45cd-9592-ef6836a232f2/trajectory.h5",
+      "seed": 1953749848,
+      "steps": 391
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-183a5f6d-a909-41a1-be16-3c383d4ff02a/trajectory.h5",
+      "seed": 1962565411,
+      "steps": 307
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-9cf6d3c6-20d9-4b18-87c7-5d58cc33fb81/trajectory.h5",
+      "seed": 1971804174,
+      "steps": 352
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-e34231ca-a806-4a77-b60c-d467f626d28b/trajectory.h5",
+      "seed": 2001372620,
+      "steps": 311
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-660f0518-2fab-4459-bf31-1a6a8a03a5da/trajectory.h5",
+      "seed": 2041403374,
+      "steps": 353
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-3ea69c63-13e9-4833-86d9-909e4de70331/trajectory.h5",
+      "seed": 2064790833,
+      "steps": 336
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-2f0d5599-bce6-47b8-a932-76b1de67e8b9/trajectory.h5",
+      "seed": 2086585510,
+      "steps": 323
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-71b7555c-6b64-49de-bffe-a36b83caedd6/trajectory.h5",
+      "seed": 2092284131,
+      "steps": 312
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-b9e433f7-4e2c-4f09-87b4-774443c11cb1/trajectory.h5",
+      "seed": 2145378220,
+      "steps": 352
+    }
+  ],
+  "validation": [
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-78193a9a-a774-490d-9099-df98049f08ad/trajectory.h5",
+      "seed": 34117237,
+      "steps": 326
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-3cfc196a-829b-4720-9a7e-94303e0fc923/trajectory.h5",
+      "seed": 571777816,
+      "steps": 332
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-9622b893-4ee8-4e2d-b917-ee257ab99c2d/trajectory.h5",
+      "seed": 777758690,
+      "steps": 319
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-89f3f186-d3a8-4c6d-afb6-07c323338a59/trajectory.h5",
+      "seed": 841470276,
+      "steps": 317
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-9dc94fb1-2299-4326-bb63-d61e2056b2c5/trajectory.h5",
+      "seed": 847829167,
+      "steps": 296
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-91ae2ce1-6617-462b-9a2b-72907d9fb94f/trajectory.h5",
+      "seed": 873565583,
+      "steps": 297
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-88702188-0513-41f2-a691-cead163869bf/trajectory.h5",
+      "seed": 996185178,
+      "steps": 307
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-867213e9-34a9-44fd-a311-1e908fe4e48e/trajectory.h5",
+      "seed": 1058586632,
+      "steps": 328
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-7cc736b6-ac6d-4812-be99-34f98a8731b2/trajectory.h5",
+      "seed": 1201892510,
+      "steps": 308
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/bc-demo-19df5997-5277-4faf-94a6-86de53d30078/trajectory.h5",
+      "seed": 2005567162,
+      "steps": 309
+    }
+  ],
+  "validation_fraction": 0.1
+}

@@ -12,3 +12,9 @@ split-v4:
 
 train-v4-bc:
 	poetry run python -m v4.train_bc $(ARGS)
+
+collect-v4:
+	poetry run python -m v4.collect_trajectories $(ARGS)
+
+evaluate-v4:
+	poetry run python -m v4.evaluate $(ARGS)

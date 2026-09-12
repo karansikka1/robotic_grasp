@@ -1,0 +1,12 @@
+{
+  "status": "retired_partial_archive",
+  "date": "2026-09-12",
+  "reason": "Disturbances judged too mild; user authorized deleting older trajectories to free storage",
+  "deleted_hdf5": 290,
+  "retained_review_hdf5": 10,
+  "freed_bytes": 22795731313,
+  "historical_split": "v4/splits/robustness300.json",
+  "split_usable_for_training": false,
+  "replacement": "v4/trajectories/robustness300/recovery300",
+  "cleanup_log": "v4/trajectories/robustness300/storage_cleanup.json"
+}

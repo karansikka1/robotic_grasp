@@ -1,0 +1,61 @@
+{
+  "categories": {
+    "clean": {
+      "attempts": 105,
+      "blue": 0,
+      "green": 0,
+      "successes": 100,
+      "train": 90,
+      "transitions": 32605,
+      "validation": 10,
+      "with_recovery": 0
+    },
+    "drop_block": {
+      "attempts": 41,
+      "blue": 22,
+      "green": 19,
+      "successes": 41,
+      "train": 36,
+      "transitions": 16863,
+      "validation": 5,
+      "with_recovery": 41
+    },
+    "gaussian_burst": {
+      "attempts": 47,
+      "blue": 23,
+      "green": 23,
+      "successes": 46,
+      "train": 41,
+      "transitions": 15623,
+      "validation": 5,
+      "with_recovery": 1
+    },
+    "gripper_interrupt": {
+      "attempts": 21,
+      "blue": 10,
+      "green": 9,
+      "successes": 19,
+      "train": 17,
+      "transitions": 6451,
+      "validation": 2,
+      "with_recovery": 8
+    },
+    "sideways_error": {
+      "attempts": 46,
+      "blue": 23,
+      "green": 23,
+      "successes": 46,
+      "train": 41,
+      "transitions": 14701,
+      "validation": 5,
+      "with_recovery": 0
+    }
+  },
+  "failure_reasons": {
+    "Timed out in stage blue_descend_over_green": 3,
+    "Timed out in stage settle": 5
+  },
+  "successful_trajectories": 252,
+  "target_trajectories": 300,
+  "transitions": 86243
+}

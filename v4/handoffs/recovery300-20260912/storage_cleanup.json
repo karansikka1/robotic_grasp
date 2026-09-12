@@ -1,0 +1,1760 @@
+{
+  "reason": "User authorized removing older trajectory data to free storage",
+  "delete_superseded_mild_hdf5": [
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-001/demo-832f0cae-0b5e-49b9-801e-31044f755029/trajectory.h5",
+      "bytes": 68296460,
+      "seed": 220769969,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-002/demo-ba757c96-5f1c-4424-8d70-cf8bf65dd0cd/trajectory.h5",
+      "bytes": 78741763,
+      "seed": 1481441945,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-003/demo-9e07896f-b6b1-4c6b-8b5a-7100a3efa840/trajectory.h5",
+      "bytes": 71764579,
+      "seed": 716641510,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-004/demo-0d9b11ae-35cb-44b8-af91-a8a0e120d8b6/trajectory.h5",
+      "bytes": 79164323,
+      "seed": 1555425716,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-005/demo-6d9ce00a-9ab0-4bf7-8347-45438cc915ee/trajectory.h5",
+      "bytes": 77874511,
+      "seed": 203403083,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-006/demo-b7e63be9-a561-4f1a-bc22-f506492369b5/trajectory.h5",
+      "bytes": 74032022,
+      "seed": 1552944192,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-007/demo-ade8cb52-3a83-4c7c-893b-b8fc613cd6f0/trajectory.h5",
+      "bytes": 90370306,
+      "seed": 1270362990,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-008/demo-74ce9cdb-80d3-4af9-9a57-7ecc36025ff1/trajectory.h5",
+      "bytes": 69671335,
+      "seed": 1237594116,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-009/demo-5921ecfd-4819-4a09-950e-c16ea78b05f8/trajectory.h5",
+      "bytes": 77191636,
+      "seed": 866798083,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-011/demo-8adf5307-f358-420c-82c3-760abf338416/trajectory.h5",
+      "bytes": 76942325,
+      "seed": 362872800,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-012/demo-9b9097e2-976b-482a-b448-b9ce08f0eda0/trajectory.h5",
+      "bytes": 72319784,
+      "seed": 1243503923,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-013/demo-9be21f8a-a75f-4606-8680-194ccc4d25d6/trajectory.h5",
+      "bytes": 81438770,
+      "seed": 789915989,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-014/demo-a0d4c2e3-43b4-4bf8-9aa6-0eda8a6fab91/trajectory.h5",
+      "bytes": 78275733,
+      "seed": 1674129844,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-015/demo-648bbc26-91ac-4a76-be7e-d310cdd2facf/trajectory.h5",
+      "bytes": 78970969,
+      "seed": 1288590349,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-016/demo-88b3b338-5834-494b-80ee-34c23a60b71f/trajectory.h5",
+      "bytes": 70074241,
+      "seed": 484716491,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-017/demo-f8756408-aa44-4ba1-b7be-834ac2245d16/trajectory.h5",
+      "bytes": 75832073,
+      "seed": 806847241,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-018/demo-a8e94880-ce37-4880-a934-d11fa00b70b1/trajectory.h5",
+      "bytes": 79375409,
+      "seed": 1668881791,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-019/demo-54dd6cdb-3332-4f4a-8a8f-ed3426703925/trajectory.h5",
+      "bytes": 89351074,
+      "seed": 56778140,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-021/demo-c909b2cf-86cf-4944-8062-b721df29724d/trajectory.h5",
+      "bytes": 99206653,
+      "seed": 2141408554,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-022/demo-9ec6baee-35ff-4c29-b287-e3cc06441cfc/trajectory.h5",
+      "bytes": 71349213,
+      "seed": 1995548947,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-023/demo-b2910c4f-739d-4738-8a4c-9e8734d98811/trajectory.h5",
+      "bytes": 65293424,
+      "seed": 50101472,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-024/demo-24dca683-95a1-48c4-bb21-3cfb42806a50/trajectory.h5",
+      "bytes": 82320424,
+      "seed": 1635581420,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-025/demo-d23cba9c-350c-4d0f-84f4-ea922164196a/trajectory.h5",
+      "bytes": 79553182,
+      "seed": 252344271,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-026/demo-e6e694b2-1963-4d02-afed-301ac626c953/trajectory.h5",
+      "bytes": 67682558,
+      "seed": 1595814222,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-027/demo-71586ce7-9c2b-4d86-8ca6-433fe7a13db2/trajectory.h5",
+      "bytes": 74079621,
+      "seed": 767383690,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-028/demo-72a771cb-07fd-4f50-95d5-6f83f6f19f1e/trajectory.h5",
+      "bytes": 77941308,
+      "seed": 963974550,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-029/demo-49be2b11-040c-4be7-89c2-211c7f9152bb/trajectory.h5",
+      "bytes": 74916665,
+      "seed": 107505657,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-031/demo-c459d87b-e04b-4bda-a687-fc4fa41b5ff7/trajectory.h5",
+      "bytes": 76099959,
+      "seed": 918573161,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-032/demo-73806106-2c5b-4c8c-a1c5-a15a441cba78/trajectory.h5",
+      "bytes": 86499804,
+      "seed": 376357374,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-033/demo-05db5b3d-70d9-4d17-ac4f-2866b2d7f8c2/trajectory.h5",
+      "bytes": 81584385,
+      "seed": 1791968873,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-034/demo-bba4d808-e862-4e3a-b901-13d29c9d0cc7/trajectory.h5",
+      "bytes": 76353613,
+      "seed": 485922019,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-035/demo-0f947167-bb26-41dd-96b3-e2374447514d/trajectory.h5",
+      "bytes": 79484452,
+      "seed": 246092741,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-036/demo-5f729c6a-0169-4555-969c-efcfc191f3f8/trajectory.h5",
+      "bytes": 84418585,
+      "seed": 641249316,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-037/demo-e73b7c3a-07b3-4297-aadf-88d175726b87/trajectory.h5",
+      "bytes": 70206723,
+      "seed": 352788903,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-038/demo-baf0a2d1-d1f1-47e2-ae69-81452e74924e/trajectory.h5",
+      "bytes": 77264585,
+      "seed": 1946841542,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-039/demo-c52f9762-a28d-45a4-9c08-11d0a12e2159/trajectory.h5",
+      "bytes": 81667995,
+      "seed": 284443841,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-041/demo-1f59a8d5-13b5-49b0-b394-410e21c85344/trajectory.h5",
+      "bytes": 89284068,
+      "seed": 1163176158,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-042/demo-fe6ae72f-d0f0-4942-9b09-ec47c91a0946/trajectory.h5",
+      "bytes": 75953321,
+      "seed": 1207286942,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-043/demo-3dfeee1c-d906-401f-bf48-ab5f06489d16/trajectory.h5",
+      "bytes": 69332054,
+      "seed": 1173585801,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-044/demo-18cda876-fd3f-4a1c-8153-cc015283aa37/trajectory.h5",
+      "bytes": 75006067,
+      "seed": 1952515489,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-045/demo-1a453d70-104c-4e6c-807b-7ee4b9c832f8/trajectory.h5",
+      "bytes": 84383640,
+      "seed": 585259460,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-046/demo-81a1aa36-7e82-4e88-8290-ce066641b6fe/trajectory.h5",
+      "bytes": 66043578,
+      "seed": 592807019,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-047/demo-27497d9b-00f0-4953-9891-1f19c51c4206/trajectory.h5",
+      "bytes": 76652668,
+      "seed": 453644644,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-048/demo-1afce196-af80-4505-b33b-c443a6bfb5ca/trajectory.h5",
+      "bytes": 75210161,
+      "seed": 336709189,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-049/demo-701dd928-5c50-4a97-9fae-83fa7335ce27/trajectory.h5",
+      "bytes": 71915835,
+      "seed": 2072457451,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-051/demo-c3c67c8f-9d8c-48f2-be95-8a638772ce83/trajectory.h5",
+      "bytes": 80273752,
+      "seed": 978936155,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-052/demo-a4ebdb86-bf03-4685-af00-d8a346677781/trajectory.h5",
+      "bytes": 73025134,
+      "seed": 267381736,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-053/demo-7164e966-17cd-4c59-9263-0e0d9243cdb3/trajectory.h5",
+      "bytes": 73598646,
+      "seed": 377258232,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-054/demo-77a55e10-8b82-4a41-983a-42f646c06a9a/trajectory.h5",
+      "bytes": 80171720,
+      "seed": 1706621798,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-055/demo-5d0755e7-75ae-456d-acba-9a44ac827f8a/trajectory.h5",
+      "bytes": 83190810,
+      "seed": 2121968228,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-056/demo-74cb4edf-3895-4bc8-99e5-9e08df11ad1f/trajectory.h5",
+      "bytes": 99307155,
+      "seed": 791552040,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-057/demo-0ac156f1-682c-413e-bbe6-fe170aba3540/trajectory.h5",
+      "bytes": 74924181,
+      "seed": 696955587,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-058/demo-8f376d43-1f68-440f-874d-5a54e8703315/trajectory.h5",
+      "bytes": 77295758,
+      "seed": 648339579,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-059/demo-581ecbc1-e7eb-4b13-a47c-0fe520a3d034/trajectory.h5",
+      "bytes": 87184087,
+      "seed": 785351987,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-061/demo-29c50188-fecf-4919-a577-ebcd995d06a6/trajectory.h5",
+      "bytes": 66987964,
+      "seed": 1813531943,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-062/demo-fcecd6fd-1c2b-4eb8-af94-ab0d35b28ed6/trajectory.h5",
+      "bytes": 79263982,
+      "seed": 1440891633,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-063/demo-c9010837-aa7d-486f-a3b2-38db56707282/trajectory.h5",
+      "bytes": 82510719,
+      "seed": 2084137881,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-064/demo-d55d1e50-594e-4aed-923d-03da12cdda61/trajectory.h5",
+      "bytes": 73413996,
+      "seed": 1554326674,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-065/demo-afe8a33f-9bef-45ae-a325-baaddb3b3022/trajectory.h5",
+      "bytes": 100413519,
+      "seed": 389838404,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-066/demo-6eea0f99-ba47-4a48-9465-ca221c105e08/trajectory.h5",
+      "bytes": 65233779,
+      "seed": 348596868,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-067/demo-935c07d9-069b-4549-804f-7f445d43ac45/trajectory.h5",
+      "bytes": 84978155,
+      "seed": 909448241,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-068/demo-50db2a1b-2798-4a80-bfc3-d28574dce0a6/trajectory.h5",
+      "bytes": 69765469,
+      "seed": 442960203,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-069/demo-a3d7b871-fb7b-4f21-92fb-4aae39936804/trajectory.h5",
+      "bytes": 67955874,
+      "seed": 249014284,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-071/demo-ce703a82-1721-43a1-ba56-fb5e125d8d4c/trajectory.h5",
+      "bytes": 70125410,
+      "seed": 843944266,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-072/demo-9205f4be-e084-48cb-9d18-8736bb799f04/trajectory.h5",
+      "bytes": 69069153,
+      "seed": 401335227,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-073/demo-c5eb012d-eac1-4f1e-8eb9-b4b2b211f48c/trajectory.h5",
+      "bytes": 75521523,
+      "seed": 573521229,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-074/demo-2342fe55-9d17-482a-b030-8cbb648be476/trajectory.h5",
+      "bytes": 72119935,
+      "seed": 318449795,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-075/demo-ea429909-6152-4165-a5b2-09fbf64e3c3c/trajectory.h5",
+      "bytes": 79629127,
+      "seed": 2021928513,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-076/demo-4bf0738e-374f-4214-97d0-c903739abdd0/trajectory.h5",
+      "bytes": 69124862,
+      "seed": 953064926,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-077/demo-6a19036e-db7e-4109-9b72-e2f2708287ea/trajectory.h5",
+      "bytes": 83963528,
+      "seed": 1975682003,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-078/demo-4273266c-1181-498d-87f2-5e17c95cda7e/trajectory.h5",
+      "bytes": 67138894,
+      "seed": 872074683,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-079/demo-ba308d01-45bf-4fcf-998b-40c75b66789d/trajectory.h5",
+      "bytes": 81882138,
+      "seed": 1016942994,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-081/demo-23c00e93-bd76-4be0-9bb4-618de665c6df/trajectory.h5",
+      "bytes": 83521738,
+      "seed": 98727153,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-082/demo-37579e96-1670-4d52-93bb-932a26f396e9/trajectory.h5",
+      "bytes": 69035458,
+      "seed": 871402696,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-083/demo-a6e8de63-7173-40bc-9000-93d46eb137f8/trajectory.h5",
+      "bytes": 73967999,
+      "seed": 1480245204,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-084/demo-83d3b9a3-0d33-4a17-a57a-ae6c7e4e55d9/trajectory.h5",
+      "bytes": 72464537,
+      "seed": 1329357904,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-085/demo-515570cf-3b14-4f14-a45d-e23f6a783691/trajectory.h5",
+      "bytes": 75651974,
+      "seed": 1778298710,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-086/demo-71a1ef69-649c-421b-b813-6625e61f1788/trajectory.h5",
+      "bytes": 63603787,
+      "seed": 1263033581,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-087/demo-e95ce8ae-7c9e-4326-9442-380dd85d8e5b/trajectory.h5",
+      "bytes": 94820950,
+      "seed": 1638455381,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-088/demo-803e8b3f-e434-40ca-97fb-81e6f026caa0/trajectory.h5",
+      "bytes": 74246041,
+      "seed": 1866343171,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-089/demo-a41547f7-2a02-489f-b5e7-f688243e56ce/trajectory.h5",
+      "bytes": 67070641,
+      "seed": 1158722391,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-091/demo-a92d2585-2ecd-4479-a8ca-d62b9d5fce67/trajectory.h5",
+      "bytes": 94762429,
+      "seed": 1971243733,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-092/demo-8a58cdb0-d441-4da2-b209-e1542bf9fc0d/trajectory.h5",
+      "bytes": 68668995,
+      "seed": 1281219377,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-093/demo-17da663b-5e61-4b51-972f-eb4066ba34af/trajectory.h5",
+      "bytes": 79952178,
+      "seed": 396535054,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-094/demo-ffbbf0d2-dad6-4c7c-bc11-fada0cf93494/trajectory.h5",
+      "bytes": 85652806,
+      "seed": 938592750,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-095/demo-4d44ba87-e742-4b05-a27f-bd455b37457a/trajectory.h5",
+      "bytes": 77450513,
+      "seed": 1188564970,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-096/demo-9358bfc0-2582-4d8a-9494-f65768f93381/trajectory.h5",
+      "bytes": 74886349,
+      "seed": 1917582552,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-097/demo-11610677-79a4-4cb7-825f-ecdc70b43611/trajectory.h5",
+      "bytes": 82364149,
+      "seed": 1935967456,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-098/demo-196645c8-cfdf-495b-a31b-3cacc20db6d0/trajectory.h5",
+      "bytes": 74291152,
+      "seed": 56463291,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-099/demo-3fccbbc4-44bf-470b-9121-1297f4654f17/trajectory.h5",
+      "bytes": 74557372,
+      "seed": 1896407500,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-001/demo-e5c5e519-7ae8-4414-a193-2cdeff6220ac/trajectory.h5",
+      "bytes": 75420016,
+      "seed": 1008608397,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-002/demo-7c2591cd-552b-4b71-b265-442def84c177/trajectory.h5",
+      "bytes": 85608481,
+      "seed": 1262483503,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-003/demo-dc9a59dd-56f4-4e0b-8161-d732bc3f98d2/trajectory.h5",
+      "bytes": 67517000,
+      "seed": 1766538052,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-004/demo-00d746aa-cd8c-45f7-b706-35c53f1844b5/trajectory.h5",
+      "bytes": 79846454,
+      "seed": 771353020,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-005/demo-8a232373-fbd0-41ab-95e9-a5c7dfb2d7af/trajectory.h5",
+      "bytes": 72436706,
+      "seed": 1391269348,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-006/demo-645a2e36-69c1-4a94-bd95-d59fec028f89/trajectory.h5",
+      "bytes": 71876187,
+      "seed": 1010212967,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-007/demo-3eb55437-3dba-40b0-bc9e-d06b7585d867/trajectory.h5",
+      "bytes": 84733592,
+      "seed": 1719608992,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-008/demo-e3d82991-ae13-4654-b440-6451a3c2b8ec/trajectory.h5",
+      "bytes": 75405594,
+      "seed": 706244991,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-009/demo-8431c4a5-c53b-4e51-a9bb-915cf9ca7ba3/trajectory.h5",
+      "bytes": 81401369,
+      "seed": 698610072,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-011/demo-3e7ca676-12a5-449f-8a64-d65681174b32/trajectory.h5",
+      "bytes": 86920376,
+      "seed": 622136324,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-012/demo-1afd09e9-d37b-46d7-851e-aed14ea4b32d/trajectory.h5",
+      "bytes": 77717420,
+      "seed": 775002053,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-013/demo-2fb84cfc-0809-4d54-80b0-d753092ec42e/trajectory.h5",
+      "bytes": 69298115,
+      "seed": 1834436499,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-014/demo-a18b1454-0ffa-4db4-a34b-198f0eb5be5f/trajectory.h5",
+      "bytes": 81436714,
+      "seed": 1770286440,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-015/demo-684f5751-5d2e-413b-9f48-ddc802d4ee6f/trajectory.h5",
+      "bytes": 85319294,
+      "seed": 127718131,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-016/demo-6532a0fa-bcba-4337-aa7b-d4cdcf19bb2f/trajectory.h5",
+      "bytes": 89608405,
+      "seed": 1234213419,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-017/demo-b63745ee-cadf-478e-8ab1-c15312109be7/trajectory.h5",
+      "bytes": 75027031,
+      "seed": 907442113,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-018/demo-5038d0a6-a437-44b1-9059-acf507f262e5/trajectory.h5",
+      "bytes": 76815904,
+      "seed": 482997025,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-019/demo-0286f214-884e-4242-a3b3-5c0d2909f7fa/trajectory.h5",
+      "bytes": 73549906,
+      "seed": 707202755,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-021/demo-bf69be4a-acc2-4a99-8c0b-8530634d690a/trajectory.h5",
+      "bytes": 69862582,
+      "seed": 1707721603,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-022/demo-cab5c0b6-4b9b-4f61-ac1e-1e26bcfd60e2/trajectory.h5",
+      "bytes": 79379174,
+      "seed": 1976853532,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-023/demo-e9b86b7d-ad16-4f03-9593-ecdf931e3454/trajectory.h5",
+      "bytes": 69976561,
+      "seed": 1601096186,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-024/demo-6787387b-695d-4490-9086-11dd0e8a99ff/trajectory.h5",
+      "bytes": 73103550,
+      "seed": 849961929,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-025/demo-8b7fe60b-b61e-4eb8-8144-f96b770a9fa1/trajectory.h5",
+      "bytes": 74086980,
+      "seed": 995109688,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-026/demo-0a310952-0852-489c-83c4-3e0db7f2c074/trajectory.h5",
+      "bytes": 79407860,
+      "seed": 543843705,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-027/demo-ddaae998-9ffe-44d4-ba3a-f907abf0ae35/trajectory.h5",
+      "bytes": 80230771,
+      "seed": 1299121555,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-028/demo-158b38fa-d8be-4a7f-a364-9d3338e69822/trajectory.h5",
+      "bytes": 69460146,
+      "seed": 890617987,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-029/demo-44442abc-d41e-4313-af91-f32ef9087c31/trajectory.h5",
+      "bytes": 70688871,
+      "seed": 349692103,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-031/demo-f4a4d8c3-2a33-4ed4-9d8a-4bfff4f2f3d2/trajectory.h5",
+      "bytes": 84713114,
+      "seed": 948755171,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-032/demo-e916d132-be06-40ea-a744-1533ac503722/trajectory.h5",
+      "bytes": 71622005,
+      "seed": 1013355873,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-033/demo-9540b968-7e37-41d9-bcd6-72426307818e/trajectory.h5",
+      "bytes": 78655939,
+      "seed": 994191710,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-034/demo-ef47a24f-313a-47e4-96ff-c64da1be9062/trajectory.h5",
+      "bytes": 79218040,
+      "seed": 211875543,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-035/demo-00ad87b5-a71c-4602-aa9b-9a876e272011/trajectory.h5",
+      "bytes": 83688882,
+      "seed": 1455141122,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-036/demo-a84273e8-557f-43af-a830-68ee4fc3a599/trajectory.h5",
+      "bytes": 74670402,
+      "seed": 490321655,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-037/demo-0594cf3c-5980-4247-9d2b-c72ff5b642f5/trajectory.h5",
+      "bytes": 69596678,
+      "seed": 621065588,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-038/demo-6fbc04c0-5d1c-4cdd-a77c-673cc26b34ea/trajectory.h5",
+      "bytes": 73689158,
+      "seed": 747059151,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-039/demo-d480793c-7ce3-42a4-8b30-da359e98c3fa/trajectory.h5",
+      "bytes": 71589256,
+      "seed": 1902080926,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-041/demo-43a03ef5-6a4e-432b-8ba7-72c95269449e/trajectory.h5",
+      "bytes": 70983853,
+      "seed": 53332340,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-042/demo-697bfe0d-54e9-4e47-a389-ec5684c9c897/trajectory.h5",
+      "bytes": 65795693,
+      "seed": 714938979,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-043/demo-d7e18907-f247-43de-972e-1d9cd529be40/trajectory.h5",
+      "bytes": 84552624,
+      "seed": 1172481022,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-044/demo-cc8a6b54-0108-4d3c-a03a-9d99f16d9bca/trajectory.h5",
+      "bytes": 86154048,
+      "seed": 1020596990,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-045/demo-379f7917-3dd4-417d-a12b-5923dcaf2c15/trajectory.h5",
+      "bytes": 77113847,
+      "seed": 297743794,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-046/demo-be9cafbe-6d70-4606-b6b7-21c30acb21a7/trajectory.h5",
+      "bytes": 77464741,
+      "seed": 1686191677,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-047/demo-2248f226-8d09-43ab-8375-3ab470939477/trajectory.h5",
+      "bytes": 77412637,
+      "seed": 613101480,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-048/demo-153e8365-6bb7-47da-8423-0bda5935b13c/trajectory.h5",
+      "bytes": 80662275,
+      "seed": 270881417,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-049/demo-3ec86275-2352-41f1-98aa-a28e68c84124/trajectory.h5",
+      "bytes": 81433473,
+      "seed": 321206586,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-001/demo-ae6173d7-140f-4216-b82d-b5d8a62128d3/trajectory.h5",
+      "bytes": 82059148,
+      "seed": 1432792786,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-002/demo-e71393af-14c8-4c77-9cdd-a368cfdc5a56/trajectory.h5",
+      "bytes": 72950849,
+      "seed": 921107569,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-003/demo-9926baba-54b8-42aa-bac5-7c4f72425684/trajectory.h5",
+      "bytes": 102348099,
+      "seed": 1892525328,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-004/demo-d1976df4-d45a-4b5b-b7fa-b3aa39bb285d/trajectory.h5",
+      "bytes": 79646596,
+      "seed": 587472082,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-005/demo-998706f9-c95a-424b-b01b-27b6d0e5f31b/trajectory.h5",
+      "bytes": 82263364,
+      "seed": 959442031,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-006/demo-4a27e037-90f8-439b-b21e-e2d59b25f1eb/trajectory.h5",
+      "bytes": 71110421,
+      "seed": 1464788910,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-007/demo-5da67353-55e6-4834-a8b4-4d4231f81d53/trajectory.h5",
+      "bytes": 77287113,
+      "seed": 115585326,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-008/demo-d16d42b8-391d-465a-93ee-75ee0b075125/trajectory.h5",
+      "bytes": 73090135,
+      "seed": 1871492396,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-009/demo-2f6a57b6-be2d-44e8-9319-854730e8302f/trajectory.h5",
+      "bytes": 67343864,
+      "seed": 16242821,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-011/demo-35d8e07c-bfe8-45f6-81a2-34acdcc08088/trajectory.h5",
+      "bytes": 83617167,
+      "seed": 717513432,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-012/demo-1aa0ba70-6717-41a6-8b73-b0855bccb936/trajectory.h5",
+      "bytes": 81284885,
+      "seed": 1911751708,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-013/demo-c28d9696-53af-471b-ab04-b1c19844a209/trajectory.h5",
+      "bytes": 109315065,
+      "seed": 2098089821,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-014/demo-66fbee38-2abb-4236-88aa-9a3b1ac5df0b/trajectory.h5",
+      "bytes": 83281128,
+      "seed": 326568390,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-015/demo-040ef308-22f0-4cac-932e-cc1d31ba7888/trajectory.h5",
+      "bytes": 81003421,
+      "seed": 2108938102,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-016/demo-ed9e3f81-fcd8-45a4-a6c5-f0d3087a0342/trajectory.h5",
+      "bytes": 92823715,
+      "seed": 770280538,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-017/demo-44d9adfe-08fa-46c2-9309-f5b6d80fcf41/trajectory.h5",
+      "bytes": 88297230,
+      "seed": 1052409836,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-018/demo-7f11dfd2-d5ae-47b7-8a9e-bdbfcac464e7/trajectory.h5",
+      "bytes": 79496351,
+      "seed": 71856338,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-019/demo-2fad9d5d-cb72-41e0-94d3-34f4521b4ddf/trajectory.h5",
+      "bytes": 75016669,
+      "seed": 244879780,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-021/demo-ee67d583-6d2f-4bf5-9e23-33899db9b60b/trajectory.h5",
+      "bytes": 66148373,
+      "seed": 852189021,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-022/demo-5e6ee49c-3c96-44a1-870a-4c45b402177f/trajectory.h5",
+      "bytes": 78612634,
+      "seed": 312303759,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-023/demo-4ba22da8-429a-4eaa-8254-fcd9d06075fe/trajectory.h5",
+      "bytes": 75083588,
+      "seed": 110458721,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-024/demo-9c66f443-fa5c-4de9-894d-bbcc92f61853/trajectory.h5",
+      "bytes": 72301726,
+      "seed": 785381592,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-025/demo-2c9e2a73-8ce0-46d9-9bb9-1cef97bb99a1/trajectory.h5",
+      "bytes": 85168038,
+      "seed": 1085904760,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-026/demo-9502323a-4381-4c56-8a52-5ea4dc4ce331/trajectory.h5",
+      "bytes": 83206929,
+      "seed": 1939718224,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-027/demo-5038c861-3880-45a6-9e6d-9b817839a4ea/trajectory.h5",
+      "bytes": 72233460,
+      "seed": 207051013,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-028/demo-438319d0-001f-4ad3-a213-0e76123d3778/trajectory.h5",
+      "bytes": 80144908,
+      "seed": 1500793440,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-029/demo-98716fdd-127e-4d1d-9c00-aa8f358142c7/trajectory.h5",
+      "bytes": 76685456,
+      "seed": 228975319,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-031/demo-818e5dfb-d6f7-4bb3-9373-5d4f4aaf1d95/trajectory.h5",
+      "bytes": 69410174,
+      "seed": 722491257,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-032/demo-c07c788f-086d-467a-8479-b5ad217555e6/trajectory.h5",
+      "bytes": 84835269,
+      "seed": 505943018,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-033/demo-84f20efc-5a73-4150-8582-ab8790c35b1b/trajectory.h5",
+      "bytes": 79432993,
+      "seed": 459215027,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-034/demo-84d3ff82-d161-4ee0-b648-d15dfbf49ffc/trajectory.h5",
+      "bytes": 80947820,
+      "seed": 889537499,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-035/demo-29537385-50d4-41b1-a3bb-cb04011f2045/trajectory.h5",
+      "bytes": 71848342,
+      "seed": 1668445947,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-036/demo-f9e0843a-f6ee-4897-b25d-4eeec142300e/trajectory.h5",
+      "bytes": 72704180,
+      "seed": 191399085,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-037/demo-b2ced5ef-0571-4d59-8766-2f1438de3a3f/trajectory.h5",
+      "bytes": 83999235,
+      "seed": 949394994,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-038/demo-9ceef9a0-8f1b-4233-b03f-c23b6f47b12e/trajectory.h5",
+      "bytes": 100029833,
+      "seed": 1742729087,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-039/demo-da78de1f-e3db-438f-b15f-a93ae4bffc81/trajectory.h5",
+      "bytes": 81480066,
+      "seed": 564459268,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-041/demo-c249acf0-8ac0-4767-93ab-80aa1dbb88c0/trajectory.h5",
+      "bytes": 78734035,
+      "seed": 172308471,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-042/demo-ef45ee93-af5d-4f0a-a70d-07bb00f6bdca/trajectory.h5",
+      "bytes": 77573496,
+      "seed": 1994938258,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-043/demo-d3839fd9-82a9-4e2d-a797-c0fca6e2d582/trajectory.h5",
+      "bytes": 69626426,
+      "seed": 847854920,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-044/demo-083c62ab-f2b2-4d48-be22-4d9cd6575c7c/trajectory.h5",
+      "bytes": 68105488,
+      "seed": 2127914502,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-045/demo-2ebe3b9c-5efe-4ce1-afba-aee86867a6b3/trajectory.h5",
+      "bytes": 89510830,
+      "seed": 51744632,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-046/demo-ff997bdc-97c3-47a9-90f7-b873800b8f42/trajectory.h5",
+      "bytes": 69810964,
+      "seed": 323980997,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-047/demo-f7600b27-16ee-447e-acb3-945d438c4681/trajectory.h5",
+      "bytes": 82803130,
+      "seed": 898891957,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-048/demo-dfa0e37f-02c0-4c18-bfd5-fd85d2eb415c/trajectory.h5",
+      "bytes": 94875153,
+      "seed": 658357949,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-049/demo-14fe753c-a893-4f53-8d47-a853e559c181/trajectory.h5",
+      "bytes": 69605356,
+      "seed": 177382557,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-001/demo-94b288ae-f107-4a03-bf0d-0544f01dc93f/trajectory.h5",
+      "bytes": 77204306,
+      "seed": 516366289,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-002/demo-0de67762-9972-46a9-aa98-1106601cbdc5/trajectory.h5",
+      "bytes": 81002144,
+      "seed": 1500552361,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-003/demo-9b0d52c1-75c4-48ef-beb9-39a92b064cae/trajectory.h5",
+      "bytes": 84708667,
+      "seed": 1746028065,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-004/demo-79852fae-defc-4515-a6a8-cab84639c43b/trajectory.h5",
+      "bytes": 82711927,
+      "seed": 1427537668,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-005/demo-2301b75f-2ac0-4f02-8826-4f6255998d25/trajectory.h5",
+      "bytes": 85112666,
+      "seed": 855437204,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-006/demo-67cb5c39-a1b2-4a88-89f4-30ff6a7e847d/trajectory.h5",
+      "bytes": 81698215,
+      "seed": 736069724,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-007/demo-835090bf-fda4-42a7-8bd7-bca6a05d7e0b/trajectory.h5",
+      "bytes": 77809619,
+      "seed": 1145213804,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-008/demo-39412151-47ff-444d-b465-b36ad2e4528a/trajectory.h5",
+      "bytes": 80887582,
+      "seed": 2010560197,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-009/demo-d723bea5-448f-48f0-b05c-4aba4fbfa478/trajectory.h5",
+      "bytes": 79087028,
+      "seed": 758440218,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-011/demo-b306c0a3-a3a8-4ba9-9105-741714dac931/trajectory.h5",
+      "bytes": 80430299,
+      "seed": 1847765503,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-012/demo-0f950ea6-d1bd-4b1c-a18a-7f23448fba98/trajectory.h5",
+      "bytes": 92205319,
+      "seed": 1320054501,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-013/demo-af1bb4d7-a1be-4bc0-a535-d3ff8fc351d0/trajectory.h5",
+      "bytes": 91936191,
+      "seed": 65292733,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-014/demo-86bd6078-3076-4f61-84dd-f2e4bc6f3209/trajectory.h5",
+      "bytes": 82811045,
+      "seed": 280152676,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-015/demo-a5548d6f-fc08-4cc4-9975-6960ea83b88b/trajectory.h5",
+      "bytes": 83747018,
+      "seed": 1591840838,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-016/demo-95d66635-b4f3-4125-8ea4-d1756a35595c/trajectory.h5",
+      "bytes": 92331130,
+      "seed": 532274343,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-017/demo-a09bc044-52df-4eba-84a1-7069dc551d09/trajectory.h5",
+      "bytes": 86491656,
+      "seed": 1559325896,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-018/demo-ee289e2d-e695-4013-8c11-1550950c85a5/trajectory.h5",
+      "bytes": 79631415,
+      "seed": 1254666372,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-019/demo-b69cc014-65b8-4ed3-a587-c17cc30f2478/trajectory.h5",
+      "bytes": 87642077,
+      "seed": 889149978,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-021/demo-61b270b7-c583-433a-96b4-d1963cdbd328/trajectory.h5",
+      "bytes": 79154120,
+      "seed": 2060744263,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-022/demo-44ba0544-53b3-40a9-96aa-d0e9f2d55448/trajectory.h5",
+      "bytes": 91746144,
+      "seed": 282424380,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-023/demo-91ca5008-0441-4e72-8671-6196d2fb5cd8/trajectory.h5",
+      "bytes": 74740675,
+      "seed": 1975667225,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-024/demo-f5345e26-c031-4bb2-b3c6-6c1ae90ba1f9/trajectory.h5",
+      "bytes": 80760351,
+      "seed": 1564759057,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-025/demo-ac3dd3af-4a1b-4879-860e-42fbc00c0697/trajectory.h5",
+      "bytes": 77416418,
+      "seed": 500036149,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-026/demo-58d0e6a7-46b9-41df-8443-200771b67770/trajectory.h5",
+      "bytes": 77359152,
+      "seed": 1372536086,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-027/demo-6f993d84-8f18-4577-aa59-cad09ec3ddea/trajectory.h5",
+      "bytes": 85598317,
+      "seed": 1908674025,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-028/demo-7b9a629b-8fef-4e83-b7c4-ee8883eed8ba/trajectory.h5",
+      "bytes": 79649914,
+      "seed": 1858685455,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-029/demo-4086c4a9-5920-4ca7-974c-d8bf9ba164d3/trajectory.h5",
+      "bytes": 73564811,
+      "seed": 1636924178,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-031/demo-d528ac0e-e43a-49b9-8a78-dff8b5ca0275/trajectory.h5",
+      "bytes": 77498014,
+      "seed": 856412636,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-032/demo-7a2dbc44-52e9-4ed3-bed7-20f87245136d/trajectory.h5",
+      "bytes": 80930544,
+      "seed": 1206540972,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-033/demo-a883224c-f5b3-48c7-83ec-2580b2e76575/trajectory.h5",
+      "bytes": 83019441,
+      "seed": 1075530292,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-034/demo-8c8c3157-dbc1-495a-967e-98eec619c55a/trajectory.h5",
+      "bytes": 85384394,
+      "seed": 333643263,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-035/demo-df7347fb-116c-4f98-8f4c-bc696300dcd2/trajectory.h5",
+      "bytes": 91782514,
+      "seed": 675778309,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-036/demo-76ebd960-b9bd-45f0-951b-cc00a7303293/trajectory.h5",
+      "bytes": 78957970,
+      "seed": 1414588809,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-037/demo-32422a79-0f5f-4636-8796-303ec846fd0d/trajectory.h5",
+      "bytes": 94497558,
+      "seed": 1326884780,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-038/demo-82be8754-7e51-45c1-aadf-9e40cfc08c1b/trajectory.h5",
+      "bytes": 81394744,
+      "seed": 1140977389,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-039/demo-c27a046f-2941-47a8-b3c7-d9b0ff086fd7/trajectory.h5",
+      "bytes": 82086912,
+      "seed": 434692060,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-041/demo-721377d0-e156-4f13-b248-002fcaeb820a/trajectory.h5",
+      "bytes": 80296333,
+      "seed": 1094907331,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-042/demo-1c865132-5a82-4a42-90b4-6242e9048b1b/trajectory.h5",
+      "bytes": 85970443,
+      "seed": 1747921128,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-043/demo-050ae452-96a8-47e4-8c0a-df3d9096540c/trajectory.h5",
+      "bytes": 86306564,
+      "seed": 1975131608,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-044/demo-71ff3753-8b30-4693-a41e-1eca220180dc/trajectory.h5",
+      "bytes": 74183764,
+      "seed": 1956044652,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-045/demo-fdb92e4d-8b12-468d-8ca2-b685d8fddaea/trajectory.h5",
+      "bytes": 78618316,
+      "seed": 1511328629,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-046/demo-e3c42e92-3117-4e26-94ba-590ab16916be/trajectory.h5",
+      "bytes": 86659475,
+      "seed": 1703357542,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-047/demo-2381748a-f7bd-4156-91c3-99893f1f85fb/trajectory.h5",
+      "bytes": 73191804,
+      "seed": 1210570191,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-048/demo-9a7a59cc-6e77-4578-9367-4584cad482b9/trajectory.h5",
+      "bytes": 76913370,
+      "seed": 911418708,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-049/demo-e9d0436d-f218-41c2-8a25-74d5ffc15f9d/trajectory.h5",
+      "bytes": 79043123,
+      "seed": 699602692,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-001/demo-bd746cb2-bc07-4375-9a2c-781a6bace623/trajectory.h5",
+      "bytes": 76913017,
+      "seed": 572043399,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-002/demo-4f629f80-6305-4813-a31c-6e2587e3d78c/trajectory.h5",
+      "bytes": 79053641,
+      "seed": 381283680,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-003/demo-488bde0e-5927-4339-b27f-36c20c70845c/trajectory.h5",
+      "bytes": 76333303,
+      "seed": 382790280,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-004/demo-58957073-6c49-4684-aa81-f38835c93750/trajectory.h5",
+      "bytes": 76699735,
+      "seed": 770050569,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-005/demo-bbf410c4-254a-4d7a-baac-a00854e4d6dd/trajectory.h5",
+      "bytes": 74229968,
+      "seed": 563357876,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-006/demo-b0298fd8-8bfe-455c-94d2-52d7337e134b/trajectory.h5",
+      "bytes": 76996564,
+      "seed": 1313369619,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-007/demo-4b654d0e-eff4-4edb-8129-76dba26ff342/trajectory.h5",
+      "bytes": 70913227,
+      "seed": 1993179101,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-008/demo-793ffb64-b549-45ed-8574-b5a211395c14/trajectory.h5",
+      "bytes": 82638928,
+      "seed": 772068523,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-009/demo-0d9a7355-5308-49b9-a63c-7c6f534e4976/trajectory.h5",
+      "bytes": 68636692,
+      "seed": 1734068929,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-011/demo-672053ba-0734-4313-91b2-5d7129e5de62/trajectory.h5",
+      "bytes": 72409297,
+      "seed": 1677282159,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-012/demo-e9fb85bd-6750-4620-bf2a-60bc59f98b61/trajectory.h5",
+      "bytes": 80009342,
+      "seed": 260304083,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-013/demo-a4d0cf6d-5294-4e03-8711-1688aed96681/trajectory.h5",
+      "bytes": 71374846,
+      "seed": 1700531754,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-014/demo-cfeca37f-bf6c-4208-aed4-04efcf9ab111/trajectory.h5",
+      "bytes": 71742726,
+      "seed": 1105686542,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-015/demo-863e799c-4fac-4715-b071-9c3efc52e21a/trajectory.h5",
+      "bytes": 70281682,
+      "seed": 1303812177,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-016/demo-17f7ce5e-1e96-4b25-846d-351f8dccbd9d/trajectory.h5",
+      "bytes": 101010700,
+      "seed": 903365171,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-017/demo-545fff5c-48ec-49a1-bd42-0f989e23396f/trajectory.h5",
+      "bytes": 84961477,
+      "seed": 464850353,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-018/demo-483521b5-5d01-40d6-abdd-1db13e3efc43/trajectory.h5",
+      "bytes": 74745331,
+      "seed": 1229681366,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-019/demo-eecf67ac-2614-474e-b245-38c9eaa11108/trajectory.h5",
+      "bytes": 79105893,
+      "seed": 1877061680,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-021/demo-725592c1-755e-4311-9f09-6a3e9857681d/trajectory.h5",
+      "bytes": 70375424,
+      "seed": 2033920709,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-022/demo-0223feba-1dc3-4af8-86f2-683aff556f69/trajectory.h5",
+      "bytes": 80256295,
+      "seed": 1476937277,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-023/demo-6db79f1f-59e1-4f04-8940-68de45690191/trajectory.h5",
+      "bytes": 71151766,
+      "seed": 934458519,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-024/demo-0a58111c-9dc2-40c8-b322-57839e948dc7/trajectory.h5",
+      "bytes": 75127693,
+      "seed": 185525929,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-025/demo-47961ab8-2ed6-41c1-a989-635eaf005a8f/trajectory.h5",
+      "bytes": 76806446,
+      "seed": 1503067284,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-026/demo-dc50c865-4494-4b19-8a6c-50b6709d40d6/trajectory.h5",
+      "bytes": 76439153,
+      "seed": 1778391306,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-027/demo-796b135c-eab6-425a-9a2c-58a6b36913a7/trajectory.h5",
+      "bytes": 74100262,
+      "seed": 556650871,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-028/demo-706c1f37-db8b-40fc-b6ed-9aaed96faae9/trajectory.h5",
+      "bytes": 78678191,
+      "seed": 2096742230,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-029/demo-7b03c82d-bed9-47bc-b424-8d6f6b95c578/trajectory.h5",
+      "bytes": 71934140,
+      "seed": 1676781410,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-031/demo-f054f2c2-8664-40f0-93f0-da4d3daf36c0/trajectory.h5",
+      "bytes": 78793537,
+      "seed": 1067843436,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-032/demo-4261f034-8b4b-4b0f-ae7a-3ee905fff667/trajectory.h5",
+      "bytes": 81938767,
+      "seed": 489856692,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-033/demo-fce56e33-074e-4d50-8646-144df24694a9/trajectory.h5",
+      "bytes": 83038767,
+      "seed": 1523793724,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-034/demo-8cfef556-eade-4c66-900f-9ffd5e042529/trajectory.h5",
+      "bytes": 77626477,
+      "seed": 327546109,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-035/demo-c2be83a6-c546-4f9d-9fa4-7215e45c6ca1/trajectory.h5",
+      "bytes": 71874484,
+      "seed": 1230879278,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-036/demo-3f5799b9-6d85-41e7-83cc-3be60111cc71/trajectory.h5",
+      "bytes": 83107346,
+      "seed": 165912129,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-037/demo-76b286fe-e9c2-4ee1-80fd-e4bf9e0bac09/trajectory.h5",
+      "bytes": 71376464,
+      "seed": 1888232841,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-038/demo-847d8614-daeb-4181-a546-aaff0917075e/trajectory.h5",
+      "bytes": 81541834,
+      "seed": 592110985,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-039/demo-7500c928-4ee9-429a-93fc-aaad3482c944/trajectory.h5",
+      "bytes": 96618454,
+      "seed": 1257584391,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-041/demo-73bb8b33-081d-4aa3-b4ba-cb5449ff986a/trajectory.h5",
+      "bytes": 70498989,
+      "seed": 281215564,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-042/demo-3064f68b-1023-43ee-9ce8-602bad2494e2/trajectory.h5",
+      "bytes": 80438085,
+      "seed": 1747394215,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-043/demo-8980834e-6b46-4818-844b-26baf03cfd44/trajectory.h5",
+      "bytes": 81674074,
+      "seed": 1287558899,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-044/demo-9a4d4259-bb46-4736-82d4-bcdcdfbb9b62/trajectory.h5",
+      "bytes": 77612462,
+      "seed": 1312053098,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-045/demo-1892ee19-36c9-4c41-9b4e-7982203720aa/trajectory.h5",
+      "bytes": 90415736,
+      "seed": 1897435486,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-046/demo-6ad04e50-f378-4c71-b8b7-e02f7cc43619/trajectory.h5",
+      "bytes": 82929218,
+      "seed": 308755046,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-047/demo-60ff8c06-be89-4eb7-9334-a3ca4b05435f/trajectory.h5",
+      "bytes": 72648423,
+      "seed": 998525499,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-048/demo-825238be-079a-4b06-bc65-534a83f69cc8/trajectory.h5",
+      "bytes": 82002909,
+      "seed": 177279091,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-049/demo-8d37559e-6ad0-4899-bc67-e3ae94c7fff2/trajectory.h5",
+      "bytes": 76256077,
+      "seed": 1494928956,
+      "partition": "train"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-020/demo-2bcfe89e-9e48-4f3c-b43c-33db836de11a/trajectory.h5",
+      "bytes": 77504553,
+      "seed": 2107890852,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-030/demo-c207ec66-7a90-4eca-b5be-c29ca48febd1/trajectory.h5",
+      "bytes": 70942823,
+      "seed": 1918530744,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-040/demo-046b0367-6b39-4527-b326-ba0240ce8023/trajectory.h5",
+      "bytes": 85502999,
+      "seed": 1934224441,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-050/demo-ae0c1f2b-0c0f-46cf-a5cc-769058137058/trajectory.h5",
+      "bytes": 70308148,
+      "seed": 138506220,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-060/demo-6cff1c9a-a947-43dd-8b87-37d8224c49a7/trajectory.h5",
+      "bytes": 80998610,
+      "seed": 1956587682,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-070/demo-696f67c5-477d-45c4-a87c-a41e82d07801/trajectory.h5",
+      "bytes": 76972227,
+      "seed": 911799942,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-080/demo-99bfa281-5fd9-43d1-9533-4401d2607eb1/trajectory.h5",
+      "bytes": 87982197,
+      "seed": 2115267337,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-090/demo-47fd5d6f-71b1-4301-a32f-916a81570ee8/trajectory.h5",
+      "bytes": 70224265,
+      "seed": 509119267,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-020/demo-ce8a08e1-b2c1-4b94-9da7-ecdb29c40c0d/trajectory.h5",
+      "bytes": 77763494,
+      "seed": 1996921538,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-030/demo-28bc5924-ba9f-4262-8534-c82592aa7b65/trajectory.h5",
+      "bytes": 77780251,
+      "seed": 2048691739,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-040/demo-e1a8b643-0e25-4fbc-b1da-173cf4fea48f/trajectory.h5",
+      "bytes": 81445399,
+      "seed": 1009691263,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-020/demo-cc52d839-e46e-4fb1-97a6-d970b7d81b73/trajectory.h5",
+      "bytes": 68439239,
+      "seed": 810870661,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-030/demo-213ba5cd-6f92-45be-bc51-ae9f80413ead/trajectory.h5",
+      "bytes": 76929927,
+      "seed": 1763826252,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-040/demo-780eddf7-ba55-446d-b5be-8d315130a618/trajectory.h5",
+      "bytes": 81415002,
+      "seed": 1902622759,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-020/demo-e2d1a880-e266-4e7e-86e4-1ddef94dbc81/trajectory.h5",
+      "bytes": 73012560,
+      "seed": 1254150052,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-030/demo-d10035ed-b318-4af8-8f80-4e8432fb0fc2/trajectory.h5",
+      "bytes": 95312914,
+      "seed": 458295772,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-040/demo-3c56936b-302a-4e49-b2b3-777a326c338a/trajectory.h5",
+      "bytes": 76652166,
+      "seed": 1691682593,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-020/demo-e5050572-e174-4be6-bfcb-5e34c566fa1a/trajectory.h5",
+      "bytes": 67236154,
+      "seed": 68652675,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-030/demo-94fcb223-6368-4c2c-a359-bb9ec4cf21ff/trajectory.h5",
+      "bytes": 92752367,
+      "seed": 1561187564,
+      "partition": "validation"
+    },
+    {
+      "path": "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-040/demo-c296fbf6-4a95-4780-936f-9fde837009e5/trajectory.h5",
+      "bytes": 82329649,
+      "seed": 1751001802,
+      "partition": "validation"
+    }
+  ],
+  "preserve_review_hdf5": [
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-000/demo-9780fac3-3bb9-4a99-98fe-467fcffc15c9/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/clean-010/demo-6d518b12-7623-437d-ba84-267121ff6b4b/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-000/demo-b0a52cd6-b9bb-445f-b6dd-326428dcbb6f/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/delayed_commands-010/demo-f7a9ca4a-c1b8-4b13-8637-edd37d8ccb9b/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-000/demo-cb1bce64-2aca-482f-88bf-0bc96a98187b/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/dropped_commands-010/demo-a9d61825-b304-4a2c-bc4c-da1fcc442f0f/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-000/demo-c5650750-764c-467f-8e44-99f6e700e7f7/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/gaussian_noise-010/demo-8541ff9b-e675-49fa-b8f2-ca503cdddaa1/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-000/demo-9f30c8a0-6112-49fd-aac9-cec0ada5a29f/trajectory.h5",
+    "/workspace/robotic_grasp/v4/trajectories/robustness300/episodes/sustained_bias-010/demo-140c36b6-d0e0-4843-ada3-4577b16f5a3f/trajectory.h5"
+  ],
+  "delete_bytes": 22795731313,
+  "all_repo_video_bytes": 71616543,
+  "freed_bytes": 22795731313
+}
