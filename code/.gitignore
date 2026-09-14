@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+
+# Small collection examples linked from the README.
+!/videos/*.mp4

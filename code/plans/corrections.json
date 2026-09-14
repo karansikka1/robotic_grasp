@@ -1,0 +1,372 @@
+{
+  "candidates": [
+    {
+      "origin": "existing_training_layout",
+      "seed": 991004301
+    },
+    {
+      "origin": "existing_training_layout",
+      "seed": 1142630323
+    },
+    {
+      "origin": "existing_training_layout",
+      "seed": 1865507567
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000000
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000001
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000002
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000003
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000004
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000005
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000006
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000007
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000008
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000009
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000010
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000011
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000012
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000013
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000014
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000015
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000016
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000017
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000018
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000019
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000020
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000021
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000022
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000023
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000024
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000025
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000026
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000027
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000028
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000029
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000030
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000031
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000032
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000033
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000034
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000035
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000036
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000037
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000038
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000039
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000040
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000041
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000042
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000043
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000044
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000045
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000046
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000047
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000048
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000049
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000050
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000051
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000052
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000053
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000054
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000055
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000056
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000057
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000058
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000059
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000060
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000061
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000062
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000063
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000064
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000065
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000066
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000067
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000068
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000069
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000070
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000071
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000072
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000073
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000074
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000075
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000076
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000077
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000078
+    },
+    {
+      "origin": "new_training_only_layout",
+      "seed": 24000079
+    }
+  ],
+  "checkpoint_sha256": "a15c0193364792f448175663b195810b0dc89948d0f89af4cd19a67b746ada82",
+  "validation_seeds_excluded": [
+    155284722,
+    225192514,
+    246848522,
+    316164238,
+    446701367,
+    527142122,
+    535212849,
+    570746810,
+    576497590,
+    589563505,
+    652863466,
+    701863950,
+    731014221,
+    758699772,
+    797951687,
+    798569765,
+    873629338,
+    944123758,
+    1311387844,
+    1369671429,
+    1429315851,
+    1570055189,
+    1628365314,
+    1641469845,
+    1798284844,
+    1811276011,
+    1888632319,
+    1953236062,
+    2014303324,
+    2035399579
+  ],
+  "max_policy_steps": 500,
+  "max_total_steps": 900,
+  "success_hold_steps": 10
+}
