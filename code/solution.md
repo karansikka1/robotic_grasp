@@ -2,6 +2,8 @@
 ### TLDR
 <to be updated>
 - RL on uninitialized policy did not work well even with curriculum learning
+- BC was done by generating episodes with the simulator as the teacher with some variantions.
+- Things that helped to train the model -> (1) predicting a high-level state for the current episode, (2) pre-training resnet with localization information
 
 ### Task and constraints
 
@@ -25,11 +27,11 @@ I generated complete episodes with a scripted teacher that approaches, grasps, l
 
 <video src="media/clean.mp4" controls preload="metadata" width="512"></video>
 
-**Policy:**
+**Non-visual Policy:**
 
 The [BC training guide](readme_bc_policy_train.md) describes the packaged models and training commands.
 
-I tried a multilayer perceptron (MLP) and a transformer with a short observation history before settling on a 128-unit long short-term memory network (LSTM). Its fixed-size memory carries information across the episode without requiring an ever-growing input sequence.
+I first tried a MLP and a transformer with a short observation history before settling on an LSTM. Its fixed-size memory carries information across the episode without requiring an ever-growing input sequence.
 
 Predicting actions alone was not enough. I added a training task in which the LSTM also predicts the teacher's current stage: eight stages for green, eight for blue, and a final settling stage. Examples include approaching green, closing the gripper, lifting green, and releasing blue. These 17 stage labels are training targets only; neither the labels nor the predictions are fed back as action inputs.
 
@@ -43,7 +45,7 @@ In the comparison below, all three models were trained for 200 epochs on the sam
 
 Stage prediction improved task completion in this comparison. My intuition is that it helps the memory represent what the robot is trying to do next. It did not solve every transition: in four of the eight failed episodes on new layouts, the robot placed green at some point but never registered a blue grasp. Each model was trained with one random seed; the numbers show better completion, not a measured improvement in learning speed. See [how stage training works](experiment_details.md#state-policy-and-stage-training).
 
-**Corrections:**
+**Correction Data in BC:**
 
 The learned policy could reach states poorly covered by its demonstrations and then struggle to recover. I used a DAgger-style correction approach: run the learner until an error is detected, then hand control to the teacher and add the successful correction to training.
 
@@ -117,7 +119,7 @@ The images below show the earlier **19.90 mm localization model**, saved at epoc
 
 The second frame illustrates a limitation: blue's 3D position error is 57.8 mm even though the front-view heatmap looks close to its image location. Each heatmap still assigns probability when a block is hidden. The color scale is shared within each figure but differs between the two figures.
 
-For control, I reused the image network trained for localization and its heatmap layers, then trained an adapter and a new LSTM on the demonstrations. The image network, or backbone, stays frozen during BC in the strongest measured variant: its weights are not updated. The adapter combines the visual features and robot measurements into the LSTM's input. See [visual-model details](experiment_details.md#visual-model). The diagram shows its action path:
+For control, I reused the image network trained for localization and its heatmap layers, then trained an adapter and a new LSTM on the demonstrations. The adapter combines the visual features and robot measurements into the LSTM's input. See [visual-model details](experiment_details.md#visual-model). The diagram shows its action path:
 
 ```mermaid
 flowchart TD

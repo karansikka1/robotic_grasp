@@ -54,7 +54,56 @@ ResNet18 is the image-processing network. Its intermediate **features** are lear
 
 Localization training teaches the model to estimate block centers in 3D. The simulator supplies those targets and the projected image positions used to supervise heatmaps. The reported millimeter error is the average distance between predicted and true block centers on validation data.
 
-The strongest reported visual variant reuses the localization-trained backbone, keeps its weights fixed during BC, and trains the heatmap layers, adapter, LSTM, and action and stage outputs. The LSTM receives image features and permitted robot measurements. It does not receive true or predicted block coordinates. Supplying predicted coordinates was a separate comparison.
+### Visual backbone
+
+The front and wrist images pass separately through the **same ResNet18**, sharing its weights. Each view keeps its own features. The following dimensions describe the later 16×16 spatial model, with `B` observations in a batch and channels listed before image height and width.
+
+| Step, per camera | Dimensions | Meaning |
+| --- | --- | --- |
+| Resize and normalize RGB | `B × 3 × 128 × 128` | Three image color channels |
+| ResNet18 through layer2 | `B × 128 × 16 × 16` | 128 learned features at each grid location |
+| 1×1 convolution and ReLU | `B × 32 × 16 × 16` | A smaller appearance representation |
+| Another 1×1 convolution | `B × 3 × 16 × 16` | Separate location scores for red, green, and blue |
+| Spatial softmax | `B × 3 × 16 × 16` | Each block's 256 location weights sum to one |
+
+A 1×1 convolution mixes feature channels at each grid location. Spatial softmax then converts the scores into a heatmap for each block. It runs across image locations, separately for each color. It still produces a heatmap when a block is hidden; visibility is predicted separately.
+
+### Combining cameras for localization
+
+For each block in each camera, the localization model uses the heatmap to take weighted averages of the image features and grid coordinates:
+
+| Per-block summary | Values |
+| --- | ---: |
+| Weighted appearance features from ResNet18 | 128 |
+| Weighted image position `(u, v)` | 2 |
+| Predicted visibility | 1 |
+| **Total per block per camera** | **131** |
+
+Both cameras' summaries are concatenated in a fixed order, followed by the 16 robot measurements. This gives `2 × 3 × 131 + 16 = 802` values. A small feedforward network predicts the three block centers:
+
+```text
+802 combined values → 128 → 128 → 9 outputs
+                                   ↓
+                         3 blocks × XYZ position
+```
+
+The hidden layers use ReLU. The output is converted from normalized training values to positions in the simulator's world coordinate system. Image coordinates `(u, v)` describe a location within a camera view; the network learns to combine both views and robot measurements into a 3D estimate. This localization network has no LSTM.
+
+### Combining cameras for control
+
+The spatial BC policy keeps the full appearance grids and heatmaps before combining the cameras:
+
+| Step, per observation | Values |
+| --- | ---: |
+| Per camera: 32 appearance channels plus 3 heatmaps | `35 × 16 × 16 = 8,960` |
+| Concatenate front and wrist features | 17,920 |
+| Add robot measurements | 17,936 |
+| Adapter: linear layer and ReLU | 128 |
+| LSTM output | 128 |
+| Action head | 4: X, Y, Z, and gripper |
+| Separate stage-prediction head | 17 |
+
+The fixed camera order lets the adapter learn how to combine the two views. The LSTM carries memory between observations; the action and stage heads read its output independently. Stage predictions are not action inputs. A separate ablation adds predicted block positions and gripper offsets; whether backbone weights also update during BC is another experimental choice.
 
 ## Evaluation sets and timing
 
