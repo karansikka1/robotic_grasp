@@ -65,11 +65,12 @@ def build():
         files[rel.as_posix()] = {'mime': mimetypes.guess_type(p.name)[0] or 'application/octet-stream',
                                 'data': base64.b64encode(data).decode(), 'sha256': hashlib.sha256(data).hexdigest()}
     documents = [Path('solution.md')] + [p.relative_to(ROOT) for p in sorted(ROOT.glob('*.md')) if p.name != 'solution.md']
-    videos, posters = {}, {}
+    videos, posters, video_sizes = {}, {}, {}
     def poster(name):
         if name not in posters:
             with av.open(str(ROOT / name)) as container:
                 frame = next(container.decode(video=0)).to_image()
+                video_sizes[name] = frame.size
             out = io.BytesIO(); frame.save(out, format='JPEG', quality=80)
             posters[name] = 'data:image/jpeg;base64,' + base64.b64encode(out.getvalue()).decode()
         return posters[name]
@@ -108,6 +109,8 @@ def build():
             vid = document_id(rel) + '-video-' + str(i)
             video['id'] = vid; video['data-asset'] = name; del video['src']
             video['poster'] = poster(name); video['preload'] = 'metadata'; video['playsinline'] = ''
+            width, height = video_sizes[name]
+            video['style'] = f'aspect-ratio: {width} / {height}'
             video['aria-label'] = name.rsplit('/', 1)[-1].replace('_', ' ')
             videos.setdefault(name, vid)
         for table in soup.find_all('table'):

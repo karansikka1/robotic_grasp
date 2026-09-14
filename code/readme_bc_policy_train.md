@@ -165,6 +165,14 @@ The full seed list matches the bundled manifest; omitting `--seeds` also runs th
 
 The packaged runner reproduced the best model's two report examples exactly: 267 actions for the successful stack and 900 for the failure. Video frame counts, timing, memory resets, input filtering, and loading all packaged policy families without research-folder imports were checked.
 
+To record the [stage-prediction example](media/stage_prediction_155284722.mp4), run this from the bundle folder with the same rendering environment variables:
+
+```bash
+python record_stage_video.py --seed 155284722 --device cuda --output outputs/stage_video
+```
+
+The [recorder](record_stage_video.py) reads the existing stage-head output without another policy forward pass. Each post-action frame displays the prediction for that action. It saves the video and raw stage logits in `stage_predictions.json`; the labels are unsmoothed predictions, not teacher annotations.
+
 ## Code map
 
 | File | Purpose |

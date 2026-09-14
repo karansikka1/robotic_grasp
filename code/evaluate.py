@@ -18,7 +18,7 @@ DEFAULT_LAYOUTS = Path(__file__).resolve().parent / 'plans/evaluation_validation
 INPUT_KEYS = (*RGB_KEYS, *PROPRIO_KEYS)
 
 
-def evaluate_one(policy, kind, seed, output, video=False):
+def evaluate_one(policy, kind, seed, output, video=False, video_writer=VideoWriter):
     """Count policy actions only; stop after ten consecutive official successes."""
     np.random.seed(seed)
     simulator = Simulator(has_renderer=False)
@@ -32,7 +32,7 @@ def evaluate_one(policy, kind, seed, output, video=False):
         if reset:
             reset()
         steps = 0
-        with (VideoWriter(video_path, 20) if video else nullcontext()) as writer:
+        with (video_writer(video_path, 20) if video else nullcontext()) as writer:
             if writer:
                 writer.add_observation(observation)
             with torch.inference_mode():

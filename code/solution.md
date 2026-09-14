@@ -17,21 +17,19 @@ A large part of the code was written with Codex so I could focus more on experim
 
 My initial plan was to use RL (PPO), rewarding progress as the robot picked up and placed each block. 
 
-However, an uninitialized policy failed to learn anything. I also tried curriculum learning by taking simpler tasks (such as grasping and lifting green) but even that was difficult: a state-based PPO policy trained for 400,000 steps achieved only 2/25 successful held lifts. Giving the policy exact object information did not make learning reliable, so I moved to behavior cloning (BC).
+However, an uninitialized policy failed to learn anything. I also tried curriculum learning by taking simpler tasks (such as grasping and lifting green) but even that was difficult: a state-based PPO policy trained for 400,000 steps achieved only 2/25 successful held lifts. Giving the policy exact object information did not make learning reliable, so I moved to behavior cloning.
 
 ### Moving to Behavior Cloning (BC)
 
 I first separated control from perception. The initial policy used previliged measurements e.g. exact block positions, and block-to-gripper offsets, without images or depth. This made iterations faster and removed visual estimation errors. It was a development baseline; the final policy still needed to work from RGB images and the permitted robot measurements.
 
-I generated complete episodes with a scripted teacher that approaches, grasps, lifts, places, and releases each block. The teacher controls XYZ movement and opens or closes the gripper, with rotation commands fixed at zero. See a [clean demonstration](media/clean.mp4) and the [data-generation notes](README_bc_data_gen.md). The eventual dataset contained 300 successful demonstrations, including episodes with disturbances and recovery: 270 training trajectories and 30 validation trajectories.
+I generated complete episodes with a scripted teacher that approaches, grasps, lifts, places, and releases each block. The teacher controls XYZ movement and opens or closes the gripper, with rotation commands fixed at zero. See a [clean demonstration](media/clean.mp4) and the [data-generation notes](README_bc_data_gen.md). The eventual dataset contained 300 successful demonstrations, including episodes with disturbances and recovery: 270 training trajectories and 30 validation trajectories. The choice for 300 samples was primarily governed by making sure we have a decent policy and I did not scale it thereafter.
 
 <video src="media/clean.mp4" controls preload="metadata" width="512"></video>
 
 **Non-visual Policy:**
 
-The [BC training guide](readme_bc_policy_train.md) describes the packaged models and training commands.
-
-I first tried a MLP and a transformer with a short observation history before settling on an LSTM. Its fixed-size memory carries information across the episode without requiring an ever-growing input sequence.
+I first tried a MLP and a transformer with a short observation history before settling on an LSTM. Its fixed-size memory carries information across the episode without requiring an ever-growing input sequence. LSTM was also the first model to get good convergence.
 
 Predicting actions alone was not enough. I added a training task in which the LSTM also predicts the teacher's current stage: eight stages for green, eight for blue, and a final settling stage. Examples include approaching green, closing the gripper, lifting green, and releasing blue. These 17 stage labels are training targets only; neither the labels nor the predictions are fed back as action inputs.
 
@@ -45,11 +43,19 @@ In the comparison below, all three models were trained for 200 epochs on the sam
 
 Stage prediction improved task completion in this comparison. My intuition is that it helps the memory represent what the robot is trying to do next. Each model was trained with one random seed; the numbers show better completion, not a measured improvement in learning speed. See [how stage training works](experiment_details.md#state-policy-and-stage-training).
 
+The video below illustrates the same stage-prediction task using the **best visual policy** on validation layout 155284722. The labels come directly from its stage head and can briefly jump between stages. The state-policy comparison above measures the benefit of adding this supervision.
+
+<video src="media/stage_prediction_155284722.mp4" controls preload="metadata" width="512"></video>
+
+[Open stage-prediction video](media/stage_prediction_155284722.mp4) — successful stack in 267 actions (13.35 simulated seconds).
+
+The [BC training guide](readme_bc_policy_train.md) describes the packaged models and training commands.
+
 **Correction Data in BC:**
 
 The learned policy could reach states poorly covered by its demonstrations and then struggle to recover. I used a DAgger-style correction approach: run the learner until an error is detected, then hand control to the teacher and add the successful correction to training.
 
-I added 12 correction trajectories:
+I initially added 12 correction trajectories based on the non-visual policy. I later show how this was done for additional examples.
 
 | Error | Added trajectories | Example behavior |
 | --- | ---: | --- |
