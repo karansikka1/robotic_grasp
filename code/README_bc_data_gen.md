@@ -1,17 +1,20 @@
 # BC trajectory generation
 
-We began by generating GT trajectories for behavior cloning. For this we relied on the simulator's access to the world state and mechanically collecting trajectories. For each trajectory we collected the images and other relevant features needed for training the final policy.
+We generated expert demonstrations for behavior cloning (BC), which trains a policy to imitate expert actions. A scripted teacher uses the simulator's exact block positions to complete the stack. Each trajectory records one attempt, including camera images, robot measurements, and the teacher's actions.
 
 ## Collection approach
 
-We first defined a collection taxonomy covering clean stacking and four types of
-execution error: 
-- Gaussian command bursts
-- block drops
-- sideways errors
-- gripper interruptions. 
+We collected clean stacking demonstrations and demonstrations with four types of
+execution error:
 
-Using this taxonomy, we collected **300** successful expert trajectories
+| Execution error | How it is introduced |
+| --- | --- |
+| Gaussian command bursts | Temporarily add random sideways movement to the teacher's commands. |
+| Block drops | Open the gripper after lifting a block. |
+| Sideways errors | Temporarily push the commanded movement to one side. |
+| Gripper interruptions | Delay closing or briefly reopen the gripper during a grasp. |
+
+Across these categories, we collected **300** successful expert trajectories
 and split them by whole trajectory into 270 training and 30 validation examples,
 with each category represented in both partitions and no shared seeds between them.
 
@@ -21,7 +24,8 @@ collected additional trajectories by running that policy until a detected failur
 and handing control to the recovery teacher. We added 12 successful corrections
 (four per failure type) to training, producing 282 training trajectories while
 keeping the original 30 validation trajectories unchanged. Only the expert portion
-of each correction supplies supervised targets; the learner prefix supplies context.
+of each correction supplies the actions the model is trained to imitate. The earlier
+learner-controlled part provides memory context. See [correction training](experiment_details.md#correction-training).
 
 ## Code
 
@@ -64,13 +68,17 @@ lists the 12 selected recoveries in `collection.json`.
 
 Each video shows the front and wrist cameras side by side:
 
-- [Clean expert demonstration](videos/clean.mp4)
-- [Injected block drop and expert recovery](videos/drop_block.mp4)
-- [Learner green-drop failure followed by expert correction](videos/green_drop.mp4)
+| Example | Video |
+| --- | --- |
+| Clean expert demonstration | <video src="media/clean.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/clean.mp4) |
+| Injected block drop and expert recovery | <video src="media/drop_block.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/drop_block.mp4) |
+| Learner green-drop failure followed by expert correction | <video src="media/green_drop.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/green_drop.mp4) |
+
+Inline playback requires a Markdown viewer that permits video elements. The links also open the clips directly.
 
 ## Assignment contract
 
-Note: Privileged state is used for training-data generation. The final submitted policy
-must consume only the two RGB images and four permitted proprioceptive fields;
-it must not read depth, object poses. The supplied simulator
-files remain unchanged.
+Exact simulator state is used to generate training data. The final submitted policy
+must use only the two RGB images and four permitted robot measurements: joint positions,
+end-effector position, end-effector orientation, and gripper positions.
+It must not receive depth or exact object poses as inputs.

@@ -3,5 +3,6 @@ __pycache__/
 .venv/
 outputs/
 
-# Small collection examples linked from the README.
-!/videos/*.mp4
+# Curated media linked from the submission documents.
+!/media/*.mp4
+!/media/*.png
