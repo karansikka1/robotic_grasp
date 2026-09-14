@@ -37,13 +37,13 @@ Predicting actions alone was not enough. I added a training task in which the LS
 
 In the comparison below, all three models were trained for 200 epochs on the same 270/30 split and learned four controls: movement along X, Y, and Z, plus gripper opening and closing.
 
-| State-based policy | Validation stacks | New-layout stacks |
-| --- | ---: | ---: |
-| MLP | 6/30 | 2/20 |
-| LSTM, action prediction only | 7/30 | 9/20 |
-| LSTM, action and stage prediction | **19/30** | **12/20** |
+| State-based policy | Validation stacks |
+| --- | ---: |
+| MLP | 6/30 |
+| LSTM, action prediction only | 7/30 |
+| LSTM, action and stage prediction | **19/30** |
 
-Stage prediction improved task completion in this comparison. My intuition is that it helps the memory represent what the robot is trying to do next. It did not solve every transition: in four of the eight failed episodes on new layouts, the robot placed green at some point but never registered a blue grasp. Each model was trained with one random seed; the numbers show better completion, not a measured improvement in learning speed. See [how stage training works](experiment_details.md#state-policy-and-stage-training).
+Stage prediction improved task completion in this comparison. My intuition is that it helps the memory represent what the robot is trying to do next. Each model was trained with one random seed; the numbers show better completion, not a measured improvement in learning speed. See [how stage training works](experiment_details.md#state-policy-and-stage-training).
 
 **Correction Data in BC:**
 
@@ -81,10 +81,10 @@ These corrections were collected with the state-based learner and also used to t
 
 Replacing exact block information with frozen ResNet18 image features initially reduced full-stack completion:
 
-| Policy | Validation stacks | Development stacks |
-| --- | ---: | ---: |
-| State policy after correction training | 22/30 | 13/20 |
-| Initial visual policy | 7/30 | 3/20 |
+| Policy | Validation stacks |
+| --- | ---: |
+| State policy after correction training | 22/30 |
+| Initial visual policy | 7/30 |
 
 This suggested that the visual representation needed work.
 
@@ -134,7 +134,7 @@ flowchart TD
 
 I compared keeping the localization-trained backbone frozen, fine-tuning it during BC, and adding predicted 3D positions and block-to-gripper offsets. All variants retain stage prediction without an extra 3D-position loss during BC. Fine-tuning the backbone currently gives the best validation result: **24/30 stacks (80%)**, using visual features rather than predicted coordinates as control inputs.
 
-I trained and evaluated as much as the available compute allowed. Variants are ranked by their best completed validation success rate; training budgets differed. Completion length and time are averages over successful validation episodes only, at 20 actions per second.
+Completion length and time are averages over successful validation episodes only, at 20 actions per second.
 
 | Rank | Visual variant | Validation success (30 layouts) | Mean completion length (actions) | Mean completion time (simulated s) |
 | ---: | --- | ---: | ---: | ---: |
@@ -143,23 +143,28 @@ I trained and evaluated as much as the available compute allowed. Variants are r
 | 3 | Frozen localization-trained ResNet18 + predicted positions and offsets | 17/30 (56.7%) | 300.24 | 15.01 |
 | 4 | Spatial model with original frozen ResNet18 | 8/30 (26.7%) | 355.00 | 17.75 |
 
-**Validation** uses the 30 held-out layouts from the demonstration split to select checkpoints. These layouts are excluded from training, but repeated use for model selection means this is not an untouched final test.
+**Validation** uses the 30 held-out layouts from the demonstration split to select checkpoints. These layouts are excluded from training.
 
 See [how the comparisons should be read](experiment_details.md#reading-the-results).
 
-These three clips show the frozen localization-trained backbone variant (20/30 validation, 16/20 development), with no teacher takeover:
+The videos below compare the same two validation layouts using each variant's best checkpoint from the table above, with no teacher takeover. Layout **155284722** succeeds only in the top-ranked model; **873629338** fails in all four. These examples were selected to illustrate those outcomes.
 
 Inline playback depends on the Markdown viewer; use the links if video elements are not supported.
 
-| Rollout video | Outcome | Policy actions | Completion time |
-| --- | --- | ---: | ---: |
-| <video src="media/visual_success_23000000.mp4" controls preload="metadata" width="320"></video><br>[Layout 23000000](media/visual_success_23000000.mp4) | Successful stack | 304 | 15.20 simulated seconds |
-| <video src="media/visual_success_23000007.mp4" controls preload="metadata" width="320"></video><br>[Layout 23000007](media/visual_success_23000007.mp4) | Successful stack | 288 | 14.40 simulated seconds |
-| <video src="media/visual_failure_23000002.mp4" controls preload="metadata" width="320"></video><br>[Layout 23000002](media/visual_failure_23000002.mp4) | No stable full stack | 900 (limit) | Did not complete |
+| Visual variant (ranked as above) | Validation layout 155284722 | Validation layout 873629338 |
+| --- | --- | --- |
+| 1. Localization-trained ResNet18, fine-tuned during BC | <video src="media/validation_finetuned_155284722.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_finetuned_155284722.mp4) · **Pass: 267 actions, 13.35 s** | <video src="media/validation_finetuned_873629338.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_finetuned_873629338.mp4) · Fail: 900-action limit |
+| 2. Localization-trained ResNet18, frozen during BC | <video src="media/validation_frozen_155284722.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_frozen_155284722.mp4) · Fail: 900-action limit | <video src="media/validation_frozen_873629338.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_frozen_873629338.mp4) · Fail: 900-action limit |
+| 3. Frozen localization-trained ResNet18 + predicted positions and offsets | <video src="media/validation_geometry_155284722.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_geometry_155284722.mp4) · Fail: 900-action limit | <video src="media/validation_geometry_873629338.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_geometry_873629338.mp4) · Fail: 900-action limit |
+| 4. Spatial model with original frozen ResNet18 | <video src="media/validation_original_155284722.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_original_155284722.mp4) · Fail: 900-action limit | <video src="media/validation_original_873629338.mp4" controls preload="metadata" width="320"></video><br>[Open video](media/validation_original_873629338.mp4) · Fail: 900-action limit |
+
+Times are simulated seconds. A failed episode reaches 45 seconds without completing the stack.
 
 ### Evaluation harness
 
-I evaluate the policy by running complete episodes from a fixed set of randomly generated layouts, resetting its memory at the start of each episode. The BC comparisons use 30 validation layouts. Internally I used 20 development layouts for selecting checkpoint and also check results on the 12 correction-training layouts to verify whether the policy has learned to handle those known failure cases.
+The packaged evaluation runner is [evaluate.py](evaluate.py). Its `evaluate_one` function uses the supplied simulator directly, counts consecutive successful steps, and records success, action count, completion time, and optional video. See the [evaluation command](readme_bc_policy_train.md#evaluate-a-checkpoint).
+
+I evaluate the policy by running complete episodes from a fixed set of randomly generated layouts, resetting its memory at the start of each episode. The BC comparisons report results on 30 validation layouts. I also check the 12 correction-training layouts separately to see whether the policy has learned to handle those known failure cases.
 
 For these BC results, success requires the simulator's official full-stack check to stay true for **10 consecutive actions**. Episodes stop at success or **900 policy actions**. At 20 actions per second, this is a 45-second limit. One initial zero-action step obtains the first observation and is excluded from policy time; success-confirmation actions are included.
 

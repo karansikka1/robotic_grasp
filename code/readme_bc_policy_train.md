@@ -133,9 +133,32 @@ The learner-controlled prefix of a correction updates LSTM memory but contribute
 | `config.json` | Training settings |
 | `split.json` | Exact resolved training/validation/test file lists |
 
-Use a new output directory for each run. This compact trainer preserves the model designs and supervision rules, but does not reproduce the historical scheduling, batching changes, or optimizer resumes exactly. Its losses measure imitation; full-stack success and completion time require separate simulator rollouts, as explained in [the evaluation notes](experiment_details.md#evaluation-sets-and-timing).
+Use a new output directory for each run. This compact trainer preserves the model designs and supervision rules, but does not reproduce the historical scheduling, batching changes, or optimizer resumes exactly. Its losses measure imitation; full-stack success and completion time require the simulator rollouts below.
 
 Short checks passed for all three state models, state fine-tuning, and the four RGB training variants using recorded data. Checks also covered correction masking, checkpoint reloads, matching existing state/spatial-policy predictions, frozen backbone weights, and running without the experiment folders. These checks used the existing working Python environment; no full training experiment or new success-rate evaluation was run.
+
+## Evaluate a checkpoint
+
+The [evaluation runner](evaluate.py) uses the packaged policy loaders and [30 validation seeds](plans/evaluation_validation.json). It uses the assignment's supplied `motion_planning.simulator.Simulator` directly and counts consecutive successes in the evaluation loop. It needs the existing environment and does not import the research folders or correction collector.
+
+From the assignment repository root, with the `PYTHONPATH` setting above:
+
+```bash
+export MUJOCO_GL=egl
+export PYOPENGL_PLATFORM=egl
+
+poetry run python -m evaluate \
+  --policy rgb_spatial \
+  --checkpoint path/to/selected.pt \
+  --device cuda --video \
+  --output code/outputs/evaluation
+```
+
+Use `--device cpu` if needed. Choose the matching `--policy` from the policy table; all spatial variants, including predicted geometry, use `rgb_spatial`. Checkpoint weights must be supplied separately. Omit `--video` to save only metrics, or add `--seeds 155284722 873629338` to reproduce the report's two example layouts. The output directory must be new.
+
+`results.json` records the checkpoint hash, evaluated seeds, per-episode outcomes, success rate, and mean completion actions and seconds among successes. Videos show both cameras at 20 frames per second. Episodes stop after ten consecutive official successes or 900 policy actions; the initial observation step is excluded from timing. RGB policies receive only the six permitted observations. State-policy evaluation uses exact block positions and is a control diagnostic. See [evaluation details](experiment_details.md#evaluation-sets-and-timing).
+
+The packaged runner reproduced the best model's two report examples exactly: 267 actions for the successful stack and 900 for the failure. Video frame counts, timing, memory resets, input filtering, and loading all packaged policy families without research-folder imports were checked.
 
 ## Code map
 

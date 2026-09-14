@@ -14,7 +14,7 @@ This document explains the training and evaluation choices behind [the solution]
 | Checkpoint | A saved version of the model. |
 | Action loss | How closely predicted actions match the teacher's actions. Lower loss does not necessarily mean more completed stacks. |
 
-The results in the solution describe the reported September 14 snapshot. The initial visual baseline and later visual models differ in architecture and training budget. The four later visual variants are compared at the same 50-epoch budget. These comparisons guide model selection; they do not prove that one architecture is always better.
+The results in the solution describe the reported September 14 snapshot. Training and evaluation used the available compute, so budgets differed across visual variants. For each variant, the report uses the completed evaluation with the most validation stacks. These comparisons guide model selection; they do not isolate architecture from training budget.
 
 ## State policy and stage training
 
@@ -111,12 +111,11 @@ The fixed camera order lets the adapter learn how to combine the two views. The 
 | --- | --- |
 | 270 original training trajectories, later 282 with corrections | Teach the model through demonstrations. |
 | 30 validation layouts | Check behavior on layouts excluded from training; used in model selection. |
-| 20 development layouts | Inspect behavior during experimentation. These became familiar through repeated evaluations. |
 | 12 correction-training layouts | Check performance on known training cases. |
 | Separate 20-layout state-policy test | Compare the frozen original and corrected state policies on previously unused layouts. |
 
-The visual model's reported evaluation covers the 30 validation, 20 development, and 12 correction-training layouts: 62 episodes in total. Its untouched final test is still pending in this snapshot.
+The visual-model comparisons report results on 30 validation layouts. Results on the 12 correction-training layouts are reported separately as training diagnostics. Its untouched final test is still pending in this snapshot.
 
 Full success requires the official stack-completion check to remain true for ten consecutive actions. Intermediate events, such as briefly placing green, do not count as full success. Episodes are limited to 900 policy actions.
 
-At 20 actions per second, completion time is the number of policy actions divided by 20. This is simulated time, not the computer's runtime. Timing excludes the initial step used to obtain an observation and includes the ten-action success confirmation. Mean completion time is calculated only over successful episodes.
+Completion length is the number of policy actions until success. At 20 actions per second, completion time is that length divided by 20. This is simulated time, not the computer's runtime. Both exclude the initial step used to obtain an observation and include the ten-action success confirmation. Mean completion length and time are calculated only over successful episodes; failures still count against the success rate.

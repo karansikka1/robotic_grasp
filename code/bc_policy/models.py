@@ -45,3 +45,19 @@ def load_state_checkpoint(path, kind, device='cpu'):
     policy = make_state_policy(kind, weights['mean'], weights['scale'])
     policy.load_state_dict(weights, strict=True)
     return policy.to(device).eval()
+
+
+def load_policy(checkpoint, kind, device='cpu'):
+    """Load a packaged state or RGB policy for evaluation."""
+    if kind in STATE_TYPES:
+        return load_state_checkpoint(checkpoint, kind, device)
+    if kind not in ('rgb_lstm', 'rgb_spatial'):
+        raise ValueError(kind)
+    from .visual import RGBSpatialLSTMPolicy, VisionStateLSTM
+    saved = torch.load(checkpoint, map_location='cpu', weights_only=False)
+    if any(saved.get(key) for key in ('uses_teacher_stage', 'uses_depth', 'uses_privileged_state')):
+        raise ValueError('Visual policies must use only RGB and permitted robot measurements')
+    policy = (RGBSpatialLSTMPolicy(**saved['model_config']) if kind == 'rgb_lstm'
+              else VisionStateLSTM(saved['model_config']))
+    policy.load_state_dict(saved['policy_state_dict'], strict=True)
+    return policy.to(device).eval()
