@@ -1,0 +1,18 @@
+'use strict';
+const files=JSON.parse(document.getElementById('embedded-files').textContent);
+const cache=new Map();
+function bytes(name){return Uint8Array.from(atob(files[name].data),c=>c.charCodeAt(0));}
+function url(name){if(!cache.has(name))cache.set(name,URL.createObjectURL(new Blob([bytes(name)],{type:files[name].mime})));return cache.get(name);}
+function download(name){const a=document.createElement('a');a.href=url(name);a.download=name.split('/').pop();a.click();}
+function reveal(){const id=decodeURIComponent(location.hash.slice(1));const target=document.getElementById(id);if(!target)return;for(let p=target;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;requestAnimationFrame(()=>target.scrollIntoView());}
+window.addEventListener('hashchange',reveal);
+if(location.hash)reveal();
+const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){if(!e.target.getAttribute('src'))e.target.src=url(e.target.dataset.asset);observer.unobserve(e.target);}},{rootMargin:'400px'});
+document.querySelectorAll('video[data-asset]').forEach(v=>observer.observe(v));
+document.addEventListener('click',e=>{const a=e.target.closest('a[data-download]');if(a){e.preventDefault();download(a.dataset.download);}const link=e.target.closest('a[data-video]');if(link){e.preventDefault();const v=document.getElementById(link.dataset.video);for(let p=v;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;v.src=v.src||url(v.dataset.asset);v.scrollIntoView({block:'center'});v.play().catch(()=>{});}});
+// Store-mode ZIP: assemble the already embedded files, without a CDN or ZIP library.
+const crcTable=Uint32Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
+function crc(data){let c=0xffffffff;for(const b of data)c=crcTable[(c^b)&255]^(c>>>8);return (c^0xffffffff)>>>0;}
+function zip(){const chunks=[],central=[];let offset=0,centralSize=0,count=0;const encoder=new TextEncoder();for(const [path,item] of Object.entries(files)){const name=encoder.encode('code/'+path),data=bytes(path),sum=crc(data);const h=new Uint8Array(30),v=new DataView(h.buffer);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint16(12,33,true);v.setUint32(14,sum,true);v.setUint32(18,data.length,true);v.setUint32(22,data.length,true);v.setUint16(26,name.length,true);chunks.push(h,name,data);const c=new Uint8Array(46),d=new DataView(c.buffer);d.setUint32(0,0x02014b50,true);d.setUint16(4,20,true);d.setUint16(6,20,true);d.setUint16(8,0x800,true);d.setUint16(14,33,true);d.setUint32(16,sum,true);d.setUint32(20,data.length,true);d.setUint32(24,data.length,true);d.setUint16(28,name.length,true);d.setUint32(42,offset,true);central.push(c,name);centralSize+=46+name.length;offset+=30+name.length+data.length;count++;}const end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,count,true);v.setUint16(10,count,true);v.setUint32(12,centralSize,true);v.setUint32(16,offset,true);return new Blob([...chunks,...central,end],{type:'application/zip'});}
+document.getElementById('download-bundle').addEventListener('click',async e=>{const b=e.currentTarget;b.disabled=true;b.textContent='Preparing download…';await new Promise(r=>setTimeout(r,30));try{const link=document.createElement('a');link.href=URL.createObjectURL(zip());link.download='bc_stacking_code.zip';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),60000);}finally{b.disabled=false;b.textContent='Download code bundle';}});
+document.getElementById('print-report').addEventListener('click',()=>window.print());

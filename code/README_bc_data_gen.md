@@ -39,23 +39,21 @@ learner-controlled part provides memory context. See [correction training](exper
 
 ## Run
 
-Run from the assignment repository root, with `code/` alongside the supplied
-`motion_planning/` directory:
+Run from inside the delivered `code/` folder after [environment setup](README.md#setup). The simulator is included in `motion_planning/`:
 
 ```bash
-export PYTHONPATH="$PWD/code${PYTHONPATH:+:$PYTHONPATH}"
 export MUJOCO_GL=egl
 export PYOPENGL_PLATFORM=egl
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 
-poetry run python -m bc_data.collect_demonstrations \
-  --output code/outputs/base --workers 1
+python -m bc_data.collect_demonstrations \
+  --output outputs/base --workers 1
 
-poetry run python -m bc_data.collect_corrections \
+python -m bc_data.collect_corrections \
   --checkpoint path/to/source_state_bc.pt \
-  --output code/outputs/corrections --workers 1
+  --output outputs/corrections --workers 1
 ```
 
 Add `--videos` to record every selected demonstration.

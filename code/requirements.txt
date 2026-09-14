@@ -1,0 +1,13 @@
+# Python 3.12; versions used to verify the bundled checkpoint.
+torch==2.8.0
+torchvision==0.23.0
+robosuite==1.5.1
+robosuite-models==1.0.0
+mujoco==3.3.2
+numpy==2.2.5
+h5py==3.14.0
+av==18.0.0
+numba==0.61.2
+llvmlite==0.44.0
+opencv-python==4.11.0.86
+scipy==1.15.2

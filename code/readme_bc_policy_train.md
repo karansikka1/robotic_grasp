@@ -18,16 +18,12 @@ The earlier short-history transformer and teacher-assisted diagnostic are not in
 
 ## Data and environment
 
-Run from the assignment repository root using its existing Poetry environment:
-
-```bash
-export PYTHONPATH="$PWD/code${PYTHONPATH:+:$PYTHONPATH}"
-```
+Run all commands from inside the delivered `code/` folder after [environment setup](README.md#setup). No parent repository or `PYTHONPATH` setting is needed.
 
 | Input | Where it comes from |
 | --- | --- |
-| `code/outputs/base/split.json` | Completed demonstration collection; contains training and validation trajectories |
-| `code/outputs/corrections/collection.json` | Optional completed correction collection; only its selected episodes are added to training |
+| `outputs/base/split.json` | Completed demonstration collection; contains training and validation trajectories |
+| `outputs/corrections/collection.json` | Optional completed correction collection; only its selected episodes are added to training |
 | Localization weights | Required only for spatial RGB initialization; described below |
 
 Trajectory paths are resolved relative to their manifest; absolute paths also work. The trainer rejects incomplete collections, duplicated files, and seeds shared between training and validation/test. A correction may reuse a training seed. Validation is never expanded with corrections, and test episodes are not used for training or checkpoint selection.
@@ -35,11 +31,11 @@ Trajectory paths are resolved relative to their manifest; absolute paths also wo
 ## State policies
 
 ```bash
-poetry run python -m bc_policy.train \
+python -m bc_policy.train \
   --policy state_lstm_aux \
-  --split code/outputs/base/split.json \
+  --split outputs/base/split.json \
   --epochs 200 --device cpu \
-  --output code/outputs/state_lstm_aux
+  --output outputs/state_lstm_aux
 ```
 
 Change `--policy` to `state_mlp` or `state_lstm` and choose a new output directory to train the other baselines.
@@ -47,13 +43,13 @@ Change `--policy` to `state_mlp` or `state_lstm` and choose a new output directo
 To fine-tune the auxiliary LSTM on all demonstrations plus corrections:
 
 ```bash
-poetry run python -m bc_policy.train \
+python -m bc_policy.train \
   --policy state_lstm_aux \
-  --split code/outputs/base/split.json \
-  --corrections code/outputs/corrections/collection.json \
-  --init-checkpoint code/outputs/state_lstm_aux/best.pt \
+  --split outputs/base/split.json \
+  --corrections outputs/corrections/collection.json \
+  --init-checkpoint outputs/state_lstm_aux/best.pt \
   --epochs 100 --learning-rate 0.0001 --device cpu \
-  --output code/outputs/state_lstm_aux_corrected
+  --output outputs/state_lstm_aux_corrected
 ```
 
 Omit `--init-checkpoint` and use 200 epochs with learning rate `0.001` to train from scratch on the combined data. With an initial checkpoint, normalization and model weights are retained but the optimizer starts fresh. This is fine-tuning, not an exact interrupted-run resume.
@@ -61,12 +57,12 @@ Omit `--init-checkpoint` and use 200 epochs with learning rate `0.001` to train 
 ## Initial RGB baseline
 
 ```bash
-poetry run python -m bc_policy.train \
+python -m bc_policy.train \
   --policy rgb_lstm \
-  --split code/outputs/base/split.json \
-  --corrections code/outputs/corrections/collection.json \
+  --split outputs/base/split.json \
+  --corrections outputs/corrections/collection.json \
   --epochs 200 --device cuda \
-  --output code/outputs/rgb_lstm
+  --output outputs/rgb_lstm
 ```
 
 The first fresh baseline run loads torchvision's ImageNet ResNet18 weights, downloading them if they are not already cached. A saved RGB checkpoint can instead be supplied with `--init-checkpoint`. Images are read in small chunks, flipped upright, resized to 128×128, and normalized before encoding. No full image dataset or feature cache is loaded into memory.
@@ -83,19 +79,19 @@ Localization pre-training is a separate step. This package consumes its saved we
 Supply those files explicitly. They are not bundled in this code increment. For the localization-fine-tuned model:
 
 ```bash
-poetry run python -m bc_policy.prepare_visual \
+python -m bc_policy.prepare_visual \
   --kind finetuned \
   --localizer path/to/localization_best.pt \
   --encoder path/to/frozen_prefix.pt \
-  --output code/outputs/spatial_initial.pt
+  --output outputs/spatial_initial.pt
 
-poetry run python -m bc_policy.train \
+python -m bc_policy.train \
   --policy rgb_spatial \
-  --init-checkpoint code/outputs/spatial_initial.pt \
-  --split code/outputs/base/split.json \
-  --corrections code/outputs/corrections/collection.json \
+  --init-checkpoint outputs/spatial_initial.pt \
+  --split outputs/base/split.json \
+  --corrections outputs/corrections/collection.json \
   --epochs 50 --device cuda \
-  --output code/outputs/rgb_spatial
+  --output outputs/rgb_spatial
 ```
 
 The initializer retains the trained image features and heatmap head, and creates a new random controller. It saves one self-contained initialization checkpoint; later BC runs need only that checkpoint and the demonstrations.
@@ -105,7 +101,7 @@ The initializer retains the trained image features and heatmap head, and creates
 | Original frozen image backbone with spatial features | Prepare with `--kind frozen` and its matching localizer/encoder files |
 | Localization-trained backbone, frozen during BC | Use the commands as shown |
 | Also fine-tune the backbone during BC | Add `--finetune-cnn`; layer1 and layer2 update at `0.00001`, with fixed BatchNorm statistics |
-| Also supply predicted positions and gripper offsets | Add `--predicted-geometry --split code/outputs/base/split.json --corrections code/outputs/corrections/collection.json` to **prepare_visual**, choose a new initialization filename, then train it with `rgb_spatial` |
+| Also supply predicted positions and gripper offsets | Add `--predicted-geometry --split outputs/base/split.json --corrections outputs/corrections/collection.json` to **prepare_visual**, choose a new initialization filename, then train it with `rgb_spatial` |
 
 The predicted-position branch uses a frozen localization model and training-only normalization. It receives no true block coordinates during policy inference. Its backbone stays frozen. The other spatial variants do not feed predicted positions to the controller. No extra position-prediction loss is used during BC.
 
@@ -139,22 +135,31 @@ Short checks passed for all three state models, state fine-tuning, and the four 
 
 ## Evaluate a checkpoint
 
-The [evaluation runner](evaluate.py) uses the packaged policy loaders and [30 validation seeds](plans/evaluation_validation.json). It uses the assignment's supplied `motion_planning.simulator.Simulator` directly and counts consecutive successes in the evaluation loop. It needs the existing environment and does not import the research folders or correction collector.
+The [evaluation runner](evaluate.py) uses the packaged policy loaders and [30 validation seeds](plans/evaluation_validation.json). It uses the bundled [simulator](motion_planning/simulator.py) directly and counts consecutive successes in the evaluation loop. It does not import files from outside this bundle.
 
-From the assignment repository root, with the `PYTHONPATH` setting above:
+The bundle includes [best_visual_bc.pt](checkpoints/best_visual_bc.pt): the localization-trained ResNet18 fine-tuned during BC that scored 24/30 validation stacks in the report. It contains the trained visual backbone and controller; no separate localization weights are needed for evaluation.
+
+From inside the delivered `code/` folder, run all 30 validation seeds:
 
 ```bash
 export MUJOCO_GL=egl
 export PYOPENGL_PLATFORM=egl
 
-poetry run python -m evaluate \
+python -m evaluate \
   --policy rgb_spatial \
-  --checkpoint path/to/selected.pt \
+  --checkpoint checkpoints/best_visual_bc.pt \
   --device cuda --video \
-  --output code/outputs/evaluation
+  --seeds \
+    155284722 225192514 246848522 316164238 446701367 \
+    527142122 535212849 570746810 576497590 589563505 \
+    652863466 701863950 731014221 758699772 797951687 \
+    798569765 873629338 944123758 1311387844 1369671429 \
+    1429315851 1570055189 1628365314 1641469845 1798284844 \
+    1811276011 1888632319 1953236062 2014303324 2035399579 \
+  --output outputs/evaluation
 ```
 
-Use `--device cpu` if needed. Choose the matching `--policy` from the policy table; all spatial variants, including predicted geometry, use `rgb_spatial`. Checkpoint weights must be supplied separately. Omit `--video` to save only metrics, or add `--seeds 155284722 873629338` to reproduce the report's two example layouts. The output directory must be new.
+The full seed list matches the bundled manifest; omitting `--seeds` also runs these same 30 layouts. Use `--device cpu` if needed. Choose the matching `--policy` from the policy table when evaluating other checkpoints; all spatial variants, including predicted geometry, use `rgb_spatial`. Omit `--video` to save only metrics, or replace the seed list with `--seeds 155284722 873629338` to reproduce the report's two example layouts. The output directory must be new.
 
 `results.json` records the checkpoint hash, evaluated seeds, per-episode outcomes, success rate, and mean completion actions and seconds among successes. Videos show both cameras at 20 frames per second. Episodes stop after ten consecutive official successes or 900 policy actions; the initial observation step is excluded from timing. RGB policies receive only the six permitted observations. State-policy evaluation uses exact block positions and is a control diagnostic. See [evaluation details](experiment_details.md#evaluation-sets-and-timing).
 

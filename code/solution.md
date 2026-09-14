@@ -162,13 +162,13 @@ Times are simulated seconds. A failed episode reaches 45 seconds without complet
 
 ### Evaluation harness
 
-The packaged evaluation runner is [evaluate.py](evaluate.py). Its `evaluate_one` function uses the supplied simulator directly, counts consecutive successful steps, and records success, action count, completion time, and optional video. See the [evaluation command](readme_bc_policy_train.md#evaluate-a-checkpoint).
+The packaged evaluation runner is [evaluate.py](evaluate.py). Its `evaluate_one` function uses the bundled [simulator](motion_planning/simulator.py) directly, counts consecutive successful steps, and records success, action count, completion time, and optional video. Run it from inside the delivered folder using the [setup and evaluation instructions](README.md).
+
+The [trained BC checkpoint](checkpoints/best_visual_bc.pt) is included in the bundle and corresponds to the top-ranked visual model above.
 
 I evaluate the policy by running complete episodes from a fixed set of randomly generated layouts, resetting its memory at the start of each episode. The BC comparisons report results on 30 validation layouts. I also check the 12 correction-training layouts separately to see whether the policy has learned to handle those known failure cases.
 
 For these BC results, success requires the simulator's official full-stack check to stay true for **10 consecutive actions**. Episodes stop at success or **900 policy actions**. At 20 actions per second, this is a 45-second limit. One initial zero-action step obtains the first observation and is excluded from policy time; success-confirmation actions are included.
-
-The best-validation visual checkpoint also completed 7/12 correction-training layouts, averaging 287 actions (14.35 simulated seconds) among successes. These layouts were included in training.
 
 Failures count against the success rate and are excluded from the average completion time. Simulator state is available to the evaluator for scoring and diagnostics, but the visual policy receives only the six permitted observation fields. See [evaluation sets and timing](experiment_details.md#evaluation-sets-and-timing).
 
