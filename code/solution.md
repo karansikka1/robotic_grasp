@@ -1,18 +1,25 @@
+
+### TLDR
+<to be updated>
+- RL on uninitialized policy did not work well even with curriculum learning
+
 ### Task and constraints
 
-The aim was to train a policy to stack the green block on the red block, then the blue block on the green block. The final policy can use two RGB camera views, robot joint positions, end-effector position and orientation, and gripper positions. Additional simulator information, such as object positions and depth, can be used during training but cannot be supplied as input to the final policy. I considered a vision-language-action model (VLA), but chose not to add the LeRobot dependency for this take-home.
+The aim was to train a policy to stack the green block on the red block, then the blue block on the green block. The final policy can use two RGB camera views, robot joint positions, end-effector position and orientation, and gripper positions. Additional simulator information, such as object positions and depth, can be used during training but cannot be supplied as input to the final policy. I considered using a vision-language-action model (VLA), but chose not to due to constraint on not adding additional dependencies. 
 
 ### Coding style
 
-I worked closely with Codex to implement my ideas so I could focus more on experiment design and reviewing the robot's behavior.
+A large part of the code was written with Codex so I could focus more on experimental design and reviewing the robot's behavior.
 
 ### Initial plan
 
-My initial plan was to use reinforcement learning with PPO, rewarding progress as the robot picked up and placed each block. Even the simpler task of grasping and lifting green was difficult: a state-based PPO policy trained for 400,000 steps achieved only 2/25 successful held lifts. This measured lifting, not complete stacking. Giving the policy exact object information did not make learning reliable, so I moved to behavior cloning (BC): learning actions from expert demonstrations.
+My initial plan was to use RL (PPO), rewarding progress as the robot picked up and placed each block. 
 
-### Moving to BC
+However, an uninitialized policy failed to learn anything. I also tried curriculum learning by taking simpler tasks (such as grasping and lifting green) but even that was difficult: a state-based PPO policy trained for 400,000 steps achieved only 2/25 successful held lifts. Giving the policy exact object information did not make learning reliable, so I moved to behavior cloning (BC).
 
-I first separated control from perception. The initial BC policy used robot measurements, exact block positions, and block-to-gripper offsets, without images or depth. This made iterations faster and removed visual estimation errors. It was a development baseline; the final policy still needed to work from RGB images and the permitted robot measurements.
+### Moving to Behavior Cloning (BC)
+
+I first separated control from perception. The initial policy used previliged measurements e.g. exact block positions, and block-to-gripper offsets, without images or depth. This made iterations faster and removed visual estimation errors. It was a development baseline; the final policy still needed to work from RGB images and the permitted robot measurements.
 
 I generated complete episodes with a scripted teacher that approaches, grasps, lifts, places, and releases each block. The teacher controls XYZ movement and opens or closes the gripper, with rotation commands fixed at zero. See a [clean demonstration](media/clean.mp4) and the [data-generation notes](README_bc_data_gen.md). The eventual dataset contained 300 successful demonstrations, including episodes with disturbances and recovery: 270 training trajectories and 30 validation trajectories.
 
