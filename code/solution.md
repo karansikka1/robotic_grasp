@@ -132,28 +132,22 @@ flowchart TD
     E -.-> G[Stage prediction: training target only]
 ```
 
-Predicted 3D coordinates are **not inputs to this policy**. Localization teaches useful features before BC; the controller then learns from those features. The stage prediction task remains, but no extra 3D-position loss is used during BC in this variant.
+I compared keeping the localization-trained backbone frozen, fine-tuning it during BC, and adding predicted 3D positions and block-to-gripper offsets. All variants retain stage prediction without an extra 3D-position loss during BC. Fine-tuning the backbone currently gives the best validation result: **24/30 stacks (80%)**, using visual features rather than predicted coordinates as control inputs.
 
-At the same 50-epoch BC budget:
+I trained and evaluated as much as the available compute allowed. Variants are ranked by their best completed validation success rate; training budgets differed. Completion length and time are averages over successful validation episodes only, at 20 actions per second.
 
-| Visual variant | Validation stacks | Development stacks |
-| --- | ---: | ---: |
-| Spatial model with original frozen ResNet18 | 8/30 | 6/20 |
-| Localization-trained ResNet18, frozen during BC | **20/30** | **16/20** |
-| Also fine-tune the backbone during BC | 16/30 | 16/20 |
-| Also supply predicted positions and offsets | 13/30 | 8/20 |
+| Rank | Visual variant | Validation success (30 layouts) | Mean completion length (actions) | Mean completion time (simulated s) |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | Localization-trained ResNet18, fine-tuned during BC | **24/30 (80.0%)** | 318.38 | 15.92 |
+| 2 | Localization-trained ResNet18, frozen during BC | 20/30 (66.7%) | 319.40 | 15.97 |
+| 3 | Frozen localization-trained ResNet18 + predicted positions and offsets | 17/30 (56.7%) | 300.24 | 15.01 |
+| 4 | Spatial model with original frozen ResNet18 | 8/30 (26.7%) | 355.00 | 17.75 |
 
-The checkpoint selected within the 50-epoch frozen-backbone run achieved the best measured validation result. Longer training did not consistently help:
+**Validation** uses the 30 held-out layouts from the demonstration split to select checkpoints. These layouts are excluded from training, but repeated use for model selection means this is not an untouched final test.
 
-| Training budget | Validation stacks |
-| --- | ---: |
-| 50 epochs | **20/30** |
-| 100 epochs | 16/30 |
-| 150 epochs | 18/30 |
+See [how the comparisons should be read](experiment_details.md#reading-the-results).
 
-These are development results as of September 14; further runs are ongoing, and the visual policy has not yet been evaluated on an untouched final test. See [how the comparisons should be read](experiment_details.md#reading-the-results).
-
-These three clips come from the same saved model selected during that 50-epoch run, with no teacher takeover:
+These three clips show the frozen localization-trained backbone variant (20/30 validation, 16/20 development), with no teacher takeover:
 
 Inline playback depends on the Markdown viewer; use the links if video elements are not supported.
 
@@ -163,20 +157,17 @@ Inline playback depends on the Markdown viewer; use the links if video elements 
 | <video src="media/visual_success_23000007.mp4" controls preload="metadata" width="320"></video><br>[Layout 23000007](media/visual_success_23000007.mp4) | Successful stack | 288 | 14.40 simulated seconds |
 | <video src="media/visual_failure_23000002.mp4" controls preload="metadata" width="320"></video><br>[Layout 23000002](media/visual_failure_23000002.mp4) | No stable full stack | 900 (limit) | Did not complete |
 
-**Evaluation harness:**
+### Evaluation harness
 
-I evaluate the policy by running complete episodes from a fixed set of randomly generated layouts, resetting its memory at the start of each episode. The BC comparisons use 30 validation layouts and 20 development layouts. Results on the 12 correction-training layouts are reported separately to check whether the policy has learned to handle those known failure cases.
+I evaluate the policy by running complete episodes from a fixed set of randomly generated layouts, resetting its memory at the start of each episode. The BC comparisons use 30 validation layouts. Internally I used 20 development layouts for selecting checkpoint and also check results on the 12 correction-training layouts to verify whether the policy has learned to handle those known failure cases.
 
 For these BC results, success requires the simulator's official full-stack check to stay true for **10 consecutive actions**. Episodes stop at success or **900 policy actions**. At 20 actions per second, this is a 45-second limit. One initial zero-action step obtains the first observation and is excluded from policy time; success-confirmation actions are included.
 
-For the visual checkpoint shown above:
-
-| Evaluation set | Full-stack success | Mean completion time among successes |
-| --- | ---: | ---: |
-| Validation | 20/30 (66.7%) | 15.97 simulated seconds |
-| Development | 16/20 (80.0%) | 16.42 simulated seconds |
+The best-validation visual checkpoint also completed 7/12 correction-training layouts, averaging 287 actions (14.35 simulated seconds) among successes. These layouts were included in training.
 
 Failures count against the success rate and are excluded from the average completion time. Simulator state is available to the evaluator for scoring and diagnostics, but the visual policy receives only the six permitted observation fields. See [evaluation sets and timing](experiment_details.md#evaluation-sets-and-timing).
+
+## Results
 
 ## What I could have done differently
 
