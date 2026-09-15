@@ -114,7 +114,10 @@ def build():
             video['aria-label'] = name.rsplit('/', 1)[-1].replace('_', ' ')
             videos.setdefault(name, vid)
         for table in soup.find_all('table'):
-            if table.find('video'): table['class'] = 'video-table'
+            if table.find('video'):
+                table['class'] = ['video-table']
+                if len(table.select('thead tr th')) == 2:
+                    table['class'].append('video-pair')
             if table.find('th') and table.find('th').get_text() == 'Rank': table['class'] = 'ranked'
             for th in table.find_all('th'): th['scope'] = 'col'
             wrapper = soup.new_tag('div', attrs={'class': 'table-scroll', 'tabindex': '0', 'role': 'region', 'aria-label': 'Scrollable data table'})
