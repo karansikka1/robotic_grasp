@@ -1,9 +1,10 @@
 
-### TLDR
-<to be updated>
-- RL on uninitialized policy did not work well even with curriculum learning
-- BC was done by generating episodes with the simulator as the teacher with some variantions.
-- Things that helped to train the model -> (1) predicting a high-level state for the current episode, (2) pre-training resnet with localization information
+### Key learnings
+
+- **Demonstrations provided a practical starting point.** RL from scratch struggled in the settings I tried, including curriculum learning. BC learned from scripted-teacher demonstrations that included disturbances and recovery.
+- **Stage supervision helped the state-based controller.** Adding task-stage prediction increased validation completion from 7/30 to 19/30 in the LSTM comparison. Stage labels and predictions are never action inputs.
+- **Localization training helped build useful visual features.** The best reported visual policy reused the localization-trained backbone and fine-tuned it during BC, completing **24/30 validation stacks (80%)**.
+- **Recovery remains a limitation.** The failure videos show situations the policy cannot resolve. Collecting corrections from the visual policy's own failures is a useful next step; the existing corrections came from the state-based learner.
 
 ### Task and constraints
 
@@ -178,10 +179,26 @@ For these BC results, success requires the simulator's official full-stack check
 
 Failures count against the success rate and are excluded from the average completion time. Simulator state is available to the evaluator for scoring and diagnostics, but the visual policy receives only the six permitted observation fields. See [evaluation sets and timing](experiment_details.md#evaluation-sets-and-timing).
 
-## Results
+## Six examples from the best BC checkpoint
 
-## What I could have done differently
+These three successes and three failures use the delivered checkpoint on validation layouts, with no teacher takeover or injected disturbances. The failures include misplaced blocks and attempts to continue from an incorrect stack configuration. These are selected examples of recovery difficulties; the overall validation result remains 24/30.
 
-Working in a new domain taught me that learning to perceive objects and learning to control the robot are separate problems. I could have started with a pre-trained VLA or explored a high-level planner with simpler pick-and-place policies. Either approach would still need testing on this task.
+| Successful rollouts | Failed rollouts |
+| --- | --- |
+| <video src="media/validation_finetuned_155284722.mp4" controls preload="metadata" width="400"></video><br>[Layout 155284722](media/validation_finetuned_155284722.mp4) — **267 actions, 13.35 s**. Completes green-on-red, then blue-on-green. | <video src="media/validation_finetuned_873629338.mp4" controls preload="metadata" width="400"></video><br>[Layout 873629338](media/validation_finetuned_873629338.mp4) — **900 actions, no completion**. Stalls near red without grasping green or blue. |
+| <video src="media/validation_finetuned_225192514.mp4" controls preload="metadata" width="400"></video><br>[Layout 225192514](media/validation_finetuned_225192514.mp4) — **258 actions, 12.90 s**. Completes the full stack from another starting layout. | <video src="media/validation_finetuned_731014221.mp4" controls preload="metadata" width="400"></video><br>[Layout 731014221](media/validation_finetuned_731014221.mp4) — **900 actions, no completion**. Places blue on green while green remains beside red. |
+| <video src="media/validation_finetuned_1628365314.mp4" controls preload="metadata" width="400"></video><br>[Layout 1628365314](media/validation_finetuned_1628365314.mp4) — **551 actions, 27.55 s**. Completes both placements in a longer rollout. | <video src="media/validation_finetuned_1311387844.mp4" controls preload="metadata" width="400"></video><br>[Layout 1311387844](media/validation_finetuned_1311387844.mp4) — **900 actions, no completion**. Misplaces green, attempts blue, then returns to green without completing the stack. |
 
-I was too optimistic about learning the full behavior with RL from scratch. Starting earlier with demonstrations, checking actual rollouts rather than only action loss, and collecting corrections from the visual learner would have made the process more focused. The next step is to address those visual-policy failures and then freeze a checkpoint for a separate final test.
+All times are simulated seconds. Each failure reaches the 45-second limit. The [example manifest](plans/report_examples.json) records the seeds, outcomes, and checkpoint and video hashes; see the [evaluation command](readme_bc_policy_train.md#evaluate-a-checkpoint) to reproduce them.
+
+## What I could have done differently and remaining limitations
+
+- Working in a new domain taught me that learning to perceive objects and learning to control the robot are separate problems. I could have started with a pre-trained VLA or explored a high-level planner with simpler pick-and-place policies. I chose a simpler approach given the available exploration budget.
+
+- I underestimated the difficulty of learning this multi-step task with RL from scratch. The early state-based experiments also struggled, so weak visual perception alone does not explain the result. Starting with demonstrations earlier would have given me more time to improve the policy and study its failures.
+
+- I could have explored larger and more varied demonstration datasets, but stopped expanding the data once I had a working policy. The failure examples above show that recovery remains a limitation. The existing corrections came from the state-based learner; collecting corrections from the visual policy's own failures would be a useful next step.
+
+- Stage supervision improved completion in the state-policy comparison, but its effect on recovery needs further testing. One possibility is that it encourages the model to follow the demonstrated sequence too rigidly when recovery requires a different action. The current results do not establish that stage supervision causes this behavior.
+
+- Localization-trained image features were useful without passing predicted 3D coordinates to the controller. Adding explicit coordinate inputs did not outperform the feature-based variants in the reported runs; the training budgets differed, so this is a finding from these experiments rather than a general conclusion.

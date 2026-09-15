@@ -161,6 +161,17 @@ python -m evaluate \
 
 The full seed list matches the bundled manifest; omitting `--seeds` also runs these same 30 layouts. Use `--device cpu` if needed. Choose the matching `--policy` from the policy table when evaluating other checkpoints; all spatial variants, including predicted geometry, use `rgb_spatial`. Omit `--video` to save only metrics, or replace the seed list with `--seeds 155284722 873629338` to reproduce the report's two example layouts. The output directory must be new.
 
+To reproduce the report's **three successes and three failures**, use the [six-example manifest](plans/report_examples.json):
+
+```bash
+python evaluate.py \
+  --policy rgb_spatial --checkpoint checkpoints/best_visual_bc.pt \
+  --layouts plans/report_examples.json \
+  --device cuda --video --output outputs/report_examples
+```
+
+This selected subset illustrates behavior; use all 30 validation layouts for the reported overall success rate.
+
 `results.json` records the checkpoint hash, evaluated seeds, per-episode outcomes, success rate, and mean completion actions and seconds among successes. Videos show both cameras at 20 frames per second. Episodes stop after ten consecutive official successes or 900 policy actions; the initial observation step is excluded from timing. RGB policies receive only the six permitted observations. State-policy evaluation uses exact block positions and is a control diagnostic. See [evaluation details](experiment_details.md#evaluation-sets-and-timing).
 
 The packaged runner reproduced the best model's two report examples exactly: 267 actions for the successful stack and 900 for the failure. Video frame counts, timing, memory resets, input filtering, and loading all packaged policy families without research-folder imports were checked.

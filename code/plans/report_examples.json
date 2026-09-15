@@ -1,0 +1,69 @@
+{
+  "checkpoint": "../checkpoints/best_visual_bc.pt",
+  "checkpoint_sha256": "c154038f6ee563d593ddbd1078d6401c61fc687ce0d14cf226102c22c3c7eef1",
+  "validation_seeds": [
+    155284722,
+    225192514,
+    1628365314,
+    873629338,
+    731014221,
+    1311387844
+  ],
+  "selection": "Three successes and three failures selected for illustration; not an estimate of overall success rate. No injected disturbances or teacher takeover.",
+  "examples": [
+    {
+      "seed": 155284722,
+      "success": true,
+      "policy_actions": 267,
+      "completion_seconds": 13.35,
+      "video": "../media/validation_finetuned_155284722.mp4",
+      "video_sha256": "6400ace00100422ce17911a2a3d2759db7fc944bde95b92a2b7b81a5dd4f91d7",
+      "description": "Completes green-on-red, then blue-on-green."
+    },
+    {
+      "seed": 225192514,
+      "success": true,
+      "policy_actions": 258,
+      "completion_seconds": 12.9,
+      "video": "../media/validation_finetuned_225192514.mp4",
+      "video_sha256": "f06209f2f4103fc9404ef32d330290182dd782b2bc13d7d20fd692641497ab3b",
+      "description": "Completes the full stack from another starting layout."
+    },
+    {
+      "seed": 1628365314,
+      "success": true,
+      "policy_actions": 551,
+      "completion_seconds": 27.55,
+      "video": "../media/validation_finetuned_1628365314.mp4",
+      "video_sha256": "3caff21c1b7ce1ce4abbf5512e38779e7c5a7ac809e0366d71aeb242f6341a76",
+      "description": "Completes both placements in a longer rollout."
+    },
+    {
+      "seed": 873629338,
+      "success": false,
+      "policy_actions": 900,
+      "completion_seconds": null,
+      "video": "../media/validation_finetuned_873629338.mp4",
+      "video_sha256": "4989e606388f2ce175e2190bd0480c62a6d5ff2694f3bc7805bc610b20a16cd3",
+      "description": "Stalls near red without grasping green or blue."
+    },
+    {
+      "seed": 731014221,
+      "success": false,
+      "policy_actions": 900,
+      "completion_seconds": null,
+      "video": "../media/validation_finetuned_731014221.mp4",
+      "video_sha256": "f3821f56e44471fb3ef8adcedf9b34f1e19a54dc0460405ca14291d1020b9c3e",
+      "description": "Places blue on green while green remains beside red."
+    },
+    {
+      "seed": 1311387844,
+      "success": false,
+      "policy_actions": 900,
+      "completion_seconds": null,
+      "video": "../media/validation_finetuned_1311387844.mp4",
+      "video_sha256": "70068c798664cb1c9d2a4cb19128fe73775f3d2fc78ba2e8a0b336da300cb52d",
+      "description": "Misplaces green, attempts blue, then returns to green without completing the stack."
+    }
+  ]
+}
