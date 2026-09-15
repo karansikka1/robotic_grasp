@@ -69,7 +69,7 @@ Each video shows the front and wrist cameras side by side:
 | Example | Video |
 | --- | --- |
 | Clean expert demonstration | <video src="media/clean.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/clean.mp4) |
-| Injected block drop and expert recovery | <video src="media/drop_block.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/drop_block.mp4) |
+| Injected blue-block drop and expert recovery | <video src="media/drop_block.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/drop_block.mp4) · Blue drops at 10.15–10.40 s; regrasp at 13.55 s. |
 | Learner green-drop failure followed by expert correction | <video src="media/green_drop.mp4" controls preload="metadata" width="400"></video><br>[Open video](media/green_drop.mp4) |
 
 Inline playback requires a Markdown viewer that permits video elements. The links also open the clips directly.

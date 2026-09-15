@@ -2,7 +2,7 @@
 ### Key learnings
 
 - **Demonstrations provided a practical starting point.** RL from scratch struggled in the settings I tried, including curriculum learning. BC learned from scripted-teacher demonstrations that included disturbances and recovery.
-- **Stage supervision helped the state-based controller.** Adding task-stage prediction increased validation completion from 7/30 to 19/30 in the LSTM comparison. Stage labels and predictions are never action inputs.
+- **Stage supervision helped the state-based controller.** Adding task-stage prediction increased validation completion from 7/30 to 19/30 in the LSTM comparison.
 - **Localization training helped build useful visual features.** The best reported visual policy reused the localization-trained backbone and fine-tuned it during BC, completing **24/30 validation stacks (80%)**.
 - **Recovery remains a limitation.** The failure videos show situations the policy cannot resolve. Collecting corrections from the visual policy's own failures is a useful next step; the existing corrections came from the state-based learner.
 
@@ -44,7 +44,7 @@ In the comparison below, all three models were trained for 200 epochs on the sam
 
 Stage prediction improved task completion in this comparison. My intuition is that it helps the memory represent what the robot is trying to do next. Each model was trained with one random seed; the numbers show better completion, not a measured improvement in learning speed. See [how stage training works](experiment_details.md#state-policy-and-stage-training).
 
-The video below illustrates the same stage-prediction task using the **best visual policy** on validation layout 155284722. The labels come directly from its stage head and can briefly jump between stages. The state-policy comparison above measures the benefit of adding this supervision.
+The video below illustrates the same stage-prediction task using the **best visual policy**. The labels come directly from its stage head. The state-policy comparison above measures the benefit of adding this supervision.
 
 <video src="media/stage_prediction_155284722.mp4" controls preload="metadata" width="512"></video>
 
@@ -56,7 +56,7 @@ The [BC training guide](readme_bc_policy_train.md) describes the packaged models
 
 The learned policy could reach states poorly covered by its demonstrations and then struggle to recover. I used a DAgger-style correction approach: run the learner until an error is detected, then hand control to the teacher and add the successful correction to training.
 
-I initially added 12 correction trajectories based on the non-visual policy. I later show how this was done for additional examples.
+I initially added 12 correction trajectories based on the non-visual policy. This has to be done carefully to not avoid regressions on pre-existing data. In the final run we combined a small number of corrections into the final dataset.
 
 | Error | Added trajectories | Example behavior |
 | --- | ---: | --- |
@@ -64,11 +64,11 @@ I initially added 12 correction trajectories based on the non-visual policy. I l
 | Unsuccessful green grasp | 4 | The gripper repeatedly closes beside green without grasping it. |
 | Unsuccessful blue grasp | 4 | The gripper repeatedly closes beside blue without grasping it. |
 
-The teacher retreats, realigns, and tries again. See the [learner drop followed by teacher correction](media/green_drop.mp4); the [injected-drop example](media/drop_block.mp4) shows recovery during demonstration generation.
+The teacher retreats, realigns, and tries again. See the [learner drop followed by teacher correction](media/green_drop.mp4); the [injected blue-block drop](media/drop_block.mp4) shows recovery during demonstration generation. In the latter clip, blue falls at **10.15–10.40 seconds**, and the teacher grasps it again at **13.55 seconds** before completing the stack.
 
-| Learner error and teacher correction | Injected drop and teacher recovery |
+| Learner error and teacher correction | Injected blue-block drop and teacher recovery |
 | --- | --- |
-| <video src="media/green_drop.mp4" controls preload="metadata" width="320"></video><br>[Open correction video](media/green_drop.mp4) | <video src="media/drop_block.mp4" controls preload="metadata" width="320"></video><br>[Open recovery video](media/drop_block.mp4) |
+| <video src="media/green_drop.mp4" controls preload="metadata" width="320"></video><br>[Open correction video](media/green_drop.mp4) | <video src="media/drop_block.mp4" controls preload="metadata" width="320"></video><br>[Open recovery video](media/drop_block.mp4) · Blue drops at 10.15–10.40 s; regrasp at 13.55 s. |
 
 The part of the episode before the teacher takes over provides memory context but is excluded from action and stage supervision. Only the teacher's correction supplies targets. This brought the total to 282 training trajectories while keeping the original 30 validation trajectories unchanged.
 
@@ -81,8 +81,6 @@ Fine-tuning on the combined dataset gave the following full-stack results:
 | 20 previously untouched test layouts | 12/20 | **13/20** |
 
 The larger gain on correction layouts is a training-set result; the test gain was modest. See [correction training and its limits](experiment_details.md#correction-training).
-
-These corrections were collected with the state-based learner and also used to train the visual models. Collecting new corrections from the visual policy's own errors remains future work.
 
 **Visual policy:**
 
@@ -202,5 +200,3 @@ All times are simulated seconds. Each failure reaches the 45-second limit. The [
 - I could have explored larger and more varied demonstration datasets, but stopped expanding the data once I had a working policy. The failure examples above show that recovery remains a limitation. The existing corrections came from the state-based learner; collecting corrections from the visual policy's own failures would be a useful next step.
 
 - Stage supervision improved completion in the state-policy comparison, but its effect on recovery needs further testing. One possibility is that it encourages the model to follow the demonstrated sequence too rigidly when recovery requires a different action. The current results do not establish that stage supervision causes this behavior.
-
-- Localization-trained image features were useful without passing predicted 3D coordinates to the controller. Adding explicit coordinate inputs did not outperform the feature-based variants in the reported runs; the training budgets differed, so this is a finding from these experiments rather than a general conclusion.
