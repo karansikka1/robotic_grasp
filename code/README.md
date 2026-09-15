@@ -6,26 +6,9 @@ This folder contains the [report](solution.md), trained BC checkpoint, evaluatio
 
 Open [solution.html](solution.html) in a browser. The single file includes videos, heatmaps, the architecture diagram, supporting notes, and a downloadable code bundle with the trained checkpoint. No server or internet connection is needed to read it.
 
-After editing the Markdown or bundled files, regenerate the HTML from this folder:
-
-```bash
-python -m pip install -r requirements_report.txt
-python build_report.py
-```
-
-The builder excludes generated outputs, virtual environments, and the HTML itself from the embedded code download.
-
 ## Setup
 
-Use Python 3.12. If you already have the working assignment environment active, you can use it directly. Otherwise:
-
-```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
-
-[requirements.txt](requirements.txt) records the main library versions used for checkpoint verification. On Linux, offscreen rendering also requires an EGL library; on Ubuntu/Debian, install it with `apt-get install -y libegl1` if missing. CUDA evaluation requires a compatible NVIDIA GPU and driver.
+Use Python 3.12 with the working assignment environment. The runtime uses PyTorch, torchvision, robosuite, MuJoCo, NumPy, h5py, and PyAV. On Linux, offscreen rendering also requires an EGL library; on Ubuntu/Debian, install it with `apt-get install -y libegl1` if missing. CUDA evaluation requires a compatible NVIDIA GPU and driver.
 
 ## Evaluate the delivered checkpoint
 

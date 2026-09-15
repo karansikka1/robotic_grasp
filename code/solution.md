@@ -150,6 +150,8 @@ Completion length and time are averages over successful validation episodes only
 | 3 | Frozen localization-trained ResNet18 + predicted positions and offsets | 17/30 (56.7%) | 300.24 | 15.01 |
 | 4 | Spatial model with original frozen ResNet18 | 8/30 (26.7%) | 355.00 | 17.75 |
 
+I also tried fine-tuning the RGB BC policy with RL, using an intermediate reward of **+1 for placing green on red** and a final reward of **+10 for completing the stack**. This did not improve task completion over the BC policy in the runs evaluated.
+
 **Validation** uses the 30 held-out layouts from the demonstration split to select checkpoints. These layouts are excluded from training.
 
 See [how the comparisons should be read](experiment_details.md#reading-the-results).

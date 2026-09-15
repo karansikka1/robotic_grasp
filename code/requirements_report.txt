@@ -1,3 +1,0 @@
-# Optional: only needed to rebuild solution.html, not to view it.
-Markdown==3.10.2
-beautifulsoup4==4.14.2
